@@ -50,13 +50,16 @@
     <Compile Include="Exceptions\LocationHeaderCountInvalidException.cs" />
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />
+    <Compile Include="Exceptions\RequestNotFoundException.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="IField.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="Requests\CreateNewIssueRequest.cs" />
+    <Compile Include="Requests\DeleteIssueRequest.cs" />
     <Compile Include="Requests\GetIssueRequest.cs" />
+    <Compile Include="Requests\IYouTrackDeleteRequest.cs" />
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />

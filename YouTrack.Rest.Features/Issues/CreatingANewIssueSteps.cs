@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
-using YouTrack.Rest.Features.Steps;
 
 namespace YouTrack.Rest.Features.Issues
 {
     [Binding]
     public class CreatingANewIssueSteps : Steps.Steps
     {
+        [AfterScenario]
+        public void Teardown()
+        {
+            string issueId = ScenarioContext.Current.Get<string>("issueId");
+
+            if(StepHelper.IssueExists(issueId))
+            {
+                StepHelper.DeleteIssue(issueId);
+            }
+        }
+
         [When(@"I create a new issue to a project with summary and description")]
         public void WhenICreateANewIssueToAProjectWithSummaryAndDescription()
         {
@@ -25,7 +31,7 @@ namespace YouTrack.Rest.Features.Issues
             string issueId = ScenarioContext.Current.Get<string>("issueId");
 
             Assert.That(issueId, Is.Not.Null);
-            Assert.That(issueId, Is.StringContaining("/issue/SB-"));
+            Assert.That(issueId, Is.StringContaining("SB-"));
         }
 
         [When(@"I create a new issue to a project with permitted group")]

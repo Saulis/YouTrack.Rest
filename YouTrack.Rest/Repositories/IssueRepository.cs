@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Repositories
@@ -16,8 +19,9 @@ namespace YouTrack.Rest.Repositories
             CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description, attachments, permittedGroup);
 
             string location = client.Put(createNewIssueRequest);
+            string issueId = location.Split('/').Last();
 
-            return location;
+            return issueId;
         }
 
         public IIssue CreateAndGetIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
@@ -34,6 +38,26 @@ namespace YouTrack.Rest.Repositories
             Issue issue = client.Get<Issue>(getIssueRequest);
 
             return issue;
+        }
+
+        public void DeleteIssue(string issueId)
+        {
+            DeleteIssueRequest deleteIssueRequest = new DeleteIssueRequest(issueId);
+
+            client.Delete(deleteIssueRequest);
+        }
+
+        public bool IssueExists(string issueId)
+        {
+            try
+            {
+                //TODO: Better solution would be to use the Issue Count method.
+                return GetIssue(issueId) != null;
+            }
+            catch (RequestNotFoundException)
+            {
+                return false;
+            }
         }
     }
 }

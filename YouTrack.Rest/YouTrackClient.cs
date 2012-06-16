@@ -12,7 +12,7 @@ namespace YouTrack.Rest
     public class YouTrackClient : IYouTrackClient
     {
         private readonly IConnection connection;
-        private readonly RestClient restClient;
+        private readonly IRestClient restClient;
 
         public YouTrackClient(string baseUrl, string login, string password)
         {
@@ -58,6 +58,9 @@ namespace YouTrack.Rest
                 case HttpStatusCode.Forbidden:
                 case HttpStatusCode.Unauthorized:
                     throw new RequestFailedException(response);
+
+                case HttpStatusCode.NotFound:
+                    throw new RequestNotFoundException(response);
             }
         }
 
@@ -73,6 +76,11 @@ namespace YouTrack.Rest
             IRestResponse<TResponse> response = ExecuteRequestWithAuthentication<TResponse>(request, Method.GET);
 
             return response.Data;
+        }
+
+        public void Delete(IYouTrackDeleteRequest request)
+        {
+            ExecuteRequestWithAuthentication(request, Method.DELETE);
         }
 
         private string GetLocationHeaderValue(IRestResponse response)

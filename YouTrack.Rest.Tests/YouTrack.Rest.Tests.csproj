@@ -53,6 +53,7 @@
     <Compile Include="ConnectionTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\CreateNewIssueRequestTests.cs" />
+    <Compile Include="Requests\DeleteIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssueRequestTests.cs" />
     <Compile Include="Requests\LoginRequestTests.cs" />
     <Compile Include="Requests\YouTrackRequestTests.cs" />
@@ -64,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YouTrack.Net\YouTrack.Rest.csproj">
+    <ProjectReference Include="..\YouTrack.Rest\YouTrack.Rest.csproj">
       <Project>{DF17421E-5AF6-4855-9CB7-73D075CCC9F7}</Project>
       <Name>YouTrack.Rest</Name>
     </ProjectReference>

@@ -9,5 +9,6 @@ namespace YouTrack.Rest
         IIssueRepository GetIssueRepository();
         string Put(IYouTrackPutRequest request);
         TResponse Get<TResponse>(IYouTrackGetRequest request) where TResponse : new();
+        void Delete(IYouTrackDeleteRequest request);
     }
 }
