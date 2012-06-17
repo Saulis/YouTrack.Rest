@@ -64,26 +64,9 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void ConnectionIsReturned()
         {
-            Assert.That(Sut.GetConnection(), Is.TypeOf<Connection>());
+            Assert.That(Sut.GetConnection(), Is.TypeOf<Session>());
         }
 
-        [Test]
-        public void Delete()
-        {
-            Sut.Delete(Mock<IYouTrackDeleteRequest>());
-        }
-
-        [Test]
-        public void Get()
-        {
-            Sut.Get<TestItem>(Mock<IYouTrackGetRequest>());
-        }
-
-        [Test]
-        public void Put()
-        {
-            Sut.Put(Mock<IYouTrackPutRequest>());
-        }
 
     }
 

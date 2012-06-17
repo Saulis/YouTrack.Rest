@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
+    <Compile Include="SessionTests.cs" />
+    <Compile Include="IssueDeserializerTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\CreateNewIssueRequestTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />

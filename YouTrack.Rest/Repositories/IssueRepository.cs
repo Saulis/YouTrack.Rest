@@ -7,18 +7,18 @@ namespace YouTrack.Rest.Repositories
 {
     class IssueRepository : IIssueRepository
     {
-        private readonly IYouTrackClient client;
+        private readonly IConnection connection;
 
-        public IssueRepository(IYouTrackClient client)
+        public IssueRepository(IConnection connection)
         {
-            this.client = client;
+            this.connection = connection;
         }
 
         public string CreateIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
         {
             CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description, attachments, permittedGroup);
 
-            string location = client.Put(createNewIssueRequest);
+            string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();
 
             return issueId;
@@ -35,16 +35,16 @@ namespace YouTrack.Rest.Repositories
         {
             GetIssueRequest getIssueRequest = new GetIssueRequest(issueId);
 
-            Issue issue = client.Get<Issue>(getIssueRequest);
+            IssueDeserializer issueDeserializer = connection.Get<IssueDeserializer>(getIssueRequest);
 
-            return issue;
+            return issueDeserializer.GetIssue();
         }
 
         public void DeleteIssue(string issueId)
         {
             DeleteIssueRequest deleteIssueRequest = new DeleteIssueRequest(issueId);
 
-            client.Delete(deleteIssueRequest);
+            connection.Delete(deleteIssueRequest);
         }
 
         public bool IssueExists(string issueId)

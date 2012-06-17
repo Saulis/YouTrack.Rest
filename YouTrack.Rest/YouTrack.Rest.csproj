@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
     <Compile Include="Exceptions\LocationHeaderCountInvalidException.cs" />
@@ -52,8 +53,11 @@
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
     <Compile Include="IConnection.cs" />
-    <Compile Include="IField.cs" />
+    <Compile Include="ISession.cs" />
+    <Compile Include="Field.cs" />
     <Compile Include="IIssue.cs" />
+    <Compile Include="Issue.cs" />
+    <Compile Include="IssueDeserializer.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="Requests\CreateNewIssueRequest.cs" />
@@ -65,8 +69,9 @@
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
+    <Compile Include="Value_.cs" />
     <Compile Include="YouTrackClient.cs" />
-    <Compile Include="Connection.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="IYouTrackClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\IYouTrackRequest.cs" />

@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 namespace YouTrack.Rest.Features.Issues
 {
     [Binding]
+    [Scope(Feature = "Deleting an issue")]
     public class DeletingAnIssueSteps : Steps.Steps
     {
         [Given(@"I have created an issue")]

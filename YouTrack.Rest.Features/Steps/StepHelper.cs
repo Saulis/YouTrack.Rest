@@ -5,7 +5,7 @@ namespace YouTrack.Rest.Features.Steps
 {
     public class StepHelper
     {
-        private YouTrackClient youTrackClient;
+        private IYouTrackClient youTrackClient;
 
         public IConnection GetConnection()
         {
@@ -52,6 +52,20 @@ namespace YouTrack.Rest.Features.Steps
             IIssueRepository issueRepository = youTrackClient.GetIssueRepository();
 
             return issueRepository.IssueExists(issueId);
+        }
+
+        public IIssue GetIssue(string issueId)
+        {
+            Console.WriteLine("Getting Issue with Id: {0}", issueId);
+
+            IIssueRepository issueRepository = youTrackClient.GetIssueRepository();
+
+            return issueRepository.GetIssue(issueId);
+        }
+
+        public ISession GetSession()
+        {
+            return youTrackClient.GetSession();
         }
     }
 }

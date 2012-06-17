@@ -15,7 +15,7 @@ namespace YouTrack.Rest.Features.Authentication
 
             try
             {
-                StepHelper.GetConnection().Login();
+                StepHelper.GetSession().Login();
             }
             catch(RequestFailedException e)
             {
@@ -26,13 +26,13 @@ namespace YouTrack.Rest.Features.Authentication
         [Then(@"I am authenticated")]
         public void ThenIAmAuthenticated()
         {
-            Assert.IsTrue(StepHelper.GetConnection().IsAuthenticated);
+            Assert.IsTrue(StepHelper.GetSession().IsAuthenticated);
         }
 
         [Then(@"I am not authenticated")]
         public void ThenIAmNotAuthenticated()
         {
-            Assert.IsFalse(StepHelper.GetConnection().IsAuthenticated);
+            Assert.IsFalse(StepHelper.GetSession().IsAuthenticated);
         }
 
     }

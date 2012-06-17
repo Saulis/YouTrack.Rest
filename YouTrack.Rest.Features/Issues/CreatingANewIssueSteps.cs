@@ -4,6 +4,7 @@ using TechTalk.SpecFlow;
 namespace YouTrack.Rest.Features.Issues
 {
     [Binding]
+    [Scope(Feature = "Creating a new issue")]
     public class CreatingANewIssueSteps : Steps.Steps
     {
         [AfterScenario]

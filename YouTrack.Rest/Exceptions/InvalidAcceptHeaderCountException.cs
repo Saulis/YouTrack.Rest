@@ -3,9 +3,9 @@ using RestSharp;
 
 namespace YouTrack.Rest.Exceptions
 {
-    internal class InvalidAcceptHeaderCountException : Exception
+    public class InvalidAcceptHeaderCountException : Exception
     {
-        public InvalidAcceptHeaderCountException(RestRequest restRequest)
+        internal InvalidAcceptHeaderCountException(RestRequest restRequest)
         {
             throw new NotImplementedException();
         }

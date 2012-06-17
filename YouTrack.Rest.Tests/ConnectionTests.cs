@@ -1,49 +1,31 @@
-using System.Net;
-using NSubstitute;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using NUnit.Framework;
-using RestSharp;
-using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests
 {
     class ConnectionTests : TestFor<Connection>
     {
-        private IRestClient restClient;
-        private IRestResponse badRequestResponse;
 
-        protected override Connection CreateSut()
+        [Test]
+        public void Delete()
         {
-            restClient = Mock<IRestClient>();
-            
-            return new Connection(restClient, "login", "password");
-        }
-
-        protected override void SetupDependencies()
-        {
-            badRequestResponse = CreateBadRequestResponse();
-        }
-
-        private IRestResponse CreateBadRequestResponse()
-        {
-            IRestResponse response = Mock<IRestResponse>();
-
-            response.StatusCode.Returns(HttpStatusCode.BadRequest);
-
-            return response;
+            Sut.Delete(Mock<IYouTrackDeleteRequest>());
         }
 
         [Test]
-        public void LoginExceptionIsThrownOnLoginFailed()
+        public void Get()
         {
-            restClient.Execute(Arg.Any<IRestRequest>()).Returns(badRequestResponse);
-
-            Assert.Throws<RequestFailedException>(() => Sut.Login());
+            Sut.Get<TestItem>(Mock<IYouTrackGetRequest>());
         }
 
         [Test]
-        public void LoginRequestIsUsedOnLogin()
+        public void Put()
         {
-            Sut.Login();
+            Sut.Put(Mock<IYouTrackPutRequest>());
         }
     }
 }

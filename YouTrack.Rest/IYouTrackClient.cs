@@ -1,14 +1,11 @@
 using YouTrack.Rest.Repositories;
-using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest
 {
     public interface IYouTrackClient
     {
         IConnection GetConnection();
+        ISession GetSession();
         IIssueRepository GetIssueRepository();
-        string Put(IYouTrackPutRequest request);
-        TResponse Get<TResponse>(IYouTrackGetRequest request) where TResponse : new();
-        void Delete(IYouTrackDeleteRequest request);
     }
 }

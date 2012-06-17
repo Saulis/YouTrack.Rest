@@ -2,7 +2,7 @@ using System;
 
 namespace YouTrack.Rest.Exceptions
 {
-    internal class IssueNotCreatedException : Exception
+    public class IssueNotCreatedException : Exception
     {
     }
 }

@@ -14,21 +14,21 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Summary = "summary";
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
-        private IYouTrackClient youTrackClient;
+        private IConnection connection;
         private IIssue issue;
 
         protected override IssueRepository CreateSut()
         {
-            youTrackClient = Mock<IYouTrackClient>();
+            connection = Mock<IConnection>();
             issue = new Issue();
 
-            return new IssueRepository(youTrackClient);
+            return new IssueRepository(connection);
         }
 
         [Test]
         public void IssueIdIsReturned()
         {
-            youTrackClient.Put(Arg.Any<IYouTrackPutRequest>()).Returns("foobar");
+            connection.Put(Arg.Any<IYouTrackPutRequest>()).Returns("foobar");
 
             string issueId = Sut.CreateIssue(Project, Summary, Description);
 
@@ -40,7 +40,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.CreateIssue(Project, Summary, Description);
 
-            youTrackClient.Received().Put(Arg.Any<CreateNewIssueRequest>());
+            connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.DeleteIssue(IssueId);
 
-            youTrackClient.Received().Delete(Arg.Any<DeleteIssueRequest>());
+            connection.Received().Delete(Arg.Any<DeleteIssueRequest>());
         }
 
         [Test]
@@ -56,13 +56,13 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.GetIssue(IssueId);
 
-            youTrackClient.Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Get<Issue>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]
         public void IssueIsReturnedOnGetIssue()
         {
-            youTrackClient.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
+            connection.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
 
             Assert.That(Sut.GetIssue(IssueId), Is.SameAs(issue));
         }
@@ -72,8 +72,8 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.CreateAndGetIssue(Project, Summary, Description);
 
-            youTrackClient.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            youTrackClient.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
+            connection.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]
@@ -81,13 +81,13 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.IssueExists(IssueId);
 
-            youTrackClient.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]
         public void IssueExists()
         {
-            youTrackClient.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
+            connection.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
 
             Assert.IsTrue(Sut.IssueExists(IssueId));
         }
@@ -95,7 +95,7 @@ namespace YouTrack.Rest.Tests.Repositories
         [Test]
         public void IssueDoesNotExist()
         {
-            youTrackClient.When(x => x.Get<Issue>(Arg.Any<GetIssueRequest>())).Do(x =>
+            connection.When(x => x.Get<Issue>(Arg.Any<GetIssueRequest>())).Do(x =>
                                                                                       {
                                                                                           throw new RequestNotFoundException(Mock<IRestResponse>());
                                                                                       });
