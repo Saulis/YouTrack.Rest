@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace YouTrack.Rest
 {
-    internal class IssueDeserializer
+    internal class IssueWrapper
     {
         public string Id { get; set; }
         public List<Field> Fields { get; set; }

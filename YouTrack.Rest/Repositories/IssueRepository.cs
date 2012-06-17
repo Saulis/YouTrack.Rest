@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Requests;
@@ -35,9 +36,9 @@ namespace YouTrack.Rest.Repositories
         {
             GetIssueRequest getIssueRequest = new GetIssueRequest(issueId);
 
-            IssueDeserializer issueDeserializer = connection.Get<IssueDeserializer>(getIssueRequest);
+            IssueWrapper issueWrapper = connection.Get<IssueWrapper>(getIssueRequest);
 
-            return issueDeserializer.Deserialize();
+            return issueWrapper.Deserialize();
         }
 
         public void DeleteIssue(string issueId)
@@ -68,6 +69,15 @@ namespace YouTrack.Rest.Repositories
             AddCommentToIssueRequest addCommentToIssueRequest = new AddCommentToIssueRequest(issueId, comment);
 
             connection.Post(addCommentToIssueRequest);
+        }
+
+        public IEnumerable<IComment> GetComments(string issueId)
+        {
+            GetCommentsOfAnIssueRequest getCommentsOfAnIssueRequest = new GetCommentsOfAnIssueRequest(issueId);
+
+            CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
+
+            return commentsWrapper.Comments;
         }
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace YouTrack.Rest.Repositories
 {
     public interface IIssueRepository
@@ -8,5 +10,6 @@ namespace YouTrack.Rest.Repositories
         void DeleteIssue(string issueId);
         bool IssueExists(string issueId);
         void AddComment(string issueId, string comment);
+        IEnumerable<IComment> GetComments(string issueId);
     }
 }

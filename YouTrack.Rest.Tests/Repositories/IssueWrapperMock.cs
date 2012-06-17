@@ -1,10 +1,10 @@
 namespace YouTrack.Rest.Tests.Repositories
 {
-    class IssueDeserializerMock : IssueDeserializer
+    class IssueWrapperMock : IssueWrapper
     {
         private readonly IIssue issue;
 
-        public IssueDeserializerMock(IIssue issue)
+        public IssueWrapperMock(IIssue issue)
         {
             this.issue = issue;
         }

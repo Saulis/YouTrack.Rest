@@ -19,8 +19,8 @@ namespace YouTrack.Rest.Features.General.Issues
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Addition")]
-    public partial class AdditionFeature
+    [NUnit.Framework.DescriptionAttribute("Get Comments of an Issue")]
+    public partial class GetCommentsOfAnIssueFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -32,8 +32,7 @@ namespace YouTrack.Rest.Features.General.Issues
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Addition", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
-                    "wo numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get Comments of an Issue", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,23 +64,52 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AddTwoNumbers()
+        public virtual void FeatureBackground()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
-                        "mytag"});
-#line 7
+#line 3
+#line 4
+ testRunner.Given("I am authenticated");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get a single comment")]
+        public virtual void GetASingleComment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a single comment", ((string[])(null)));
+#line 6
 this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 7
+ testRunner.Given("I have created an issue");
 #line 8
- testRunner.Given("I have entered 50 into the calculator");
+   testRunner.And("I have created an comment to the issue");
 #line 9
- testRunner.And("I have entered 70 into the calculator");
+   testRunner.When("I fetch the comments for the issue");
 #line 10
- testRunner.When("I press add");
-#line 11
- testRunner.Then("the result should be 120 on the screen");
+    testRunner.Then("I receive one comment");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get two comments")]
+        public virtual void GetTwoComments()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get two comments", ((string[])(null)));
+#line 12
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 13
+ testRunner.Given("I have created an issue");
+#line 14
+   testRunner.And("I have created two comments to the issue");
+#line 15
+  testRunner.When("I fetch the comments for the issue");
+#line 16
+  testRunner.Then("I receive two comments");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Tests.Requests;
 
 namespace YouTrack.Rest.Tests.Repositories
 {
@@ -16,16 +18,26 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
-        private IssueDeserializer issueDeserializer;
+        private IssueWrapper issueWrapper;
         private IIssue issue;
+        private CommentsWrapper commentsWrapper;
 
         protected override IssueRepository CreateSut()
         {
             connection = Mock<IConnection>();
             issue = Mock<IIssue>();
-            issueDeserializer = new IssueDeserializerMock(issue);
+            issueWrapper = new IssueWrapperMock(issue);
+            commentsWrapper = CreateCommentsWrapper();
 
             return new IssueRepository(connection);
+        }
+
+        private static CommentsWrapper CreateCommentsWrapper()
+        {
+            CommentsWrapper commentsWrapper = new CommentsWrapper();
+            commentsWrapper.Comments = new List<Comment>();
+
+            return commentsWrapper;
         }
 
         [Test]
@@ -61,12 +73,12 @@ namespace YouTrack.Rest.Tests.Repositories
 
             Sut.GetIssue(IssueId);
 
-            connection.Received().Get<IssueDeserializer>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<IssueWrapper>(Arg.Any<GetIssueRequest>());
         }
 
         private void MockConnectionToReturnIssueDeserializerMockOnGetIssue()
         {
-            connection.Get<IssueDeserializer>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
+            connection.Get<IssueWrapper>(Arg.Any<GetIssueRequest>()).Returns(issueWrapper);
         }
 
         [Test]
@@ -93,7 +105,7 @@ namespace YouTrack.Rest.Tests.Repositories
             Sut.CreateAndGetIssue(Project, Summary, Description);
 
             connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            connection.Received().Get<IssueDeserializer>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<IssueWrapper>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]
@@ -123,6 +135,16 @@ namespace YouTrack.Rest.Tests.Repositories
                                                                                       });
 
             Assert.IsFalse(Sut.IssueExists(IssueId));
+        }
+
+        [Test]
+        public void ConnectionIsCalledOnGetComments()
+        {
+            connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
+
+            Sut.GetComments(IssueId);
+
+            connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
     }
 }

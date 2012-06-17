@@ -65,9 +65,9 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetIssueRepository();
         }
 
-        public ICollection<IComment> GetComments(string issueId)
+        public IEnumerable<IComment> GetComments(string issueId)
         {
-            throw new NotImplementedException();
+            return GetIssueRepository().GetComments(issueId);
         }
     }
 }

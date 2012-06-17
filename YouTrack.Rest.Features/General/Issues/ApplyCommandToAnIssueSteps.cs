@@ -36,7 +36,7 @@ namespace YouTrack.Rest.Features.General.Issues
         {
             string issueId = ScenarioContext.Current.Get<string>("issueId");
 
-            ICollection<IComment> comments = StepHelper.GetComments(issueId);
+            IEnumerable<IComment> comments = StepHelper.GetComments(issueId);
             IComment comment = comments.Single();
 
             Assert.That(comment.Text, Is.EqualTo(CommentText));

@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace YouTrack.Rest.Tests
 {
-    class IssueDeserializerTests : TestFor<IssueDeserializer>
+    class IssueDeserializerTests : TestFor<IssueWrapper>
     {
         private const string IssueId = "FOO-BAR";
         private const string ProjectShortName = "FOO";

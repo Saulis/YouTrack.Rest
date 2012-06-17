@@ -70,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetCommentsOfAnIssue.feature</DependentUpon>
     </Compile>
+    <Compile Include="General\Issues\GetCommentsOfAnIssueSteps.cs" />
     <Compile Include="General\Issues\IssueSteps.cs" />
     <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>

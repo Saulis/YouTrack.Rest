@@ -1,11 +1,17 @@
-﻿Feature: Addition
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Get Comments of an Issue
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Background: 
+	Given I am authenticated
+
+Scenario: Get a single comment
+	Given I have created an issue
+	  And I have created an comment to the issue
+ 	 When I fetch the comments for the issue
+  	 Then I receive one comment
+
+Scenario: Get two comments
+	Given I have created an issue
+	  And I have created two comments to the issue
+	 When I fetch the comments for the issue
+	 Then I receive two comments
+
