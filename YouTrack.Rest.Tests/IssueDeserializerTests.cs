@@ -13,6 +13,32 @@ namespace YouTrack.Rest.Tests
         private const string Summary = "Summary";
         private const string Type = "Bug";
 
+        protected override void SetupDependencies()
+        {
+            Sut.Id = IssueId;
+            Sut.Fields = CreateFields();
+        }
+
+        private List<Field> CreateFields()
+        {
+            List<Field> fields = new List<Field>();
+
+            fields.Add(CreateField("projectShortName", ProjectShortName));
+            fields.Add(CreateField("summary", Summary));
+            fields.Add(CreateField("Type", Type));
+
+            return fields;
+        }
+
+        private static Field CreateField(string name, string value)
+        {
+            Value_ value_ = new Value_() {Value = value};
+
+            Field field = new Field() {Name = name, Values = new List<Value_> { value_ }};
+
+            return field;
+        }
+
         [Test]
         public void IdIsDeserialized()
         {
