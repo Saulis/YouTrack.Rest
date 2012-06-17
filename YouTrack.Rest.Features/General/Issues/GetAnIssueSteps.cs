@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace YouTrack.Rest.Features.Issues
+namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
-    [Scope(Feature = "Getting Issues")]
-    public class GettingIssuesSteps : Steps.Steps
+    [Scope(Feature = "Get an Issue")]
+    public class GetAnIssueSteps : Steps.Steps
     {
         [AfterScenario]
         public void Teardown()

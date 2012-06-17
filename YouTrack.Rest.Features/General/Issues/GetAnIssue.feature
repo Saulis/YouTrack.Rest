@@ -1,4 +1,4 @@
-﻿Feature: Getting Issues
+﻿Feature: Get an Issue
 
 Background: 
 	Given I am authenticated

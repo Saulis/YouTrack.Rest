@@ -53,30 +53,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\Login.feature.cs">
+    <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
-    <Compile Include="Authentication\LoginSteps.cs" />
-    <Compile Include="Issues\CreatingANewIssue.feature.cs">
+    <Compile Include="Login\LoginSteps.cs" />
+    <Compile Include="General\Issues\CreateNewIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreatingANewIssue.feature</DependentUpon>
+      <DependentUpon>CreateNewIssue.feature</DependentUpon>
     </Compile>
-    <Compile Include="Issues\CreatingANewIssueSteps.cs" />
-    <Compile Include="Issues\DeletingAnIssue.feature.cs">
+    <Compile Include="General\Issues\CreateNewIssueSteps.cs" />
+    <Compile Include="General\Issues\DeleteAnIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DeletingAnIssue.feature</DependentUpon>
+      <DependentUpon>DeleteAnIssue.feature</DependentUpon>
     </Compile>
-    <Compile Include="Issues\DeletingAnIssueSteps.cs" />
-    <Compile Include="Issues\GettingIssues.feature.cs">
+    <Compile Include="General\Issues\DeleteAnIssueSteps.cs" />
+    <Compile Include="General\Issues\GetAnIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GettingIssues.feature</DependentUpon>
+      <DependentUpon>GetAnIssue.feature</DependentUpon>
     </Compile>
-    <Compile Include="Issues\GettingIssuesSteps.cs" />
+    <Compile Include="General\Issues\GetAnIssueSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CommonSteps.cs" />
     <Compile Include="Steps\Steps.cs" />
@@ -84,21 +84,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Authentication\Login.feature">
+    <None Include="Login\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
     </None>
-    <None Include="Issues\CreatingANewIssue.feature">
+    <None Include="General\Issues\CreateNewIssue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreatingANewIssue.feature.cs</LastGenOutput>
+      <LastGenOutput>CreateNewIssue.feature.cs</LastGenOutput>
     </None>
-    <None Include="Issues\DeletingAnIssue.feature">
+    <None Include="General\Issues\DeleteAnIssue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DeletingAnIssue.feature.cs</LastGenOutput>
+      <LastGenOutput>DeleteAnIssue.feature.cs</LastGenOutput>
     </None>
-    <None Include="Issues\GettingIssues.feature">
+    <None Include="General\Issues\GetAnIssue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GettingIssues.feature.cs</LastGenOutput>
+      <LastGenOutput>GetAnIssue.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -107,6 +107,11 @@
       <Project>{DF17421E-5AF6-4855-9CB7-73D075CCC9F7}</Project>
       <Name>YouTrack.Rest</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Administration\" />
+    <Folder Include="Export\" />
+    <Folder Include="Import\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

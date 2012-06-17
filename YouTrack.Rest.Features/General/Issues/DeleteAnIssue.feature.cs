@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace YouTrack.Rest.Features.Issues
+namespace YouTrack.Rest.Features.General.Issues
 {
     using TechTalk.SpecFlow;
     
@@ -19,20 +19,20 @@ namespace YouTrack.Rest.Features.Issues
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Getting Issues")]
-    public partial class GettingIssuesFeature
+    [NUnit.Framework.DescriptionAttribute("Delete an Issue")]
+    public partial class DeleteAnIssueFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GettingIssues.feature"
+#line 1 "DeleteAnIssue.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Getting Issues", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Delete an Issue", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,10 +73,10 @@ namespace YouTrack.Rest.Features.Issues
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Getting a single issue")]
-        public virtual void GettingASingleIssue()
+        [NUnit.Framework.DescriptionAttribute("Deleting an existing issue")]
+        public virtual void DeletingAnExistingIssue()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting an existing issue", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -84,9 +84,9 @@ this.FeatureBackground();
 #line 7
  testRunner.Given("I have created an issue");
 #line 8
- testRunner.When("I request the issue");
+  testRunner.When("I delete the issue");
 #line 9
- testRunner.Then("the issue is returned");
+  testRunner.Then("the issue is deleted");
 #line hidden
             this.ScenarioCleanup();
         }

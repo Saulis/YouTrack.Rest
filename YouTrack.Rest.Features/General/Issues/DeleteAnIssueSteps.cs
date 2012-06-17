@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace YouTrack.Rest.Features.Issues
+namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
-    [Scope(Feature = "Deleting an issue")]
-    public class DeletingAnIssueSteps : Steps.Steps
+    [Scope(Feature = "Delete an Issue")]
+    public class DeleteAnIssueSteps : Steps.Steps
     {
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()

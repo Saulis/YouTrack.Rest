@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace YouTrack.Rest.Features.Issues
+namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
-    [Scope(Feature = "Creating a new issue")]
-    public class CreatingANewIssueSteps : Steps.Steps
+    [Scope(Feature = "Create New Issue")]
+    public class CreateNewIssueSteps : Steps.Steps
     {
         [AfterScenario]
         public void Teardown()

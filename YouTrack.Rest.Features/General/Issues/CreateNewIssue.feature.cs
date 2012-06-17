@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace YouTrack.Rest.Features.Issues
+namespace YouTrack.Rest.Features.General.Issues
 {
     using TechTalk.SpecFlow;
     
@@ -19,20 +19,20 @@ namespace YouTrack.Rest.Features.Issues
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Deleting an issue")]
-    public partial class DeletingAnIssueFeature
+    [NUnit.Framework.DescriptionAttribute("Create New Issue")]
+    public partial class CreateNewIssueFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DeletingAnIssue.feature"
+#line 1 "CreateNewIssue.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Deleting an issue", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create New Issue", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,20 +73,56 @@ namespace YouTrack.Rest.Features.Issues
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Deleting an issue")]
-        public virtual void DeletingAnIssue()
+        [NUnit.Framework.DescriptionAttribute("Creating a new issue with basic parameters")]
+        public virtual void CreatingANewIssueWithBasicParameters()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting an issue", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with basic parameters", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 7
- testRunner.Given("I have created an issue");
+ testRunner.When("I create a new issue to a project with summary and description");
 #line 8
-  testRunner.When("I delete the issue");
-#line 9
-  testRunner.Then("the issue is deleted");
+ testRunner.Then("an issue is created");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Creating a new issue with group restrictions")]
+        [NUnit.Framework.CategoryAttribute("wip")]
+        public virtual void CreatingANewIssueWithGroupRestrictions()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with group restrictions", new string[] {
+                        "wip"});
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 12
+ testRunner.When("I create a new issue to a project with permitted group");
+#line 13
+ testRunner.Then("an issue is created with group permissions");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Creating a new issue with attachments")]
+        [NUnit.Framework.CategoryAttribute("wip")]
+        public virtual void CreatingANewIssueWithAttachments()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with attachments", new string[] {
+                        "wip"});
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 17
+ testRunner.When("I create a new issue to a project with attachments");
+#line 18
+ testRunner.Then("an issue is created with attachments");
 #line hidden
             this.ScenarioCleanup();
         }

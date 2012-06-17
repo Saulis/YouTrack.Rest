@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace YouTrack.Rest.Features.Authentication
+namespace YouTrack.Rest.Features.Login
 {
     using TechTalk.SpecFlow;
     
