@@ -8,6 +8,7 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests.Repositories
 {
+
     internal class IssueRepositoryTests : TestFor<IssueRepository>
     {
         private const string Project = "project";
@@ -15,12 +16,14 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
+        private IssueDeserializer issueDeserializer;
         private IIssue issue;
 
         protected override IssueRepository CreateSut()
         {
             connection = Mock<IConnection>();
-            issue = new Issue();
+            issue = Mock<IIssue>();
+            issueDeserializer = new IssueDeserializerMock(issue);
 
             return new IssueRepository(connection);
         }
@@ -36,7 +39,7 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void ClientIsCalledOnCreateIssue()
+        public void ConnectionIsCalledOnCreateIssue()
         {
             Sut.CreateIssue(Project, Summary, Description);
 
@@ -44,7 +47,7 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void ClientIsCalledOnDeleteIssue()
+        public void ConnectionIsCalledOnDeleteIssue()
         {
             Sut.DeleteIssue(IssueId);
 
@@ -52,42 +55,53 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void ClientIsCalledOnGetIssue()
+        public void ConnectionIsCalledOnGetIssue()
         {
+            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
+
             Sut.GetIssue(IssueId);
 
-            connection.Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<IssueDeserializer>(Arg.Any<GetIssueRequest>());
+        }
+
+        private void MockConnectionToReturnIssueDeserializerMockOnGetIssue()
+        {
+            connection.Get<IssueDeserializer>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
         }
 
         [Test]
         public void IssueIsReturnedOnGetIssue()
         {
-            connection.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
+            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
 
             Assert.That(Sut.GetIssue(IssueId), Is.SameAs(issue));
         }
 
         [Test]
-        public void ClientIsCalledOnCreateAndGetIssue()
+        public void ConnectionIsCalledOnCreateAndGetIssue()
         {
+            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
+
             Sut.CreateAndGetIssue(Project, Summary, Description);
 
             connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            connection.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<IssueDeserializer>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]
-        public void ClientIsCalledOnIssueExists()
+        public void ConnectionIsCalledOnIssueExists()
         {
+            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
+
             Sut.IssueExists(IssueId);
 
-            connection.Received().Get<Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get(Arg.Any<CheckIfIssueExistsRequest>());
         }
 
         [Test]
         public void IssueExists()
         {
-            connection.Get<Issue>(Arg.Any<GetIssueRequest>()).Returns(issue);
+            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
 
             Assert.IsTrue(Sut.IssueExists(IssueId));
         }
@@ -95,7 +109,7 @@ namespace YouTrack.Rest.Tests.Repositories
         [Test]
         public void IssueDoesNotExist()
         {
-            connection.When(x => x.Get<Issue>(Arg.Any<GetIssueRequest>())).Do(x =>
+            connection.When(x => x.Get(Arg.Any<CheckIfIssueExistsRequest>())).Do(x =>
                                                                                       {
                                                                                           throw new RequestNotFoundException(Mock<IRestResponse>());
                                                                                       });

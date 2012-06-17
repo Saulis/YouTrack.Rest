@@ -53,6 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="General\Issues\CheckThatAnIssueExists.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckThatAnIssueExists.feature</DependentUpon>
+    </Compile>
+    <Compile Include="General\Issues\CheckThatAnIssueExistsSteps.cs" />
+    <Compile Include="General\Issues\IssueSteps.cs" />
     <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="General\Issues\CheckThatAnIssueExists.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckThatAnIssueExists.feature.cs</LastGenOutput>
+    </None>
     <None Include="Login\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>

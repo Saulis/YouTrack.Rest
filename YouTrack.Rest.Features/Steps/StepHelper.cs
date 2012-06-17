@@ -7,11 +7,6 @@ namespace YouTrack.Rest.Features.Steps
     {
         private IYouTrackClient youTrackClient;
 
-        public IConnection GetConnection()
-        {
-            return youTrackClient.GetConnection();
-        }
-
         public void InitializeYouTrackClient(string baseUrl, string login, string password)
         {
             youTrackClient = new YouTrackClient(baseUrl, login, password);

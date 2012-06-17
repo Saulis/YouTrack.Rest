@@ -67,6 +67,11 @@ namespace YouTrack.Rest
             return response.Data;
         }
 
+        public void Get(IYouTrackGetRequest request)
+        {
+            ExecuteRequestWithAuthentication(request, Method.GET);
+        }
+
         public void Delete(IYouTrackDeleteRequest request)
         {
             ExecuteRequestWithAuthentication(request, Method.DELETE);

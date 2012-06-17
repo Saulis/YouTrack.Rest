@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace YouTrack.Rest
 {
-    class IssueDeserializer
+    internal class IssueDeserializer
     {
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
 
-        public IIssue GetIssue()
+        public virtual IIssue Deserialize()
         {
             Issue issue = new Issue();
 
@@ -16,6 +16,23 @@ namespace YouTrack.Rest
             issue.Type = GetSingleFieldValueFor("Type");
             issue.Summary = GetSingleFieldValueFor("summary");
             issue.ProjectShortName = GetSingleFieldValueFor("projectShortName");
+            /*
+             * TODO: 
+             * jiraId
+             * numberInProject
+             * description
+             * created
+             * updated
+             * updaterName
+             * resolved
+             * reporterName
+             * commentsCount
+             * votes
+             * permittedGroup
+             * comment
+             * tag
+             * custom fields
+             */
 
             return issue;
         }

@@ -60,6 +60,7 @@
     <Compile Include="IssueDeserializer.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
+    <Compile Include="Requests\CheckIfIssueExistsRequest.cs" />
     <Compile Include="Requests\CreateNewIssueRequest.cs" />
     <Compile Include="Requests\DeleteIssueRequest.cs" />
     <Compile Include="Requests\GetIssueRequest.cs" />

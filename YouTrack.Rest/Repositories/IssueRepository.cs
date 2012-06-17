@@ -37,7 +37,7 @@ namespace YouTrack.Rest.Repositories
 
             IssueDeserializer issueDeserializer = connection.Get<IssueDeserializer>(getIssueRequest);
 
-            return issueDeserializer.GetIssue();
+            return issueDeserializer.Deserialize();
         }
 
         public void DeleteIssue(string issueId)
@@ -51,8 +51,11 @@ namespace YouTrack.Rest.Repositories
         {
             try
             {
-                //TODO: Better solution would be to use the Issue Count method.
-                return GetIssue(issueId) != null;
+                CheckIfIssueExistsRequest checkIfIssueExistsRequest = new CheckIfIssueExistsRequest(issueId);
+
+                connection.Get(checkIfIssueExistsRequest);
+
+                return true;
             }
             catch (RequestNotFoundException)
             {

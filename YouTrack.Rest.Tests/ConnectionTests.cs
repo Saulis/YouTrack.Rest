@@ -27,5 +27,10 @@ namespace YouTrack.Rest.Tests
         {
             Sut.Put(Mock<IYouTrackPutRequest>());
         }
+
+        class TestItem
+        {
+             
+        }
     }
 }

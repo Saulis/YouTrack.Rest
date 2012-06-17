@@ -5,20 +5,8 @@ namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
     [Scope(Feature = "Get an Issue")]
-    public class GetAnIssueSteps : Steps.Steps
+    public class GetAnIssueSteps : IssueSteps
     {
-        [AfterScenario]
-        public void Teardown()
-        {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            if (StepHelper.IssueExists(issueId))
-            {
-                StepHelper.DeleteIssue(issueId);
-            }
-        }
-
-
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
@@ -44,9 +32,18 @@ namespace YouTrack.Rest.Features.General.Issues
             IIssue issue = ScenarioContext.Current.Get<IIssue>();
 
             Assert.That(issue, Is.Not.Null);
+            
+        }
+
+        [Then(@"it has the default fields set")]
+        public void ThenItHasTheDefaultFieldsSet()
+        {
+            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+
             Assert.That(issue.ProjectShortName, Is.EqualTo("SB")); //Sandbox Project
             Assert.That(issue.Type, Is.EqualTo("Bug")); //Default value for Sandbox Project
             Assert.That(issue.Summary, Is.EqualTo("Testing Fetching"));
         }
+
     }
 }

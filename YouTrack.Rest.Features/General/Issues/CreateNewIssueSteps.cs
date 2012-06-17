@@ -1,23 +1,13 @@
 ﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
+using YouTrack.Rest.Features.Steps;
 
 namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
     [Scope(Feature = "Create New Issue")]
-    public class CreateNewIssueSteps : Steps.Steps
+    public class CreateNewIssueSteps : IssueSteps
     {
-        [AfterScenario]
-        public void Teardown()
-        {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            if(StepHelper.IssueExists(issueId))
-            {
-                StepHelper.DeleteIssue(issueId);
-            }
-        }
-
         [When(@"I create a new issue to a project with summary and description")]
         public void WhenICreateANewIssueToAProjectWithSummaryAndDescription()
         {
