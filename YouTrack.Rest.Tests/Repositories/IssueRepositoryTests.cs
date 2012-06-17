@@ -78,6 +78,14 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
+        public void ConnectionIsCalledOnAddComment()
+        {
+            Sut.AddComment(IssueId, "foobar");
+
+            connection.Received().Post(Arg.Any<AddCommentToIssueRequest>());
+        }
+
+        [Test]
         public void ConnectionIsCalledOnCreateAndGetIssue()
         {
             MockConnectionToReturnIssueDeserializerMockOnGetIssue();

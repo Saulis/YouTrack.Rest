@@ -62,5 +62,12 @@ namespace YouTrack.Rest.Repositories
                 return false;
             }
         }
+
+        public void AddComment(string issueId, string comment)
+        {
+            AddCommentToIssueRequest addCommentToIssueRequest = new AddCommentToIssueRequest(issueId, comment);
+
+            connection.Post(addCommentToIssueRequest);
+        }
     }
 }

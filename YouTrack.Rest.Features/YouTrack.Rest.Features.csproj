@@ -53,12 +53,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="General\Issues\ApplyCommandToAnIssue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplyCommandToAnIssue.feature</DependentUpon>
+    </Compile>
+    <Compile Include="General\Issues\ApplyCommandToAnIssueSteps.cs" />
     <Compile Include="General\Issues\CheckThatAnIssueExists.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckThatAnIssueExists.feature</DependentUpon>
     </Compile>
     <Compile Include="General\Issues\CheckThatAnIssueExistsSteps.cs" />
+    <Compile Include="General\Issues\GetCommentsOfAnIssue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetCommentsOfAnIssue.feature</DependentUpon>
+    </Compile>
     <Compile Include="General\Issues\IssueSteps.cs" />
     <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>
@@ -91,9 +102,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="General\Issues\ApplyCommandToAnIssue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApplyCommandToAnIssue.feature.cs</LastGenOutput>
+    </None>
     <None Include="General\Issues\CheckThatAnIssueExists.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckThatAnIssueExists.feature.cs</LastGenOutput>
+    </None>
+    <None Include="General\Issues\GetCommentsOfAnIssue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetCommentsOfAnIssue.feature.cs</LastGenOutput>
     </None>
     <None Include="Login\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -77,6 +77,11 @@ namespace YouTrack.Rest
             ExecuteRequestWithAuthentication(request, Method.DELETE);
         }
 
+        public void Post(IYouTrackPostRequest request)
+        {
+            ExecuteRequestWithAuthentication(request, Method.POST);
+        }
+
         private string GetLocationHeaderValue(IRestResponse response)
         {
             Func<Parameter, bool> locationPredicate = h => h.Name.ToLowerInvariant() == "location";

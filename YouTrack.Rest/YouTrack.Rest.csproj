@@ -52,6 +52,7 @@
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
+    <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="Field.cs" />
@@ -60,12 +61,15 @@
     <Compile Include="IssueDeserializer.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
+    <Compile Include="Requests\AddCommentToIssueRequest.cs" />
+    <Compile Include="Requests\ApplyCommandToAnIssueRequest.cs" />
     <Compile Include="Requests\CheckIfIssueExistsRequest.cs" />
     <Compile Include="Requests\CreateNewIssueRequest.cs" />
     <Compile Include="Requests\DeleteIssueRequest.cs" />
     <Compile Include="Requests\GetIssueRequest.cs" />
     <Compile Include="Requests\IYouTrackDeleteRequest.cs" />
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
+    <Compile Include="Requests\IYouTrackPostRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />

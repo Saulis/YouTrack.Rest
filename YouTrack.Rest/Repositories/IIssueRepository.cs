@@ -7,5 +7,6 @@ namespace YouTrack.Rest.Repositories
         IIssue GetIssue(string issueId);
         void DeleteIssue(string issueId);
         bool IssueExists(string issueId);
+        void AddComment(string issueId, string comment);
     }
 }

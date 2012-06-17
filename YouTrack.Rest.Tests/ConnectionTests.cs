@@ -154,6 +154,14 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void RestClientCalledWithPostMethod()
+        {
+            Sut.Post(Mock<IYouTrackPostRequest>());
+
+            AssertThatRestClientExecuteWasCalledWithMethod(Method.POST);
+        }
+
+        [Test]
         public void LocationHeaderCountInvalidThrownOnMissingLocationHeader()
         {
             Assert.Throws<LocationHeaderCountInvalidException>(() => Sut.Put(Mock<IYouTrackPutRequest>()));
