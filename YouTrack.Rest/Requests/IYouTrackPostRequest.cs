@@ -3,4 +3,9 @@
     public interface IYouTrackPostRequest : IYouTrackRequest
     {
     }
+
+    public interface IYouTrackPostWithFileRequest : IYouTrackPostRequest, IYouTrackFileRequest
+    {
+        
+    }
 }

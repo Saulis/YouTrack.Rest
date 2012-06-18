@@ -9,7 +9,7 @@ namespace YouTrack.Rest.Tests.Repositories
             this.issue = issue;
         }
 
-        public override IIssue Deserialize()
+        public override IIssue Deserialize(IConnection connection)
         {
             return issue;
         }

@@ -8,6 +8,7 @@ namespace YouTrack.Rest.Tests
 {
     class IssueDeserializerTests : TestFor<IssueWrapper>
     {
+        private IConnection connection;
         private const string IssueId = "FOO-BAR";
         private const string ProjectShortName = "FOO";
         private const string Summary = "Summary";
@@ -17,6 +18,7 @@ namespace YouTrack.Rest.Tests
         {
             Sut.Id = IssueId;
             Sut.Fields = CreateFields();
+            connection = Mock<IConnection>();
         }
 
         private List<Field> CreateFields()
@@ -42,25 +44,25 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void IdIsDeserialized()
         {
-            Assert.That(Sut.Deserialize().Id, Is.EqualTo(IssueId));
+            Assert.That(Sut.Deserialize(connection).Id, Is.EqualTo(IssueId));
         }
 
         [Test]
         public void ProjectShortNameIsDeserialized()
         {
-            Assert.That(Sut.Deserialize().ProjectShortName, Is.EqualTo(ProjectShortName));
+            Assert.That(Sut.Deserialize(connection).ProjectShortName, Is.EqualTo(ProjectShortName));
         }
 
         [Test]
         public void SummaryIsDeserialized()
         {
-            Assert.That(Sut.Deserialize().Summary, Is.EqualTo(Summary));
+            Assert.That(Sut.Deserialize(connection).Summary, Is.EqualTo(Summary));
         }
 
         [Test]
         public void TypeIsDeserialized()
         {
-            Assert.That(Sut.Deserialize().Type, Is.EqualTo(Type));
+            Assert.That(Sut.Deserialize(connection).Type, Is.EqualTo(Type));
         }
     }
 }

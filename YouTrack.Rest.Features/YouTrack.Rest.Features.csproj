@@ -59,12 +59,23 @@
       <DependentUpon>ApplyCommandToAnIssue.feature</DependentUpon>
     </Compile>
     <Compile Include="General\Issues\ApplyCommandToAnIssueSteps.cs" />
+    <Compile Include="General\Issues\AttachFileToAnIssue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttachFileToAnIssue.feature</DependentUpon>
+    </Compile>
+    <Compile Include="General\Issues\AttachFileToAnIssueSteps.cs" />
     <Compile Include="General\Issues\CheckThatAnIssueExists.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckThatAnIssueExists.feature</DependentUpon>
     </Compile>
     <Compile Include="General\Issues\CheckThatAnIssueExistsSteps.cs" />
+    <Compile Include="General\Issues\GetAttachmentsOfAnIssue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAttachmentsOfAnIssue.feature</DependentUpon>
+    </Compile>
     <Compile Include="General\Issues\GetCommentsOfAnIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,9 +118,17 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ApplyCommandToAnIssue.feature.cs</LastGenOutput>
     </None>
+    <None Include="General\Issues\AttachFileToAnIssue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AttachFileToAnIssue.feature.cs</LastGenOutput>
+    </None>
     <None Include="General\Issues\CheckThatAnIssueExists.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckThatAnIssueExists.feature.cs</LastGenOutput>
+    </None>
+    <None Include="General\Issues\GetAttachmentsOfAnIssue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAttachmentsOfAnIssue.feature.cs</LastGenOutput>
     </None>
     <None Include="General\Issues\GetCommentsOfAnIssue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -143,6 +162,11 @@
     <Folder Include="Administration\" />
     <Folder Include="Export\" />
     <Folder Include="Import\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Steps\Attachments\I-don%27t-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -38,7 +38,7 @@ namespace YouTrack.Rest.Repositories
 
             IssueWrapper issueWrapper = connection.Get<IssueWrapper>(getIssueRequest);
 
-            return issueWrapper.Deserialize();
+            return issueWrapper.Deserialize(connection);
         }
 
         public void DeleteIssue(string issueId)
@@ -78,6 +78,11 @@ namespace YouTrack.Rest.Repositories
             CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
 
             return commentsWrapper.Comments;
+        }
+
+        public IIssueProxy GetIssueProxy(string issueId)
+        {
+            return new Issue(issueId, connection);
         }
     }
 }

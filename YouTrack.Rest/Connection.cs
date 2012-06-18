@@ -29,6 +29,17 @@ namespace YouTrack.Rest
             return restResponse;
         }
 
+        private IRestResponse ExecutePostWithFile(IYouTrackPostWithFileRequest request)
+        {
+            IRestRequest restRequest = CreatePostRequestWithFile(request);
+            IRestResponse restResponse = restClient.Execute(restRequest);
+
+            ThrowIfRequestFailed(restResponse);
+
+            return restResponse;
+        }
+
+
         private IRestResponse<TResponse> ExecuteRequest<TResponse>(IYouTrackRequest request, Method method) where TResponse : new()
         {
             IRestRequest restRequest = CreateRestRequest(request, method);
@@ -82,6 +93,11 @@ namespace YouTrack.Rest
             ExecuteRequestWithAuthentication(request, Method.POST);
         }
 
+        public void PostWithFile(IYouTrackPostWithFileRequest request)
+        {
+            ExecutePostWithAuthenticationAndFile(request);
+        }
+
         private string GetLocationHeaderValue(IRestResponse response)
         {
             Func<Parameter, bool> locationPredicate = h => h.Name.ToLowerInvariant() == "location";
@@ -111,6 +127,13 @@ namespace YouTrack.Rest
             return ExecuteRequest(request, method);
         }
 
+        private IRestResponse ExecutePostWithAuthenticationAndFile(IYouTrackPostWithFileRequest request)
+        {
+            LoginIfNotAuthenticated();
+
+            return ExecutePostWithFile(request);
+        }
+
         private IRestResponse<TResponse> ExecuteRequestWithAuthentication<TResponse>(IYouTrackRequest request, Method method) where TResponse : new()
         {
             LoginIfNotAuthenticated();
@@ -128,6 +151,16 @@ namespace YouTrack.Rest
             {
                 SetAuthenticationCookies(restRequest);
             }
+
+            return restRequest;
+        }
+
+
+        private IRestRequest CreatePostRequestWithFile(IYouTrackFileRequest request)
+        {
+            IRestRequest restRequest = CreateRestRequest(request, Method.POST);
+            
+            restRequest.AddFile(request.Name, request.FilePath);
 
             return restRequest;
         }

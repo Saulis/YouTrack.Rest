@@ -8,11 +8,10 @@ namespace YouTrack.Rest
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
 
-        public virtual IIssue Deserialize()
+        public virtual IIssue Deserialize(IConnection connection)
         {
-            Issue issue = new Issue();
+            Issue issue = new Issue(Id, connection);
 
-            issue.Id = Id;
             issue.Type = GetSingleFieldValueFor("Type");
             issue.Summary = GetSingleFieldValueFor("summary");
             issue.ProjectShortName = GetSingleFieldValueFor("projectShortName");

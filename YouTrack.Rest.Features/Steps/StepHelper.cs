@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using YouTrack.Rest.Repositories;
 
 namespace YouTrack.Rest.Features.Steps
@@ -68,6 +69,19 @@ namespace YouTrack.Rest.Features.Steps
         public IEnumerable<IComment> GetComments(string issueId)
         {
             return GetIssueRepository().GetComments(issueId);
+        }
+
+        public void AttachFile(string issueId)
+        {
+            IIssueProxy issue = GetIssueRepository().GetIssueProxy(issueId);
+
+            issue.AttachFile(@"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+
+        }
+
+        public IIssueProxy GetIssueProxy(string issueId)
+        {
+            return GetIssueRepository().GetIssueProxy(issueId);
         }
     }
 }

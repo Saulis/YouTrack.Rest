@@ -17,5 +17,15 @@ namespace YouTrack.Rest.Features.General.Issues
                 StepHelper.DeleteIssue(issueId);
             }
         }
+
+        protected void SetIssueId(string issueId)
+        {
+            ScenarioContext.Current.Set(issueId, "issueId");
+        }
+
+        protected string GetIssueId()
+        {
+            return ScenarioContext.Current.Get<string>("issueId");
+        }
     }
 }

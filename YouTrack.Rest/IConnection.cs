@@ -9,5 +9,6 @@ namespace YouTrack.Rest
         void Get(IYouTrackGetRequest request);
         void Delete(IYouTrackDeleteRequest request);
         void Post(IYouTrackPostRequest request);
+        void PostWithFile(IYouTrackPostWithFileRequest request);
     }
 }
