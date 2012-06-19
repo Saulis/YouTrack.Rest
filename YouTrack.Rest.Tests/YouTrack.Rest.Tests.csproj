@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
+    <Compile Include="IssueTests.cs" />
     <Compile Include="Repositories\IssueWrapperMock.cs" />
     <Compile Include="Requests\AddCommentToIssueRequestTests.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequestTests.cs" />

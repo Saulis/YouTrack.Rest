@@ -64,22 +64,6 @@ namespace YouTrack.Rest.Repositories
             }
         }
 
-        public void AddComment(string issueId, string comment)
-        {
-            AddCommentToIssueRequest addCommentToIssueRequest = new AddCommentToIssueRequest(issueId, comment);
-
-            connection.Post(addCommentToIssueRequest);
-        }
-
-        public IEnumerable<IComment> GetComments(string issueId)
-        {
-            GetCommentsOfAnIssueRequest getCommentsOfAnIssueRequest = new GetCommentsOfAnIssueRequest(issueId);
-
-            CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
-
-            return commentsWrapper.Comments;
-        }
-
         public IIssueProxy GetIssueProxy(string issueId)
         {
             return new Issue(issueId, connection);

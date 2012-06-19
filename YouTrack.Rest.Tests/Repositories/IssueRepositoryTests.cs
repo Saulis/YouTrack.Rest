@@ -89,14 +89,7 @@ namespace YouTrack.Rest.Tests.Repositories
             Assert.That(Sut.GetIssue(IssueId), Is.SameAs(issue));
         }
 
-        [Test]
-        public void ConnectionIsCalledOnAddComment()
-        {
-            Sut.AddComment(IssueId, "foobar");
-
-            connection.Received().Post(Arg.Any<AddCommentToIssueRequest>());
-        }
-
+        
         [Test]
         public void ConnectionIsCalledOnCreateAndGetIssue()
         {
@@ -137,15 +130,6 @@ namespace YouTrack.Rest.Tests.Repositories
             Assert.IsFalse(Sut.IssueExists(IssueId));
         }
 
-        [Test]
-        public void ConnectionIsCalledOnGetComments()
-        {
-            connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
-
-            Sut.GetComments(IssueId);
-
-            connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
-        }
 
         [Test]
         public void ReturnsIssueProxy()

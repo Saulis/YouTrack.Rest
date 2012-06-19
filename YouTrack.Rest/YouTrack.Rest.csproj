@@ -59,6 +59,7 @@
     <Compile Include="IAttachment.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
+    <Compile Include="IIssueProxy.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="IIssue.cs" />

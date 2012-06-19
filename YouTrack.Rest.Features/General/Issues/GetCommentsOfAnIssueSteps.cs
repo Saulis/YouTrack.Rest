@@ -9,17 +9,10 @@ namespace YouTrack.Rest.Features.General.Issues
     [Scope(Feature = "Get Comments of an Issue")]
     public class GetCommentsOfAnIssueSteps : IssueSteps
     {
-        private string GetIssueId()
-        {
-            return ScenarioContext.Current.Get<string>("issueId");
-        }
-
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            string issueId = StepHelper.CreateIssue("SB", "Testing", "Fetching Comments");
-
-            ScenarioContext.Current.Set(issueId, "issueId");
+            SetIssueId(StepHelper.CreateIssue("SB", "Testing", "Fetching Comments"));
         }
 
         [Given(@"I have created an comment to the issue")]

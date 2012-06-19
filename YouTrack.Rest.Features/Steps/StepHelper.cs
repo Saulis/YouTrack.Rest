@@ -58,7 +58,7 @@ namespace YouTrack.Rest.Features.Steps
         {
             Console.WriteLine("Adding comment {0} to Issue with Id: {1}", comment, issueId);
 
-            GetIssueRepository().AddComment(issueId, comment);
+            GetIssueRepository().GetIssueProxy(issueId).AddComment(comment);
         }
 
         private IIssueRepository GetIssueRepository()
@@ -68,7 +68,7 @@ namespace YouTrack.Rest.Features.Steps
 
         public IEnumerable<IComment> GetComments(string issueId)
         {
-            return GetIssueRepository().GetComments(issueId);
+            return GetIssueRepository().GetIssueProxy(issueId).GetComments();
         }
 
         public void AttachFile(string issueId, string filePath)

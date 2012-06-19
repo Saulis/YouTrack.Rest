@@ -39,5 +39,21 @@ namespace YouTrack.Rest
 
             return attachments;
         }
+
+        public void AddComment(string comment)
+        {
+            AddCommentToIssueRequest addCommentToIssueRequest = new AddCommentToIssueRequest(Id, comment);
+
+            connection.Post(addCommentToIssueRequest);
+        }
+
+        public IEnumerable<IComment> GetComments()
+        {
+            GetCommentsOfAnIssueRequest getCommentsOfAnIssueRequest = new GetCommentsOfAnIssueRequest(Id);
+
+            CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
+
+            return commentsWrapper.Comments;
+        }
     }
 }
