@@ -146,5 +146,17 @@ namespace YouTrack.Rest.Tests.Repositories
 
             connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
+
+        [Test]
+        public void ReturnsIssueProxy()
+        {
+            Assert.That(Sut.GetIssueProxy(IssueId), Is.TypeOf<Issue>());
+        }
+
+        [Test]
+        public void IdIsSetToProxy()
+        {
+            Assert.That(Sut.GetIssueProxy(IssueId).Id, Is.EqualTo(IssueId));
+        }
     }
 }

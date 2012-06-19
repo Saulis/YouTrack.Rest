@@ -23,6 +23,7 @@ namespace YouTrack.Rest.Tests
         private List<Parameter> parametersWithLocationHeader;
         private ISession session;
         private Dictionary<string, string> authenticationCookies;
+        private IYouTrackPostWithFileRequest postWithFileRequest;
 
         protected override Connection CreateSut()
         {
@@ -42,6 +43,8 @@ namespace YouTrack.Rest.Tests
 
             restClient.Execute(Arg.Any<IRestRequest>()).Returns(restResponse);
             restClient.Execute<ConnectionTestItem>(Arg.Any<IRestRequest>()).Returns(restResponseWithTestItem);
+
+            postWithFileRequest = Mock<IYouTrackPostWithFileRequest>();
         }
 
         private Dictionary<string, string> CreateAuthenticationCookies()
@@ -184,6 +187,44 @@ namespace YouTrack.Rest.Tests
             restResponse.Headers.Returns(null as IList<Parameter>);
 
             Assert.Throws<ArgumentNullException>(() => Sut.Put(Mock<IYouTrackPutRequest>()));
+        }
+
+        [Test]
+        public void PostingFileIsCalledWithPostMethod()
+        {
+            Sut.PostWithFile(postWithFileRequest);
+
+            AssertThatRestClientExecuteWasCalledWithMethod(Method.POST);
+        }
+
+        [Test]
+        public void FileIsPostedWithName()
+        {
+            postWithFileRequest.Name.Returns("files");
+
+            Sut.PostWithFile(postWithFileRequest);
+
+            AssertThatRestClientExecuteWasCalledWithFileAndName("files");
+        }
+
+        [Test]
+        public void FileIsPostedWithFilePath()
+        {
+            postWithFileRequest.FilePath.Returns("foo.jpg");
+
+            Sut.PostWithFile(postWithFileRequest);
+
+            AssertThatRestClientExecuteWasCalledWithFile("foo.jpg");
+        }
+
+        private void AssertThatRestClientExecuteWasCalledWithFile(string filePath)
+        {
+            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.FileName == filePath)));
+        }
+
+        private void AssertThatRestClientExecuteWasCalledWithFileAndName(string name)
+        {
+            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.Name == name)));
         }
     }
 }

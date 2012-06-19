@@ -54,10 +54,12 @@
     <Compile Include="Repositories\IssueWrapperMock.cs" />
     <Compile Include="Requests\AddCommentToIssueRequestTests.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequestTests.cs" />
+    <Compile Include="Requests\AttachFileToAnIssueRequestTests.cs" />
     <Compile Include="Requests\CheckIfIssueExistsRequestTests.cs" />
+    <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
-    <Compile Include="IssueDeserializerTests.cs" />
+    <Compile Include="IssueWrapperTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\CreateNewIssueRequestTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />

@@ -20,7 +20,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I attach an file to the issue")]
         public void WhenIAttachAnFileToTheIssue()
         {
-            StepHelper.AttachFile(GetIssueId());
+            StepHelper.AttachFile(GetIssueId(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
         }
 
         [Then(@"the file is attached")]
@@ -31,7 +31,11 @@ namespace YouTrack.Rest.Features.General.Issues
             IEnumerable<IAttachment> attachments = issue.GetAttachments();
 
             Assert.That(attachments.Count(), Is.EqualTo(1));
-            Assert.That(attachments.Single().Name, Is.EqualTo("I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg"));
+            
+            IAttachment attachment = attachments.Single();
+            Assert.That(attachment.Name, Is.EqualTo("I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production1.jpg"));
+            Assert.That(attachment.AuthorLogin, Is.EqualTo("youtrackapi"));
+            Assert.That(attachment.Group, Is.EqualTo("All Users"));
         }
 
     }

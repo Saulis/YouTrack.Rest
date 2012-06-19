@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetAttachmentsOfAnIssue.feature</DependentUpon>
     </Compile>
+    <Compile Include="General\Issues\GetAttachmentsOfAnIssueSteps.cs" />
     <Compile Include="General\Issues\GetCommentsOfAnIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -71,16 +71,20 @@ namespace YouTrack.Rest.Features.Steps
             return GetIssueRepository().GetComments(issueId);
         }
 
-        public void AttachFile(string issueId)
+        public void AttachFile(string issueId, string filePath)
         {
+            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", filePath, issueId);
+
             IIssueProxy issue = GetIssueRepository().GetIssueProxy(issueId);
 
-            issue.AttachFile(@"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            issue.AttachFile(filePath);
 
         }
 
         public IIssueProxy GetIssueProxy(string issueId)
         {
+            Console.WriteLine("Getting Issue Proxy for Id: {0}", issueId);
+
             return GetIssueRepository().GetIssueProxy(issueId);
         }
     }
