@@ -36,37 +36,37 @@ issue.Summary = "foobar";
 
 ## Supported API Features
 
-* Issues
-*	Create New Issue (creating with attachments not supported yet)
-*	Get an Issue
-*	Check that an Issue Exists
-*	Get Attachments of an Issue
-*	Get Comments of an Issue
-*	Attach File to an Issue
-*	Delete an Issue
+* *Issues*
+	* Create New Issue (creating with attachments not supported yet)
+	* Get an Issue
+	* Check that an Issue Exists
+	* Get Attachments of an Issue
+	* Get Comments of an Issue
+	* Attach File to an Issue
+	* Delete an Issue
 
 ## Not (yet) Supported API Features
 
-* Issues
-*	Get Issue History
-*	Get Historical Changes of an Issue
-*	Get Links of an Issue
-*	Apply Command to an Issue
-*	Get Issues in a Project
-*	Get a Number of Issues
-*	Remove a Comment for an Issue
+* *Issues*
+	* Get Issue History
+	* Get Historical Changes of an Issue
+	* Get Links of an Issue
+	* Apply Command to an Issue
+	* Get Issues in a Project
+	* Get a Number of Issues
+	* Remove a Comment for an Issue
 
 * Projects
-*	TBD
+	* TBD
 
 * Users
-*	TBD
+	* TBD
 
 * Admin
-*	TBD
+	* TBD
 
 * Export
-*	TBD
+	* TBD
 
 * Import
-*	TBD
+	* TBD
