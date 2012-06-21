@@ -1,6 +1,6 @@
 namespace YouTrack.Rest.Requests
 {
-    class LoginRequest : YouTrackRequest
+    class LoginRequest : YouTrackRequest, IYouTrackPostRequest
     {
         public LoginRequest(string login, string password) : base("/rest/user/login")
         {

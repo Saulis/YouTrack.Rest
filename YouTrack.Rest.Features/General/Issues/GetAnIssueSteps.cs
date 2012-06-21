@@ -10,16 +10,14 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            string issueId = StepHelper.CreateIssue("SB", "Testing Fetching", "I can be fetched");
-
-            ScenarioContext.Current.Set(issueId, "issueId");
+            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Fetching", "I can be fetched"));
         }
 
 
         [When(@"I request the issue")]
         public void WhenIRequestTheIssue()
         {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
+            string issueId = GetIssueProxy().Id;
 
             IIssue issue = StepHelper.GetIssue(issueId);
 
@@ -32,7 +30,6 @@ namespace YouTrack.Rest.Features.General.Issues
             IIssue issue = ScenarioContext.Current.Get<IIssue>();
 
             Assert.That(issue, Is.Not.Null);
-            
         }
 
         [Then(@"it has the default fields set")]

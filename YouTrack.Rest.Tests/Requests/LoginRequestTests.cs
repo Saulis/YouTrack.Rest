@@ -2,7 +2,7 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class LoginRequestTests : YouTrackRequestTests<LoginRequest>
+    class LoginRequestTests : YouTrackRequestTests<LoginRequest, IYouTrackPostRequest>
     {
         protected override LoginRequest CreateSut()
         {

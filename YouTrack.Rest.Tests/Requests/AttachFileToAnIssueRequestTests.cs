@@ -3,7 +3,7 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class AttachFileToAnIssueRequestTests :YouTrackRequestTests<AttachFileToAnIssueRequest>
+    class AttachFileToAnIssueRequestTests :YouTrackRequestTests<AttachFileToAnIssueRequest, IYouTrackPostWithFileRequest>
     {
         protected override AttachFileToAnIssueRequest CreateSut()
         {

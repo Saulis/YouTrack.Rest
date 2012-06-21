@@ -2,7 +2,7 @@
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class DeleteIssueRequestTests : YouTrackRequestTests<DeleteIssueRequest>
+    class DeleteIssueRequestTests : YouTrackRequestTests<DeleteIssueRequest, IYouTrackDeleteRequest>
     {
         protected override DeleteIssueRequest CreateSut()
         {

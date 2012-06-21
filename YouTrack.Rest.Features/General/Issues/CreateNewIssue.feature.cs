@@ -90,38 +90,19 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating a new issue with group restrictions")]
-        [NUnit.Framework.CategoryAttribute("wip")]
-        public virtual void CreatingANewIssueWithGroupRestrictions()
+        [NUnit.Framework.DescriptionAttribute("Creating a new issue with attachments")]
+        [NUnit.Framework.IgnoreAttribute()]
+        public virtual void CreatingANewIssueWithAttachments()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with group restrictions", new string[] {
-                        "wip"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with attachments", new string[] {
+                        "ignore"});
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line 12
- testRunner.When("I create a new issue to a project with permitted group");
-#line 13
- testRunner.Then("an issue is created with group permissions");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating a new issue with attachments")]
-        [NUnit.Framework.CategoryAttribute("wip")]
-        public virtual void CreatingANewIssueWithAttachments()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with attachments", new string[] {
-                        "wip"});
-#line 16
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 17
  testRunner.When("I create a new issue to a project with attachments");
-#line 18
+#line 13
  testRunner.Then("an issue is created with attachments");
 #line hidden
             this.ScenarioCleanup();

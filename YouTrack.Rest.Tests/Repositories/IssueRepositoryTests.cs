@@ -45,9 +45,9 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             connection.Put(Arg.Any<IYouTrackPutRequest>()).Returns("foobar");
 
-            string issueId = Sut.CreateIssue(Project, Summary, Description);
+            IIssueProxy issueProxy = Sut.CreateIssue(Project, Summary, Description);
 
-            Assert.That(issueId, Is.EqualTo("foobar"));
+            Assert.That(issueProxy.Id, Is.EqualTo("foobar"));
         }
 
         [Test]

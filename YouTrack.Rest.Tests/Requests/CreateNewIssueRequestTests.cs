@@ -2,45 +2,16 @@
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    abstract class CreateNewIssueRequestTests : YouTrackRequestTests<CreateNewIssueRequest>
+    class CreateANewIssueRequestTests : YouTrackRequestTests<CreateNewIssueRequest, IYouTrackPutRequest>
     {
-        class WithProjectAndSummaryAndDescription : CreateNewIssueRequestTests
+        protected override CreateNewIssueRequest CreateSut()
         {
-            protected override string ExpectedRestResource
-            {
-                get { return "/rest/issue?project=foo&summary=bar&description=desc"; }
-            }
-
-            protected override CreateNewIssueRequest CreateSut()
-            {
-                return new CreateNewIssueRequest("foo", "bar", "desc");
-            }
+            return new CreateNewIssueRequest("FOO", "BAR", "Blah");
         }
 
-        class WithProjectAndSummaryAndDescriptionAndPermittedGroup : CreateNewIssueRequestTests
+        protected override string ExpectedRestResource
         {
-            protected override string ExpectedRestResource
-            {
-                get { return "/rest/issue?project=foo&summary=bar&description=desc&permittedGroup=group"; }
-            }
-
-            protected override CreateNewIssueRequest CreateSut()
-            {
-                return new CreateNewIssueRequest("foo", "bar", "desc", permittedGroup: "group");
-            }
-        }
-
-        class WithProjectAndSummaryAndDescriptionAndAttachments : CreateNewIssueRequestTests
-        {
-            protected override string ExpectedRestResource
-            {
-                get { return "/rest/issue?project=foo&summary=bar&description=desc&attachments=xxx"; }
-            }
-
-            protected override CreateNewIssueRequest CreateSut()
-            {
-                return new CreateNewIssueRequest("foo", "bar", "desc", new byte[16]);
-            }
+            get { return "/rest/issue?project=FOO&summary=BAR&description=Blah"; }
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    abstract class ApplyCommandToAnIssueRequestTests : YouTrackRequestTests<ApplyCommandToAnIssueRequest>
+    abstract class ApplyCommandToAnIssueRequestTests : YouTrackRequestTests<ApplyCommandToAnIssueRequest, IYouTrackPostRequest>
     {
         private class AddComment : ApplyCommandToAnIssueRequestTests
         {

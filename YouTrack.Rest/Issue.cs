@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest
@@ -7,7 +6,6 @@ namespace YouTrack.Rest
     class Issue : IIssue
     {
         private readonly IConnection connection;
-        private IEnumerable<IAttachment> attachments;
 
         public string Id { get; private set; }
         public string Summary { get; set; }
@@ -29,15 +27,10 @@ namespace YouTrack.Rest
 
         public IEnumerable<IAttachment> GetAttachments()
         {
-            if (attachments == null)
-            {
-                GetAttachmentsOfAnIssueRequest request = new GetAttachmentsOfAnIssueRequest(Id);
-                FileUrlsWrapper fileUrlsWrapper = connection.Get<FileUrlsWrapper>(request);
+            GetAttachmentsOfAnIssueRequest request = new GetAttachmentsOfAnIssueRequest(Id);
+            FileUrlsWrapper fileUrlsWrapper = connection.Get<FileUrlsWrapper>(request);
 
-                attachments = fileUrlsWrapper.FileUrls;
-            }
-
-            return attachments;
+            return fileUrlsWrapper.FileUrls;
         }
 
         public void AddComment(string comment)

@@ -29,9 +29,9 @@ namespace YouTrack.Rest
             return restResponse;
         }
 
-        private IRestResponse ExecutePostWithFile(IYouTrackPostWithFileRequest request)
+        private IRestResponse ExecuteRequestWithFile(IYouTrackFileRequest request, Method method)
         {
-            IRestRequest restRequest = CreatePostRequestWithFile(request);
+            IRestRequest restRequest = CreateRestRequestWithFile(request, method);
             IRestResponse restResponse = restClient.Execute(restRequest);
 
             ThrowIfRequestFailed(restResponse);
@@ -95,7 +95,7 @@ namespace YouTrack.Rest
 
         public void PostWithFile(IYouTrackPostWithFileRequest request)
         {
-            ExecutePostWithAuthenticationAndFile(request);
+            ExecuteRequestWithAuthenticationAndFile(request, Method.POST);
         }
 
         private string GetLocationHeaderValue(IRestResponse response)
@@ -127,11 +127,11 @@ namespace YouTrack.Rest
             return ExecuteRequest(request, method);
         }
 
-        private IRestResponse ExecutePostWithAuthenticationAndFile(IYouTrackPostWithFileRequest request)
+        private IRestResponse ExecuteRequestWithAuthenticationAndFile(IYouTrackFileRequest request, Method method)
         {
             LoginIfNotAuthenticated();
 
-            return ExecutePostWithFile(request);
+            return ExecuteRequestWithFile(request, method);
         }
 
         private IRestResponse<TResponse> ExecuteRequestWithAuthentication<TResponse>(IYouTrackRequest request, Method method) where TResponse : new()
@@ -156,9 +156,9 @@ namespace YouTrack.Rest
         }
 
 
-        private IRestRequest CreatePostRequestWithFile(IYouTrackFileRequest request)
+        private IRestRequest CreateRestRequestWithFile(IYouTrackFileRequest request, Method method)
         {
-            IRestRequest restRequest = CreateRestRequest(request, Method.POST);
+            IRestRequest restRequest = CreateRestRequest(request, method);
             
             restRequest.AddFile(request.Name, request.FilePath);
 

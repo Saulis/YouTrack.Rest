@@ -2,7 +2,7 @@
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class CheckIfIssueExistsRequestTests : YouTrackRequestTests<CheckIfIssueExistsRequest>
+    class CheckIfIssueExistsRequestTests : YouTrackRequestTests<CheckIfIssueExistsRequest, IYouTrackGetRequest>
     {
         protected override CheckIfIssueExistsRequest CreateSut()
         {

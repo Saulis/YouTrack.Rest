@@ -15,19 +15,19 @@ namespace YouTrack.Rest.Repositories
             this.connection = connection;
         }
 
-        public string CreateIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
+        public IIssueProxy CreateIssue(string project, string summary, string description)
         {
-            CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description, attachments, permittedGroup);
+            CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description);
 
             string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();
 
-            return issueId;
+            return new Issue(issueId, connection);
         }
 
-        public IIssue CreateAndGetIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
+        public IIssue CreateAndGetIssue(string project, string summary, string description)
         {
-            string issueId = CreateIssue(project, summary, description, attachments, permittedGroup);
+            string issueId = CreateIssue(project, summary, description).Id;
 
             return GetIssue(issueId);
         }

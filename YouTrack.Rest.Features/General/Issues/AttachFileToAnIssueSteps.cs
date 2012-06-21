@@ -14,19 +14,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueId(StepHelper.CreateIssue("SB", "Testing attachments", "Blah"));
+            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing attachments", "Blah"));
         }
 
         [When(@"I attach an file to the issue")]
         public void WhenIAttachAnFileToTheIssue()
         {
-            StepHelper.AttachFile(GetIssueId(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            StepHelper.AttachFile(GetIssueProxy(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
         }
 
         [Then(@"the file is attached")]
         public void ThenTheFileIsAttached()
         {
-            IIssueProxy issue = StepHelper.GetIssueProxy(GetIssueId());
+            IIssueProxy issue = GetIssueProxy();
 
             IEnumerable<IAttachment> attachments = issue.GetAttachments();
 

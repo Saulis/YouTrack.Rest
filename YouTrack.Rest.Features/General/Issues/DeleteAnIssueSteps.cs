@@ -5,30 +5,24 @@ namespace YouTrack.Rest.Features.General.Issues
 {
     [Binding]
     [Scope(Feature = "Delete an Issue")]
-    public class DeleteAnIssueSteps : Steps.Steps
+    public class DeleteAnIssueSteps : IssueSteps
     {
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            string issueId = StepHelper.CreateIssue("SB", "Testing Deletion", "I can be deleted");
-
-            ScenarioContext.Current.Set(issueId, "issueId");
+            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Deletion", "I can be deleted"));
         }
 
         [When(@"I delete the issue")]
         public void WhenIDeleteTheIssue()
         {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            StepHelper.DeleteIssue(issueId);
+            StepHelper.DeleteIssue(GetIssueProxy().Id);
         }
 
         [Then(@"the issue is deleted")]
         public void ThenTheIssueIsDeleted()
         {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            Assert.IsFalse(StepHelper.IssueExists(issueId));
+            Assert.IsFalse(StepHelper.IssueExists(GetIssueProxy().Id));
         }
 
     }

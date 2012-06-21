@@ -14,18 +14,23 @@ namespace YouTrack.Rest.Features.Steps
             youTrackClient = new YouTrackClient(baseUrl, login, password);
         }
 
-        public string CreateIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
+        public IIssueProxy CreateIssue(string project, string summary, string description)
         {
-            string issueId = GetIssueRepository().CreateIssue(project, summary, description, attachments, permittedGroup);
+            IIssueProxy issueProxy = GetIssueRepository().CreateIssue(project, summary, description);
 
-            Console.WriteLine("Issue created with Id: {0}", issueId);
+            Console.WriteLine("Issue created with Id: {0}", issueProxy.Id);
 
-            return issueId;
+            return issueProxy;
         }
 
-        public IIssue CreateAndGetIssue(string project, string summary, string description, byte[] attachments = null, string permittedGroup = null)
+        public IIssue CreateAndGetIssue(string project, string summary, string description)
         {
-            return GetIssueRepository().CreateAndGetIssue(project, summary, description, attachments, permittedGroup);
+            IIssue issue = GetIssueRepository().CreateAndGetIssue(project, summary, description);
+
+            Console.WriteLine("Issue created with Id: {0}", issue.Id);
+
+            return issue;
+
         }
 
         public void DeleteIssue(string issueId)
@@ -54,11 +59,11 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetSession();
         }
 
-        public void AddCommentToIssue(string issueId, string comment)
+        public void AddCommentToIssue(IIssueProxy issueProxy, string comment)
         {
-            Console.WriteLine("Adding comment {0} to Issue with Id: {1}", comment, issueId);
+            Console.WriteLine("Adding comment {0} to Issue with Id: {1}", comment, issueProxy.Id);
 
-            GetIssueRepository().GetIssueProxy(issueId).AddComment(comment);
+            issueProxy.AddComment(comment);
         }
 
         private IIssueRepository GetIssueRepository()
@@ -66,25 +71,30 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetIssueRepository();
         }
 
-        public IEnumerable<IComment> GetComments(string issueId)
+        public IEnumerable<IComment> GetComments(IIssueProxy issueProxy)
         {
-            return GetIssueRepository().GetIssueProxy(issueId).GetComments();
+            Console.WriteLine("Getting comments for issue with Id: {0}", issueProxy.Id);
+
+            return issueProxy.GetComments();
         }
 
-        public void AttachFile(string issueId, string filePath)
+        public void AttachFile(IIssueProxy issueProxy, string filePath)
         {
-            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", filePath, issueId);
+            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", filePath, issueProxy.Id);
 
-            IIssueProxy issue = GetIssueRepository().GetIssueProxy(issueId);
+            issueProxy.AttachFile(filePath);
 
-            issue.AttachFile(filePath);
+        }
 
+        public IEnumerable<IAttachment> GetAttachments(IIssueProxy issueProxy)
+        {
+            Console.WriteLine("Getting attachments for Issue with Id: {0}", issueProxy.Id);
+
+            return issueProxy.GetAttachments();
         }
 
         public IIssueProxy GetIssueProxy(string issueId)
         {
-            Console.WriteLine("Getting Issue Proxy for Id: {0}", issueId);
-
             return GetIssueRepository().GetIssueProxy(issueId);
         }
     }

@@ -57,12 +57,12 @@
     <Compile Include="Requests\ApplyCommandToAnIssueRequestTests.cs" />
     <Compile Include="Requests\AttachFileToAnIssueRequestTests.cs" />
     <Compile Include="Requests\CheckIfIssueExistsRequestTests.cs" />
+    <Compile Include="Requests\CreateANewIssueRequestTests.cs" />
     <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
     <Compile Include="IssueWrapperTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
-    <Compile Include="Requests\CreateNewIssueRequestTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssueRequestTests.cs" />
     <Compile Include="Requests\LoginRequestTests.cs" />

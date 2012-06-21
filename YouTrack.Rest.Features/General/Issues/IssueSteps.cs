@@ -10,22 +10,30 @@ namespace YouTrack.Rest.Features.General.Issues
         {
             Console.WriteLine("Tearing down the Scenario...");
 
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            if (StepHelper.IssueExists(issueId))
+            if (HasIssueProxy())
             {
-                StepHelper.DeleteIssue(issueId);
+                string issueId = GetIssueProxy().Id;
+
+                if (StepHelper.IssueExists(issueId))
+                {
+                    StepHelper.DeleteIssue(issueId);
+                }
             }
         }
 
-        protected void SetIssueId(string issueId)
+        private bool HasIssueProxy()
         {
-            ScenarioContext.Current.Set(issueId, "issueId");
+            return ScenarioContext.Current.ContainsKey("issueProxy");
         }
 
-        protected string GetIssueId()
+        protected void SetIssueProxy(IIssueProxy issue)
         {
-            return ScenarioContext.Current.Get<string>("issueId");
+            ScenarioContext.Current.Set(issue, "issueProxy");
+        }
+
+        protected IIssueProxy GetIssueProxy()
+        {
+            return ScenarioContext.Current.Get<IIssueProxy>("issueProxy");
         }
     }
 }

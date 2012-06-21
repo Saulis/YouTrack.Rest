@@ -2,7 +2,7 @@
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class GetCommentsOfAnIssueRequestTests : YouTrackRequestTests<GetCommentsOfAnIssueRequest>
+    class GetCommentsOfAnIssueRequestTests : YouTrackRequestTests<GetCommentsOfAnIssueRequest, IYouTrackGetRequest>
     {
         protected override GetCommentsOfAnIssueRequest CreateSut()
         {

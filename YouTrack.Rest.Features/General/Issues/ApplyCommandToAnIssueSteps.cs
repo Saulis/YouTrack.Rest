@@ -18,25 +18,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            string issueId = StepHelper.CreateIssue("SB", CommentSummary, CommentDescription);
-
-            ScenarioContext.Current.Set(issueId, "issueId");
+            SetIssueProxy(StepHelper.CreateIssue("SB", CommentSummary, CommentDescription));
         }
 
         [When(@"I add a comment to the issue")]
         public void WhenIAddACommentToTheIssue()
         {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            StepHelper.AddCommentToIssue(issueId, CommentText);
+            GetIssueProxy().AddComment(CommentText);
         }
 
         [Then(@"a comment is added to the issue")]
         public void ThenACommentIsAddedToTheIssue()
         {
-            string issueId = ScenarioContext.Current.Get<string>("issueId");
-
-            IEnumerable<IComment> comments = StepHelper.GetComments(issueId);
+            IEnumerable<IComment> comments = StepHelper.GetComments(GetIssueProxy());
             IComment comment = comments.Single();
 
             Assert.That(comment.Text, Is.EqualTo(CommentText));
