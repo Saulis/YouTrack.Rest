@@ -8,7 +8,6 @@ namespace YouTrack.Rest
         void AttachFile(string filePath);
         IEnumerable<IAttachment> GetAttachments();
         void AddComment(string comment);
-        IEnumerable<IComment> GetComments();
-
+        ICollection<IComment> Comments { get; }
     }
 }

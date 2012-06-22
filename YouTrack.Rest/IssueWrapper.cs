@@ -9,6 +9,7 @@ namespace YouTrack.Rest
     {
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
+        public List<Comment> Comments { get; set; } 
 
         public virtual IIssue Deserialize(IConnection connection)
         {
@@ -28,6 +29,8 @@ namespace YouTrack.Rest
             issue.Updated = GetDateTime("updated");
             issue.UpdaterName = GetString("updaterName");
             issue.VotesCount = GetInt32("votes");
+
+            issue.Comments = Comments.ToList<IComment>();
 
             return issue;
         }

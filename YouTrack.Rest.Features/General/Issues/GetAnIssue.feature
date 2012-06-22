@@ -9,7 +9,6 @@ Scenario: Getting a single issue
 	Then the issue is returned
 	 And it has the default fields set
 
-@wip
 Scenario: Getting a single issue with comments
 	Given I have created an issue
 	  And I have given it a comment
@@ -18,7 +17,8 @@ Scenario: Getting a single issue with comments
 
 @wip
 Scenario: Getting a single issue with attachments
-	Given I have created an issue with an attachment
+	Given I have created an issue
+	  And I have added an attachment to it
 	 When I request the issue
 	 Then it has the attachment set
 

@@ -75,7 +75,7 @@ namespace YouTrack.Rest.Features.Steps
         {
             Console.WriteLine("Getting comments for issue with Id: {0}", issueProxy.Id);
 
-            return issueProxy.GetComments();
+            return issueProxy.Comments;
         }
 
         public void AttachFile(IIssueProxy issueProxy, string filePath)

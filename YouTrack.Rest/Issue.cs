@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest
@@ -7,6 +8,7 @@ namespace YouTrack.Rest
     class Issue : IIssue
     {
         private readonly IConnection connection;
+        private ICollection<IComment> comments;
 
         public string Id { get; private set; }
         public string Summary { get; set; }
@@ -30,6 +32,12 @@ namespace YouTrack.Rest
             this.connection = connection;
         }
 
+        public ICollection<IComment> Comments
+        {
+            get { return comments ?? (comments = GetComments()); }
+            internal set { comments = value; }
+        }
+
         public void AttachFile(string filePath)
         {
             AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath);
@@ -50,15 +58,18 @@ namespace YouTrack.Rest
             AddCommentToIssueRequest addCommentToIssueRequest = new AddCommentToIssueRequest(Id, comment);
 
             connection.Post(addCommentToIssueRequest);
+
+            //Force fetching when comments are needed next time.
+            comments = null;
         }
 
-        public IEnumerable<IComment> GetComments()
+        private ICollection<IComment> GetComments()
         {
             GetCommentsOfAnIssueRequest getCommentsOfAnIssueRequest = new GetCommentsOfAnIssueRequest(Id);
 
             CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
 
-            return commentsWrapper.Comments;
+            return commentsWrapper.Comments.ToList<IComment>();
         }
     }
 }

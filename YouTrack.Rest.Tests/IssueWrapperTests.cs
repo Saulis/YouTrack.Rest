@@ -9,6 +9,7 @@ namespace YouTrack.Rest.Tests
     class IssueWrapperTests : TestFor<IssueWrapper>
     {
         private IConnection connection;
+        private List<Comment> comments;
         private const string IssueId = "FOO-BAR";
         private const string ProjectShortName = "FOO";
         private const string Summary = "Summary";
@@ -27,9 +28,17 @@ namespace YouTrack.Rest.Tests
 
         protected override void SetupDependencies()
         {
+            comments = CreateComments();
+
             Sut.Id = IssueId;
             Sut.Fields = CreateFields();
+            Sut.Comments = comments;
             connection = Mock<IConnection>();
+        }
+
+        private static List<Comment> CreateComments()
+        {
+            return new List<Comment>() { new Comment()};
         }
 
         private List<Field> CreateFields()
@@ -151,5 +160,12 @@ namespace YouTrack.Rest.Tests
         {
             Assert.That(Sut.Deserialize(connection).VotesCount, Is.EqualTo(VotesCount));
         }
+
+        [Test]
+        public void CommentsAreSet()
+        {
+            Assert.That(Sut.Deserialize(connection).Comments, Is.EquivalentTo(comments));
+        }
+
     }
 }

@@ -24,7 +24,7 @@ namespace YouTrack.Rest.Tests
         protected override void SetupDependencies()
         {
             fileUrlsWrapper = new FileUrlsWrapper();
-            commentsWrapper = new CommentsWrapper();
+            commentsWrapper = new CommentsWrapper { Comments = new List<Comment>() };
         }
 
         [Test]
@@ -33,6 +33,18 @@ namespace YouTrack.Rest.Tests
             Sut.AddComment("foobar");
 
             connection.Received().Post(Arg.Any<AddCommentToIssueRequest>());
+        }
+
+        [Test]
+        public void CommentsAreFetchedAgainAfterAddingComment()
+        {
+            connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
+
+            ICollection<IComment> comments = Sut.Comments;
+            Sut.AddComment("foobar");
+            comments = Sut.Comments;
+
+            connection.Received(2).Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
 
         [Test]
@@ -58,7 +70,7 @@ namespace YouTrack.Rest.Tests
         {
             connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
 
-            Sut.GetComments();
+            ICollection<IComment> comments = Sut.Comments;
 
             connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }

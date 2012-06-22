@@ -73,10 +73,10 @@ namespace YouTrack.Rest.Features.General.Issues
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get a single comment")]
-        public virtual void GetASingleComment()
+        [NUnit.Framework.DescriptionAttribute("Issue without comments")]
+        public virtual void IssueWithoutComments()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a single comment", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Issue without comments", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 3
@@ -84,10 +84,29 @@ this.FeatureBackground();
 #line 7
  testRunner.Given("I have created an issue");
 #line 8
-   testRunner.And("I have created an comment to the issue");
+ testRunner.When("I fetch the comments for the issue");
 #line 9
+ testRunner.Then("I don\'t receive any comments");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get a single comment")]
+        public virtual void GetASingleComment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a single comment", ((string[])(null)));
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 3
+this.FeatureBackground();
+#line 12
+ testRunner.Given("I have created an issue");
+#line 13
+   testRunner.And("I have created an comment to the issue");
+#line 14
    testRunner.When("I fetch the comments for the issue");
-#line 10
+#line 15
     testRunner.Then("I receive one comment");
 #line hidden
             this.ScenarioCleanup();
@@ -98,17 +117,17 @@ this.FeatureBackground();
         public virtual void GetTwoComments()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get two comments", ((string[])(null)));
-#line 12
+#line 17
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 13
+#line 18
  testRunner.Given("I have created an issue");
-#line 14
+#line 19
    testRunner.And("I have created two comments to the issue");
-#line 15
+#line 20
   testRunner.When("I fetch the comments for the issue");
-#line 16
+#line 21
   testRunner.Then("I receive two comments");
 #line hidden
             this.ScenarioCleanup();

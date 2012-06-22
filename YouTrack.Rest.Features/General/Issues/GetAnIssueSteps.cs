@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -50,6 +51,20 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(issue.Updated, Is.GreaterThan(DateTime.MinValue));
             Assert.That(issue.UpdaterName, Is.EqualTo("youtrackapi"));
             Assert.That(issue.VotesCount, Is.EqualTo(0));
+        }
+
+        [Given(@"I have given it a comment")]
+        public void GivenIHaveGivenItAComment()
+        {
+            GetIssueProxy().AddComment("blah blah");
+        }
+
+        [Then(@"it has the comment set")]
+        public void ThenItHasTheCommentSet()
+        {
+            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+
+            Assert.That(issue.Comments.Single().Text, Is.EqualTo("blah blah"));
         }
 
     }

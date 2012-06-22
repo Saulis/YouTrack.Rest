@@ -48,5 +48,11 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(ScenarioContext.Current.Get<IEnumerable<IComment>>().Count(), Is.EqualTo(2));
         }
 
+        [Then(@"I don't receive any comments")]
+        public void ThenIDonTReceiveAnyComments()
+        {
+            Assert.That(ScenarioContext.Current.Get<IEnumerable<IComment>>().Count(), Is.EqualTo(0));
+        }
+
     }
 }

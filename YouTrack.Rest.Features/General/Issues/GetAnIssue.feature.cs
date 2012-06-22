@@ -95,22 +95,20 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Getting a single issue with comments")]
-        [NUnit.Framework.CategoryAttribute("wip")]
         public virtual void GettingASingleIssueWithComments()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with comments", new string[] {
-                        "wip"});
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with comments", ((string[])(null)));
+#line 12
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 14
+#line 13
  testRunner.Given("I have created an issue");
-#line 15
+#line 14
    testRunner.And("I have given it a comment");
-#line 16
+#line 15
   testRunner.When("I request the issue");
-#line 17
+#line 16
   testRunner.Then("it has the comment set");
 #line hidden
             this.ScenarioCleanup();
@@ -123,12 +121,14 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with attachments", new string[] {
                         "wip"});
-#line 20
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
+#line 20
+ testRunner.Given("I have created an issue");
 #line 21
- testRunner.Given("I have created an issue with an attachment");
+   testRunner.And("I have added an attachment to it");
 #line 22
   testRunner.When("I request the issue");
 #line 23
