@@ -37,7 +37,7 @@ issue.Summary = "foobar";
 ## Supported API Features
 
 * Issues
-	* Create New Issue (creating with attachments not supported yet)
+	* Create New Issue
 	* Get an Issue
 	* Check that an Issue Exists
 	* Get Attachments of an Issue

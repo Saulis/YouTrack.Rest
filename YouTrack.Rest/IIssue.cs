@@ -1,9 +1,22 @@
-﻿namespace YouTrack.Rest
+﻿using System;
+
+namespace YouTrack.Rest
 {
     public interface IIssue : IIssueProxy
     {
         string Summary { get; }
         string Type { get; }
         string ProjectShortName { get; }
+        string Description { get; }
+        string Priority { get; }
+        string State { get; }
+        string Subsystem { get; }
+        int NumberInProject { get; }
+        DateTime Created { get; }
+        DateTime Updated { get; }
+        string UpdaterName { get; }
+        string ReporterName { get; }
+        int VotesCount { get; }
+        int CommentsCount { get; }
     }
 }

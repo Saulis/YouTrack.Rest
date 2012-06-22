@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest
 {
@@ -12,48 +14,62 @@ namespace YouTrack.Rest
         {
             Issue issue = new Issue(Id, connection);
 
-            issue.Type = GetSingleFieldValueFor("Type");
-            issue.Summary = GetSingleFieldValueFor("summary");
-            issue.ProjectShortName = GetSingleFieldValueFor("projectShortName");
-            /*
-             * TODO: 
-             * jiraId
-             * numberInProject
-             * description
-             * created
-             * updated
-             * updaterName
-             * resolved
-             * reporterName
-             * commentsCount
-             * votes
-             * permittedGroup
-             * comment
-             * tag
-             * custom fields
-             */
+            issue.CommentsCount = GetInt32("commentsCount");
+            issue.Created = GetDateTime("created");
+            issue.Description = GetString("description");
+            issue.NumberInProject = GetInt32("numberInProject");
+            issue.Priority = GetString("priority");
+            issue.ProjectShortName = GetString("projectShortName");
+            issue.ReporterName = GetString("reporterName");
+            issue.State = GetString("state");
+            issue.Subsystem = GetString("subsystem");
+            issue.Summary = GetString("summary");
+            issue.Type = GetString("Type");
+            issue.Updated = GetDateTime("updated");
+            issue.UpdaterName = GetString("updaterName");
+            issue.VotesCount = GetInt32("votes");
 
             return issue;
         }
 
-        private string GetSingleFieldValueFor(string name)
+        private int GetInt32(string name)
         {
             if (HasSingleFieldFor(name))
             {
-                return GetSingleFieldFor(name).GetSingleValue();
+                return GetSingleFieldFor(name).GetInt32();
             }
 
-            return null;
+            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
+        }
+
+        private DateTime GetDateTime(string name)
+        {
+            if(HasSingleFieldFor(name))
+            {
+                return GetSingleFieldFor(name).GetDateTime();
+            }
+
+            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
+        }
+
+        private string GetString(string name)
+        {
+            if (HasSingleFieldFor(name))
+            {
+                return GetSingleFieldFor(name).GetValue();
+            }
+
+            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
         }
 
         private bool HasSingleFieldFor(string name)
         {
-            return Fields.Count(f => f.Name == name) == 1;
+            return Fields.Count(f => f.Name.ToUpper() == name.ToUpper()) == 1;
         }
 
         private Field GetSingleFieldFor(string name)
         {
-            return Fields.Single(f => f.Name == name);
+            return Fields.Single(f => f.Name.ToUpper() == name.ToUpper());
         }
     }
 }
