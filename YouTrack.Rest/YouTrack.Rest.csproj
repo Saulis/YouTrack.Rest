@@ -85,6 +85,7 @@
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />
+    <Compile Include="Requests\SetTypeOfAnIssueRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="Value_.cs" />
     <Compile Include="YouTrackClient.cs" />

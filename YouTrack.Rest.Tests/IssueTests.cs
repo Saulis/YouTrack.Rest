@@ -82,5 +82,13 @@ namespace YouTrack.Rest.Tests
 
             connection.Received().Post(Arg.Any<SetSubsystemOfAnIssueRequest>());
         }
+
+        [Test]
+        public void ConnectionIsCalledWithSetType()
+        {
+            Sut.SetType("Foobar");   
+
+            connection.Received().Post(Arg.Any<SetTypeOfAnIssueRequest>());
+        }
     }
 }

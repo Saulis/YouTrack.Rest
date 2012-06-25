@@ -47,6 +47,15 @@ namespace YouTrack.Rest
             Subsystem = subsystem;
         }
 
+        public void SetType(string type)
+        {
+            SetTypeOfAnIssueRequest request = new SetTypeOfAnIssueRequest(Id, type);
+
+            connection.Post(request);
+
+            Type = type;
+        }
+
         public void AttachFile(string filePath)
         {
             AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath);

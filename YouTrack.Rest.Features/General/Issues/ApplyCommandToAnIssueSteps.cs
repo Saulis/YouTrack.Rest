@@ -15,6 +15,7 @@ namespace YouTrack.Rest.Features.General.Issues
         private const string CommentSummary = "Testing comments";
         private const string CommentDescription = "blah blah";
         private const string Subsystem = "Test";
+        private const string IssueType = "Task";
 
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
@@ -52,5 +53,22 @@ namespace YouTrack.Rest.Features.General.Issues
 
             Assert.That(issue.Subsystem, Is.EqualTo(Subsystem));
         }
+
+        [When(@"I change the Type of the Issue")]
+        public void WhenIChangeTheTypeOfTheIssue()
+        {
+            GetIssueProxy().SetType(IssueType);
+        }
+
+        [Then(@"the Type is changed")]
+        public void ThenTheTypeIsChanged()
+        {
+            IIssueProxy issueProxy = GetIssueProxy();
+
+            IIssue issue = StepHelper.GetIssue(issueProxy.Id);
+
+            Assert.That(issue.Type, Is.EqualTo(IssueType));
+        }
+
     }
 }

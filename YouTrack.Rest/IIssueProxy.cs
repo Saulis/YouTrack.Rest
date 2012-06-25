@@ -10,5 +10,6 @@ namespace YouTrack.Rest
         void AddComment(string comment);
         ICollection<IComment> Comments { get; }
         void SetSubsystem(string subsystem);
+        void SetType(string type);
     }
 }
