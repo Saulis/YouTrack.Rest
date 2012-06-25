@@ -104,5 +104,10 @@ namespace YouTrack.Rest.Features.Steps
         {
             return GetIssueRepository().GetIssueProxy(issueId);
         }
+
+        public ICollection<IIssue> GetIssues(string project, string filter)
+        {
+            return GetIssueRepository().GetIssues(project, filter);
+        }
     }
 }

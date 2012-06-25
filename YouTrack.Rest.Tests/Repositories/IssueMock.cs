@@ -1,15 +1,17 @@
+using YouTrack.Rest.Deserialization;
+
 namespace YouTrack.Rest.Tests.Repositories
 {
-    class IssueWrapperMock : IssueWrapper
+    class IssueMock : Deserialization.Issue
     {
         private readonly IIssue issue;
 
-        public IssueWrapperMock(IIssue issue)
+        public IssueMock(IIssue issue)
         {
             this.issue = issue;
         }
 
-        public override IIssue Deserialize(IConnection connection)
+        public override IIssue GetIssue(IConnection connection)
         {
             return issue;
         }

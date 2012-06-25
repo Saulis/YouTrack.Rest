@@ -1,4 +1,4 @@
-namespace YouTrack.Rest
+namespace YouTrack.Rest.Deserialization
 {
     internal class Value_
     {

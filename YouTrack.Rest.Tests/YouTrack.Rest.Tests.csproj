@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
     <Compile Include="IssueTests.cs" />
-    <Compile Include="Repositories\IssueWrapperMock.cs" />
+    <Compile Include="Repositories\IssueMock.cs" />
     <Compile Include="Requests\AddCommentToIssueRequestTests.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequestTests.cs" />
     <Compile Include="Requests\AttachFileToAnIssueRequestTests.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="Requests\CreateNewIssueRequestTests.cs" />
     <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
+    <Compile Include="Requests\GetIssuesInAProjectRequestTests.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />
     <Compile Include="SessionTests.cs" />

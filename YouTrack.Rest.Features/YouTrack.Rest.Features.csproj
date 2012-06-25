@@ -83,6 +83,12 @@
       <DependentUpon>GetCommentsOfAnIssue.feature</DependentUpon>
     </Compile>
     <Compile Include="General\Issues\GetCommentsOfAnIssueSteps.cs" />
+    <Compile Include="General\Issues\GetIssuesInAProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetIssuesInAProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="General\Issues\GetIssuesInAProjectSteps.cs" />
     <Compile Include="General\Issues\IssueSteps.cs" />
     <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>
@@ -134,6 +140,10 @@
     <None Include="General\Issues\GetCommentsOfAnIssue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetCommentsOfAnIssue.feature.cs</LastGenOutput>
+    </None>
+    <None Include="General\Issues\GetIssuesInAProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetIssuesInAProject.feature.cs</LastGenOutput>
     </None>
     <None Include="Login\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

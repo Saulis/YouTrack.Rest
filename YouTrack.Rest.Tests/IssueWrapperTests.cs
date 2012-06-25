@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using YouTrack.Rest.Deserialization;
 
 namespace YouTrack.Rest.Tests
 {
-    class IssueWrapperTests : TestFor<IssueWrapper>
+    class IssueWrapperTests : TestFor<Deserialization.Issue>
     {
         private IConnection connection;
         private List<Comment> comments;
@@ -75,73 +76,73 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void IdIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).Id, Is.EqualTo(IssueId));
+            Assert.That(Sut.GetIssue(connection).Id, Is.EqualTo(IssueId));
         }
 
         [Test]
         public void ProjectShortNameIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).ProjectShortName, Is.EqualTo(ProjectShortName));
+            Assert.That(Sut.GetIssue(connection).ProjectShortName, Is.EqualTo(ProjectShortName));
         }
 
         [Test]
         public void SummaryIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).Summary, Is.EqualTo(Summary));
+            Assert.That(Sut.GetIssue(connection).Summary, Is.EqualTo(Summary));
         }
 
         [Test]
         public void TypeIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).Type, Is.EqualTo(Type));
+            Assert.That(Sut.GetIssue(connection).Type, Is.EqualTo(Type));
         }
 
         [Test]
         public void CommentsCountIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).CommentsCount, Is.EqualTo(CommentsCount));
+            Assert.That(Sut.GetIssue(connection).CommentsCount, Is.EqualTo(CommentsCount));
         }
 
         [Test]
         public void CreatedIsWrapped()
         {
-            Assert.That(GetYouTrackMilliseconds(Sut.Deserialize(connection).Created), Is.EqualTo(CreatedMillis));
+            Assert.That(GetYouTrackMilliseconds(Sut.GetIssue(connection).Created), Is.EqualTo(CreatedMillis));
         }
 
         [Test]
         public void DescriptionIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).Description, Is.EqualTo(Description));
+            Assert.That(Sut.GetIssue(connection).Description, Is.EqualTo(Description));
         }
 
         [Test]
         public void NumberInProjectIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).NumberInProject, Is.EqualTo(NumberInProject));
+            Assert.That(Sut.GetIssue(connection).NumberInProject, Is.EqualTo(NumberInProject));
         }
 
         [Test]
         public void ReporterNameIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).ReporterName, Is.EqualTo(ReporterName));
+            Assert.That(Sut.GetIssue(connection).ReporterName, Is.EqualTo(ReporterName));
         }
 
         [Test]
         public void StateIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).State, Is.EqualTo(State));
+            Assert.That(Sut.GetIssue(connection).State, Is.EqualTo(State));
         }
 
         [Test]
         public void SubsystemIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).Subsystem, Is.EqualTo(Subsystem));
+            Assert.That(Sut.GetIssue(connection).Subsystem, Is.EqualTo(Subsystem));
         }
 
         [Test]
         public void UpdatedIsWrapped()
         {
-            Assert.That(GetYouTrackMilliseconds(Sut.Deserialize(connection).Updated), Is.EqualTo(UpdatedMillis));
+            Assert.That(GetYouTrackMilliseconds(Sut.GetIssue(connection).Updated), Is.EqualTo(UpdatedMillis));
         }
 
         private double GetYouTrackMilliseconds(DateTime value)
@@ -152,19 +153,19 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void UpdaterNameIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).UpdaterName, Is.EqualTo(UpdaterName));
+            Assert.That(Sut.GetIssue(connection).UpdaterName, Is.EqualTo(UpdaterName));
         }
 
         [Test]
         public void VotesCountIsWrapped()
         {
-            Assert.That(Sut.Deserialize(connection).VotesCount, Is.EqualTo(VotesCount));
+            Assert.That(Sut.GetIssue(connection).VotesCount, Is.EqualTo(VotesCount));
         }
 
         [Test]
         public void CommentsAreSet()
         {
-            Assert.That(Sut.Deserialize(connection).Comments, Is.EquivalentTo(comments));
+            Assert.That(Sut.GetIssue(connection).Comments, Is.EquivalentTo(comments));
         }
 
     }

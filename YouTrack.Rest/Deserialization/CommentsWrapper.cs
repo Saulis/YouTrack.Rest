@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace YouTrack.Rest
+namespace YouTrack.Rest.Deserialization
 {
     class CommentsWrapper
     {

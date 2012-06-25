@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace YouTrack.Rest.Repositories
 {
     public interface IIssueRepository
@@ -8,5 +10,6 @@ namespace YouTrack.Rest.Repositories
         void DeleteIssue(string issueId);
         bool IssueExists(string issueId);
         IIssueProxy GetIssueProxy(string issueId);
+        ICollection<IIssue> GetIssues(string project, string filter);
     }
 }

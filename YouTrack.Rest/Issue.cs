@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest

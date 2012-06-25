@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Exceptions;
 
-namespace YouTrack.Rest
+namespace YouTrack.Rest.Deserialization
 {
-    internal class IssueWrapper
+    class Issue
     {
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
         public List<Comment> Comments { get; set; } 
 
-        public virtual IIssue Deserialize(IConnection connection)
+        public virtual IIssue GetIssue(IConnection connection)
         {
-            Issue issue = new Issue(Id, connection);
+            Rest.Issue issue = new Rest.Issue(Id, connection);
 
             issue.CommentsCount = GetInt32("commentsCount");
             issue.Created = GetDateTime("created");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests;
@@ -18,7 +19,7 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
-        private IssueWrapper issueWrapper;
+        private Deserialization.Issue issueDeserializer;
         private IIssue issue;
         private CommentsWrapper commentsWrapper;
 
@@ -26,7 +27,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             connection = Mock<IConnection>();
             issue = Mock<IIssue>();
-            issueWrapper = new IssueWrapperMock(issue);
+            issueDeserializer = new IssueMock(issue);
             commentsWrapper = CreateCommentsWrapper();
 
             return new IssueRepository(connection);
@@ -73,12 +74,12 @@ namespace YouTrack.Rest.Tests.Repositories
 
             Sut.GetIssue(IssueId);
 
-            connection.Received().Get<IssueWrapper>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>());
         }
 
         private void MockConnectionToReturnIssueDeserializerMockOnGetIssue()
         {
-            connection.Get<IssueWrapper>(Arg.Any<GetIssueRequest>()).Returns(issueWrapper);
+            connection.Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace YouTrack.Rest.Tests.Repositories
             Sut.CreateAndGetIssue(Project, Summary, Description);
 
             connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            connection.Received().Get<IssueWrapper>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]

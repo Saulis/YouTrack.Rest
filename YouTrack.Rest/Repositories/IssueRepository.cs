@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Requests;
 
@@ -36,9 +36,18 @@ namespace YouTrack.Rest.Repositories
         {
             GetIssueRequest getIssueRequest = new GetIssueRequest(issueId);
 
-            IssueWrapper issueWrapper = connection.Get<IssueWrapper>(getIssueRequest);
+            Deserialization.Issue issue = connection.Get<Deserialization.Issue>(getIssueRequest);
 
-            return issueWrapper.Deserialize(connection);
+            return issue.GetIssue(connection);
+        }
+
+        public ICollection<IIssue> GetIssues(string project, string filter)
+        {
+            GetIssuesInAProjectRequest request = new GetIssuesInAProjectRequest(project, filter);
+
+            List<Deserialization.Issue> issues = connection.Get<List<Deserialization.Issue>>(request);
+
+            return issues.Select(i => i.GetIssue(connection)).ToList();
         }
 
         public void DeleteIssue(string issueId)

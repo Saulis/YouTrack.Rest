@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Exceptions;
 
-namespace YouTrack.Rest
+namespace YouTrack.Rest.Deserialization
 {
     internal class Field
     {

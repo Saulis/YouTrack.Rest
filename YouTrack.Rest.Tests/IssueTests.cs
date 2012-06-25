@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NSubstitute;
 using NUnit.Framework;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests
