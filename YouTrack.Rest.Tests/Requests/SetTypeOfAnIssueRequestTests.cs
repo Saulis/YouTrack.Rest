@@ -15,7 +15,7 @@ namespace YouTrack.Rest.Tests.Requests
 
         protected override string ExpectedRestResource
         {
-            get { return "/rest/issue/FOO-BAR/execute?command=Type Task"; }
+            get { return "/rest/issue/FOO-BAR/execute?command=Type%20Task"; }
         }
     }
 }
