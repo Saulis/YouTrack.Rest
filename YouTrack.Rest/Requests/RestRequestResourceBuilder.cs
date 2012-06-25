@@ -33,7 +33,7 @@ namespace YouTrack.Rest.Requests
 
             foreach (KeyValuePair<string, string> keyValuePair in parameters)
             {
-                parameterString.Append(String.Format("{0}={1}&", keyValuePair.Key, keyValuePair.Value));
+                parameterString.Append(String.Format("{0}={1}&", keyValuePair.Key, Uri.EscapeDataString(keyValuePair.Value)));
             }
 
             return parameterString.ToString().TrimEnd('&');

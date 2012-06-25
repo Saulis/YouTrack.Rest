@@ -11,7 +11,7 @@ namespace YouTrack.Rest.Tests.Requests
 
         protected override string ExpectedRestResource
         {
-            get { return "/rest/issue/FOO-BAR/execute?command=Subsystem Super System"; }
+            get { return "/rest/issue/FOO-BAR/execute?command=Subsystem%20Super%20System"; }
         }
     }
 }
