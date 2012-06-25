@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>YouTrack.Rest</id>
+    <version>0.2.1</version>
+    <authors>Sauli Tähkäpää</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Another .NET client for the YouTrack REST API</description>
+    <copyright>Copyright 2012</copyright>
+	  <dependencies>
+      <dependency id="RestSharp" version="[103.1]" />
+    </dependencies>
+  </metadata>
+</package>
