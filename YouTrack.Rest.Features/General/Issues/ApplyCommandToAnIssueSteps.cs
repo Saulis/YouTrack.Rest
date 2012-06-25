@@ -14,6 +14,7 @@ namespace YouTrack.Rest.Features.General.Issues
         private const string CommentText = "This is a comment";
         private const string CommentSummary = "Testing comments";
         private const string CommentDescription = "blah blah";
+        private const string Subsystem = "Test";
 
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
@@ -36,5 +37,20 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(comment.Text, Is.EqualTo(CommentText));
         }
 
+        [When(@"I change the Subsystem of the Issue")]
+        public void WhenIChangeTheSubsystemOfTheIssue()
+        {
+            GetIssueProxy().SetSubsystem(Subsystem);
+        }
+
+        [Then(@"the Subsystem is changed")]
+        public void ThenTheSubsystemIsChanged()
+        {
+            IIssueProxy issueProxy = GetIssueProxy();
+
+            IIssue issue = StepHelper.GetIssue(issueProxy.Id);
+
+            Assert.That(issue.Subsystem, Is.EqualTo(Subsystem));
+        }
     }
 }

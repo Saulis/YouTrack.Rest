@@ -74,5 +74,13 @@ namespace YouTrack.Rest.Tests
 
             connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
+
+        [Test]
+        public void ConnectionIsCalledWithSetSubsystem()
+        {
+            Sut.SetSubsystem("Foobar");
+
+            connection.Received().Post(Arg.Any<SetSubsystemOfAnIssueRequest>());
+        }
     }
 }

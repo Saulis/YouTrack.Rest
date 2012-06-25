@@ -38,6 +38,15 @@ namespace YouTrack.Rest
             internal set { comments = value; }
         }
 
+        public void SetSubsystem(string subsystem)
+        {
+            SetSubsystemOfAnIssueRequest request = new SetSubsystemOfAnIssueRequest(Id, subsystem);
+
+            connection.Post(request);
+
+            Subsystem = subsystem;
+        }
+
         public void AttachFile(string filePath)
         {
             AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath);

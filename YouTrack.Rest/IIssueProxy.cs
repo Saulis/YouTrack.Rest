@@ -9,5 +9,6 @@ namespace YouTrack.Rest
         IEnumerable<IAttachment> GetAttachments();
         void AddComment(string comment);
         ICollection<IComment> Comments { get; }
+        void SetSubsystem(string subsystem);
     }
 }
