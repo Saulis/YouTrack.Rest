@@ -10,6 +10,6 @@ namespace YouTrack.Rest.Repositories
         void DeleteIssue(string issueId);
         bool IssueExists(string issueId);
         IIssueProxy GetIssueProxy(string issueId);
-        ICollection<IIssue> GetIssues(string project, string filter);
+        ICollection<IIssue> GetIssuesOfAnProject(string project, string filter);
     }
 }

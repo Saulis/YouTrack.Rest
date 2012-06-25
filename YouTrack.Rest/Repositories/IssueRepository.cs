@@ -41,7 +41,7 @@ namespace YouTrack.Rest.Repositories
             return issue.GetIssue(connection);
         }
 
-        public ICollection<IIssue> GetIssues(string project, string filter)
+        public ICollection<IIssue> GetIssuesOfAnProject(string project, string filter)
         {
             GetIssuesInAProjectRequest request = new GetIssuesInAProjectRequest(project, filter);
 
