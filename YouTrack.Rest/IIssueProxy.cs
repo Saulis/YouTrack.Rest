@@ -11,5 +11,6 @@ namespace YouTrack.Rest
         ICollection<IComment> Comments { get; }
         void SetSubsystem(string subsystem);
         void SetType(string type);
+        void AttachFile(string fileName, byte[] bytes);
     }
 }

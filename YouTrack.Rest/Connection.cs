@@ -159,10 +159,21 @@ namespace YouTrack.Rest
         private IRestRequest CreateRestRequestWithFile(IYouTrackFileRequest request, Method method)
         {
             IRestRequest restRequest = CreateRestRequest(request, method);
-            
-            restRequest.AddFile(request.Name, request.FilePath);
+            AddFileToRestRequest(request, restRequest);
 
             return restRequest;
+        }
+
+        private void AddFileToRestRequest(IYouTrackFileRequest request, IRestRequest restRequest)
+        {
+            if (request.HasBytes)
+            {
+                restRequest.AddFile(request.Name, request.Bytes, request.FileName);
+            }
+            else
+            {
+                restRequest.AddFile(request.Name, request.FilePath);
+            }
         }
 
         private void SetAcceptToXml(RestRequest restRequest)

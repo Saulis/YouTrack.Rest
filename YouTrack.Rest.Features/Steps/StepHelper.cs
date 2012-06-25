@@ -86,6 +86,13 @@ namespace YouTrack.Rest.Features.Steps
 
         }
 
+        public void AttachFile(IIssueProxy issueProxy, byte[] bytes, string fileName)
+        {
+            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", fileName, issueProxy.Id);
+
+            issueProxy.AttachFile(fileName, bytes);
+        }
+
         public IEnumerable<IAttachment> GetAttachments(IIssueProxy issueProxy)
         {
             Console.WriteLine("Getting attachments for Issue with Id: {0}", issueProxy.Id);

@@ -217,6 +217,26 @@ namespace YouTrack.Rest.Tests
             AssertThatRestClientExecuteWasCalledWithFile("foo.jpg");
         }
 
+        [Test]
+        public void FileIsPostedWithBytes()
+        {
+            byte[] bytes = new byte[512];
+            string filename = "foo.txt";
+
+            postWithFileRequest.HasBytes.Returns(true);
+            postWithFileRequest.Bytes.Returns(bytes);
+            postWithFileRequest.FileName.Returns(filename);
+
+            Sut.PostWithFile(postWithFileRequest);
+
+            AssertThatRestClientExecuteWasCalledWithBytes(filename, bytes);
+        }
+
+        private void AssertThatRestClientExecuteWasCalledWithBytes(string filename, byte[] bytes)
+        {
+            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.FileName == filename && f.ContentLength == bytes.Length)));
+        }
+
         private void AssertThatRestClientExecuteWasCalledWithFile(string filePath)
         {
             restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.FileName == filePath)));

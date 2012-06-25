@@ -56,6 +56,14 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void ConnectionIsCalledWithAttachFileWithBytes()
+        {
+            Sut.AttachFile("foo.txt", new byte[512]);
+
+            connection.Received().PostWithFile(Arg.Any<AttachFileToAnIssueRequest>());
+        }
+
+        [Test]
         public void ConnectionIsCalledWithGetAttachments()
         {
             connection.Get<FileUrlsWrapper>(Arg.Any<GetAttachmentsOfAnIssueRequest>()).Returns(fileUrlsWrapper);

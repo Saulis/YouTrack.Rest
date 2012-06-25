@@ -81,6 +81,7 @@
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
     <Compile Include="Requests\IYouTrackPostRequest.cs" />
     <Compile Include="Requests\IYouTrackFileRequest.cs" />
+    <Compile Include="Requests\IYouTrackPostWithFileRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />

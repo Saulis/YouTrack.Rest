@@ -56,6 +56,13 @@ namespace YouTrack.Rest
             Type = type;
         }
 
+        public void AttachFile(string fileName, byte[] bytes)
+        {
+            AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, fileName, bytes);
+
+            connection.PostWithFile(request);
+        }
+
         public void AttachFile(string filePath)
         {
             AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath);
