@@ -12,5 +12,7 @@ namespace YouTrack.Rest
         void SetSubsystem(string subsystem);
         void SetType(string type);
         void AttachFile(string fileName, byte[] bytes);
+        void ApplyCommand(string command);
+        void ApplyCommands(params string[] commands);
     }
 }

@@ -51,11 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
-    <Compile Include="IssueTests.cs" />
+    <Compile Include="IssueProxyTests.cs" />
     <Compile Include="ProjectProxyTests.cs" />
     <Compile Include="Repositories\IssueMock.cs" />
     <Compile Include="Repositories\ProjectRepositoryTests.cs" />
     <Compile Include="Requests\AddCommentToIssueRequestTests.cs" />
+    <Compile Include="Requests\ApplyCommandsToAnIssueRequestTests.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequestTests.cs" />
     <Compile Include="Requests\AttachFileToAnIssueRequestTests.cs" />
     <Compile Include="Requests\CheckIfIssueExistsRequestTests.cs" />

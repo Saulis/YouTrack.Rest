@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests;
@@ -32,18 +33,28 @@ namespace YouTrack.Rest
             return commentsCollection.Comments;
         }
 
-        public void SetSubsystem(string subsystem)
+        public void ApplyCommand(string command)
         {
-            SetSubsystemOfAnIssueRequest request = new SetSubsystemOfAnIssueRequest(Id, subsystem);
+            ApplyCommandToAnIssueRequest request = new ApplyCommandToAnIssueRequest(Id, command);
 
             Connection.Post(request);
         }
 
-        public void SetType(string type)
+        public void ApplyCommands(params string[] commands)
         {
-            SetTypeOfAnIssueRequest request = new SetTypeOfAnIssueRequest(Id, type);
+            ApplyCommandsToAnIssueRequest request = new ApplyCommandsToAnIssueRequest(Id, commands);
 
             Connection.Post(request);
+        }
+
+        public void SetSubsystem(string subsystem)
+        {
+            ApplyCommand(Commands.SetSubsystem(subsystem));
+        }
+
+        public void SetType(string type)
+        {
+            ApplyCommand(Commands.SetType(type));
         }
 
         public void AttachFile(string fileName, byte[] bytes)

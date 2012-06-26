@@ -52,7 +52,7 @@ issue.Summary = "foobar";
 	* Get Issue History
 	* Get Historical Changes of an Issue
 	* Get Links of an Issue
-	* Apply Command to an Issue
+	* Apply Command to an Issue (next version)
 	* Get Issues in a Project (next version)
 	* Get a Number of Issues
 	* Remove a Comment for an Issue

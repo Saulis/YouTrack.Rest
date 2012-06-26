@@ -54,6 +54,12 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(issue.Subsystem, Is.EqualTo(Subsystem));
         }
 
+        [When(@"I change the Subsystem and Type of the issue")]
+        public void WhenIChangeTheSubsystemAndTypeOfTheIssue()
+        {
+            GetIssueProxy().ApplyCommands(Commands.SetSubsystem(Subsystem), Commands.SetType(IssueType));
+        }
+
         [When(@"I change the Type of the Issue")]
         public void WhenIChangeTheTypeOfTheIssue()
         {

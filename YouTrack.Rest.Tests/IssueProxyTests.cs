@@ -9,17 +9,18 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests
 {
-    class IssueTests : TestFor<Issue>
+    class IssueProxyTests : TestFor<IssueProxy>
     {
+        private const string IssueId = "FOO-BAR";
         private IConnection connection;
         private FileUrlCollection fileUrlCollection;
         private CommentsCollection commentsCollection;
 
-        protected override Issue CreateSut()
+        protected override IssueProxy CreateSut()
         {
             connection = Mock<IConnection>();
 
-            return new Issue("FOO-BAR", connection);
+            return new IssueProxy(IssueId, connection);
         }
 
         protected override void SetupDependencies()
@@ -89,15 +90,49 @@ namespace YouTrack.Rest.Tests
         {
             Sut.SetSubsystem("Foobar");
 
-            connection.Received().Post(Arg.Any<SetSubsystemOfAnIssueRequest>());
+            connection.Received().Post(Arg.Any<ApplyCommandToAnIssueRequest>());
+        }
+
+        [Test]
+        public void SubsystemIsApplied()
+        {
+            Sut.SetSubsystem("Foobar");
+
+            AssertThatCommandIsApplied("Subsystem Foobar");
+        }
+
+        private void AssertThatCommandIsApplied(string command)
+        {
+            connection.Received().Post(Arg.Is<ApplyCommandToAnIssueRequest>(x => x.RestResource == String.Format("/rest/issue/{0}/execute?command={1}", IssueId, Uri.EscapeDataString(command))));
+        }
+
+        private void AssertThatCommandsAreApplied(string commands)
+        {
+            connection.Received().Post(Arg.Is<ApplyCommandsToAnIssueRequest>(x => x.RestResource == String.Format("/rest/issue/{0}/execute?command={1}", IssueId, Uri.EscapeDataString(commands))));
         }
 
         [Test]
         public void ConnectionIsCalledWithSetType()
         {
-            Sut.SetType("Foobar");   
+            Sut.SetType("Foobar");
 
-            connection.Received().Post(Arg.Any<SetTypeOfAnIssueRequest>());
+            connection.Received().Post(Arg.Any<ApplyCommandToAnIssueRequest>());
+        }
+
+        [Test]
+        public void TypeIsApplied()
+        {
+            Sut.SetType("foobar");
+
+            AssertThatCommandIsApplied("Type foobar");
+        }
+
+        [Test]
+        public void MultipleCommandsAreApplied()
+        {
+            Sut.ApplyCommands("Foo", "Bar");
+
+            AssertThatCommandsAreApplied("Foo Bar");
         }
     }
 }

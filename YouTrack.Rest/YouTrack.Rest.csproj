@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Deserialization\Comment.cs" />
     <Compile Include="Deserialization\CommentsCollection.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Requests\AddCommentToIssueRequest.cs" />
+    <Compile Include="Requests\ApplyCommandsToAnIssueRequest.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequest.cs" />
     <Compile Include="Requests\AttachFileToAnIssueRequest.cs" />
     <Compile Include="Requests\CheckIfIssueExistsRequest.cs" />
