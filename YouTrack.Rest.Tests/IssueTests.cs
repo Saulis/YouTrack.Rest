@@ -12,8 +12,8 @@ namespace YouTrack.Rest.Tests
     class IssueTests : TestFor<Issue>
     {
         private IConnection connection;
-        private FileUrlsWrapper fileUrlsWrapper;
-        private CommentsWrapper commentsWrapper;
+        private FileUrlCollection fileUrlCollection;
+        private CommentsCollection commentsCollection;
 
         protected override Issue CreateSut()
         {
@@ -24,8 +24,8 @@ namespace YouTrack.Rest.Tests
 
         protected override void SetupDependencies()
         {
-            fileUrlsWrapper = new FileUrlsWrapper();
-            commentsWrapper = new CommentsWrapper { Comments = new List<Comment>() };
+            fileUrlCollection = new FileUrlCollection();
+            commentsCollection = new CommentsCollection { Comments = new List<Comment>() };
         }
 
         [Test]
@@ -39,13 +39,13 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void CommentsAreFetchedAgainAfterAddingComment()
         {
-            connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
+            connection.Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsCollection);
 
             IEnumerable<IComment> comments = Sut.Comments;
             Sut.AddComment("foobar");
             comments = Sut.Comments;
 
-            connection.Received(2).Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
+            connection.Received(2).Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
 
         [Test]
@@ -67,21 +67,21 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void ConnectionIsCalledWithGetAttachments()
         {
-            connection.Get<FileUrlsWrapper>(Arg.Any<GetAttachmentsOfAnIssueRequest>()).Returns(fileUrlsWrapper);
+            connection.Get<FileUrlCollection>(Arg.Any<GetAttachmentsOfAnIssueRequest>()).Returns(fileUrlCollection);
 
             Sut.GetAttachments();
 
-            connection.Received().Get<FileUrlsWrapper>(Arg.Any<GetAttachmentsOfAnIssueRequest>());
+            connection.Received().Get<FileUrlCollection>(Arg.Any<GetAttachmentsOfAnIssueRequest>());
         }
 
         [Test]
         public void ConnectionIsCalledWithGetComments()
         {
-            connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
+            connection.Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsCollection);
 
             IEnumerable<IComment> comments = Sut.Comments;
 
-            connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
+            connection.Received().Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
 
         [Test]

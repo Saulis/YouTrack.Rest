@@ -21,24 +21,24 @@ namespace YouTrack.Rest.Tests.Repositories
         private IConnection connection;
         private Deserialization.Issue issueDeserializer;
         private IIssue issue;
-        private CommentsWrapper commentsWrapper;
+        private CommentsCollection commentsCollection;
 
         protected override IssueRepository CreateSut()
         {
             connection = Mock<IConnection>();
             issue = Mock<IIssue>();
             issueDeserializer = new IssueMock(issue);
-            commentsWrapper = CreateCommentsWrapper();
+            commentsCollection = CreateCommentsWrapper();
 
             return new IssueRepository(connection);
         }
 
-        private static CommentsWrapper CreateCommentsWrapper()
+        private static CommentsCollection CreateCommentsWrapper()
         {
-            CommentsWrapper commentsWrapper = new CommentsWrapper();
-            commentsWrapper.Comments = new List<Comment>();
+            CommentsCollection commentsCollection = new CommentsCollection();
+            commentsCollection.Comments = new List<Comment>();
 
-            return commentsWrapper;
+            return commentsCollection;
         }
 
         [Test]

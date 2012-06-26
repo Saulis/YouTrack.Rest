@@ -47,10 +47,10 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="Deserialization\Comment.cs" />
-    <Compile Include="Deserialization\CommentsWrapper.cs" />
+    <Compile Include="Deserialization\CommentsCollection.cs" />
     <Compile Include="Deserialization\Field.cs" />
     <Compile Include="Deserialization\FileUrl.cs" />
-    <Compile Include="Deserialization\FileUrlsWrapper.cs" />
+    <Compile Include="Deserialization\FileUrlCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
+    <Compile Include="IssueProxy.cs" />
     <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />

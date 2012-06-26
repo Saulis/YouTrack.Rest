@@ -2,8 +2,8 @@ using System.Collections.Generic;
 
 namespace YouTrack.Rest.Deserialization
 {
-    class CommentsWrapper
+    class FileUrlCollection
     {
-        public List<Comment> Comments { get; set; }
+        public List<FileUrl> FileUrls { get; set; }
     }
 }
