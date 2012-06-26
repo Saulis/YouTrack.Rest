@@ -8,7 +8,7 @@ namespace YouTrack.Rest
         void AttachFile(string filePath);
         IEnumerable<IAttachment> GetAttachments();
         void AddComment(string comment);
-        ICollection<IComment> Comments { get; }
+        IEnumerable<IComment> Comments { get; }
         void SetSubsystem(string subsystem);
         void SetType(string type);
         void AttachFile(string fileName, byte[] bytes);

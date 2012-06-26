@@ -9,7 +9,7 @@ namespace YouTrack.Rest
     class Issue : IIssue
     {
         private readonly IConnection connection;
-        private ICollection<IComment> comments;
+        private IEnumerable<IComment> comments;
 
         public string Id { get; private set; }
         public string Summary { get; set; }
@@ -33,7 +33,7 @@ namespace YouTrack.Rest
             this.connection = connection;
         }
 
-        public ICollection<IComment> Comments
+        public IEnumerable<IComment> Comments
         {
             get { return comments ?? (comments = GetComments()); }
             internal set { comments = value; }
@@ -89,13 +89,13 @@ namespace YouTrack.Rest
             comments = null;
         }
 
-        private ICollection<IComment> GetComments()
+        private IEnumerable<IComment> GetComments()
         {
             GetCommentsOfAnIssueRequest getCommentsOfAnIssueRequest = new GetCommentsOfAnIssueRequest(Id);
 
             CommentsWrapper commentsWrapper = connection.Get<CommentsWrapper>(getCommentsOfAnIssueRequest);
 
-            return commentsWrapper.Comments.ToList<IComment>();
+            return commentsWrapper.Comments;
         }
     }
 }

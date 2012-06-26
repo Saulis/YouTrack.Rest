@@ -34,7 +34,7 @@ issue.Summary = "foobar";
 
 ```
 
-## Supported API Features
+## Supported API Features (v0.3.3)
 
 * Issues
 	* Create New Issue
@@ -45,6 +45,7 @@ issue.Summary = "foobar";
 	* Attach File to an Issue
 	* Delete an Issue
 
+	
 ## Not (yet) Supported API Features
 
 * Issues
@@ -52,7 +53,7 @@ issue.Summary = "foobar";
 	* Get Historical Changes of an Issue
 	* Get Links of an Issue
 	* Apply Command to an Issue
-	* Get Issues in a Project
+	* Get Issues in a Project (next version)
 	* Get a Number of Issues
 	* Remove a Comment for an Issue
 

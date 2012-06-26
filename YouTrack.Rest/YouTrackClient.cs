@@ -31,6 +31,9 @@ namespace YouTrack.Rest
             return new IssueRepository(connection);
         }
 
-        
+        public IProjectRepository GetProjectRepository()
+        {
+            return new ProjectRepository(connection);
+        }
     }
 }

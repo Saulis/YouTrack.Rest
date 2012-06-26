@@ -41,7 +41,7 @@ namespace YouTrack.Rest.Tests
         {
             connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
 
-            ICollection<IComment> comments = Sut.Comments;
+            IEnumerable<IComment> comments = Sut.Comments;
             Sut.AddComment("foobar");
             comments = Sut.Comments;
 
@@ -79,7 +79,7 @@ namespace YouTrack.Rest.Tests
         {
             connection.Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsWrapper);
 
-            ICollection<IComment> comments = Sut.Comments;
+            IEnumerable<IComment> comments = Sut.Comments;
 
             connection.Received().Get<CommentsWrapper>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }

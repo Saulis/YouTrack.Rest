@@ -51,7 +51,6 @@
     <Compile Include="Deserialization\Field.cs" />
     <Compile Include="Deserialization\FileUrl.cs" />
     <Compile Include="Deserialization\FileUrlsWrapper.cs" />
-    <Compile Include="Deserialization\IssueCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
@@ -65,11 +64,15 @@
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="IIssueProxy.cs" />
+    <Compile Include="IProjectProxy.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
+    <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
+    <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Requests\AddCommentToIssueRequest.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequest.cs" />
     <Compile Include="Requests\AttachFileToAnIssueRequest.cs" />

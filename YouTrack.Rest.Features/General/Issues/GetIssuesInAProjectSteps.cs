@@ -20,7 +20,15 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I search for the issue with summary filter")]
         public void WhenISearchForTheIssueWithSummaryFilter()
         {
-            ICollection<IIssue> issues = StepHelper.GetIssues("SB", "Testing search");
+            IEnumerable<IIssue> issues = StepHelper.GetIssues("SB", "Testing search");
+
+            ScenarioContext.Current.Set(issues);
+        }
+
+        [When(@"I search all the issues of the project")]
+        public void WhenISearchAllTheIssuesOfTheProject()
+        {
+            IEnumerable<IIssue> issues = StepHelper.GetIssues("SB");
 
             ScenarioContext.Current.Set(issues);
         }
@@ -28,7 +36,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [Then(@"I receive the issue")]
         public void ThenIReceiveTheIssue()
         {
-            ICollection<IIssue> issues = ScenarioContext.Current.Get<ICollection<IIssue>>();
+            IEnumerable<IIssue> issues = ScenarioContext.Current.Get<IEnumerable<IIssue>>();
 
             Assert.That(issues, Is.Not.Empty);
         }

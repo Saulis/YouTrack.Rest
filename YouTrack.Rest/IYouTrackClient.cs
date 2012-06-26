@@ -7,5 +7,6 @@ namespace YouTrack.Rest
         IConnection GetConnection();
         ISession GetSession();
         IIssueRepository GetIssueRepository();
+        IProjectRepository GetProjectRepository();
     }
 }

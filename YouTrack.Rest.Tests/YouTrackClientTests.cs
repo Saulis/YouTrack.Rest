@@ -26,9 +26,15 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
-        public void TestMethod()
+        public void SessionIsReturned()
         {
             Assert.That(Sut.GetSession(), Is.TypeOf<Session>());
+        }
+
+        [Test]
+        public void ProjectRepositoryIsReturned()
+        {
+            Assert.That(Sut.GetProjectRepository(), Is.TypeOf<ProjectRepository>());
         }
     }
 }
