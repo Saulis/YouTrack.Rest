@@ -67,7 +67,7 @@
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
-    <Compile Include="IssueWrapperTests.cs" />
+    <Compile Include="IssueDeserializationTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssueRequestTests.cs" />

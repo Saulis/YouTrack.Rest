@@ -43,7 +43,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetInt32();
             }
 
-            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
+            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
         }
 
         private DateTime GetDateTime(string name)
@@ -53,21 +53,27 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetDateTime();
             }
 
-            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
+            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
         }
 
         private string GetString(string name, string defaultValue = null)
         {
-            if (HasSingleFieldFor(name))
-            {
-                return GetSingleFieldFor(name).GetValue();
-            }
-            else if (defaultValue != null)
+            if(!HasFieldFor(name) && defaultValue != null)
             {
                 return defaultValue;
             }
 
-            throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
+            if (HasSingleFieldFor(name))
+            {
+                return GetSingleFieldFor(name).GetValue();
+            }
+
+            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
+        }
+
+        private bool HasFieldFor(string name)
+        {
+            return Fields.Any(f => f.Name.ToUpper() == name.ToUpper());
         }
 
         private bool HasSingleFieldFor(string name)

@@ -56,7 +56,7 @@
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
-    <Compile Include="Exceptions\IssueWrappingException.cs" />
+    <Compile Include="Exceptions\IssueSerializationException.cs" />
     <Compile Include="Exceptions\LocationHeaderCountInvalidException.cs" />
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />

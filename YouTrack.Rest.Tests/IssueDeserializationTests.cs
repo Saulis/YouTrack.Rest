@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest.Tests
 {
-    class IssueWrapperTests : TestFor<Deserialization.Issue>
+    class IssueDeserializationTests : TestFor<Deserialization.Issue>
     {
         private IConnection connection;
         private List<Comment> comments;
@@ -168,5 +169,34 @@ namespace YouTrack.Rest.Tests
             Assert.That(Sut.GetIssue(connection).Comments, Is.EquivalentTo(comments));
         }
 
+        [Test]
+        public void EmptyStringIsReturnedInsteadOfNullDescription()
+        {
+            RemoveDescriptionField();
+
+            Assert.That(Sut.GetIssue(connection).Description, Is.EqualTo(String.Empty));
+        }
+
+        [Test]
+        public void ExceptionIsThrownOnMultipleFields()
+        {
+            AddAnotherDescriptionField();
+
+            Assert.Throws<IssueSerializationException>(() => Sut.GetIssue(connection));
+        }
+
+        private void AddAnotherDescriptionField()
+        {
+            Field descriptionField = new Field {Name = "description"};
+
+            Sut.Fields.Add(descriptionField);
+        }
+
+        private void RemoveDescriptionField()
+        {
+            Field descriptionField = Sut.Fields.Single(f => f.Name == "description");
+
+            Sut.Fields.Remove(descriptionField);
+        }
     }
 }

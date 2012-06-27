@@ -1,0 +1,4 @@
+- Unreleased Changes
+* [FEATURE] Apply command(s) to an issue
+* [FEATURE] Get issues in a project
+* [BUGFIX] Getting an issue with empty description throws exceptions (fixed by akoeplinger, https://github.com/akoeplinger/YouTrack.Rest/commit/8d22482067235584e958115a19696642873bbc78)
