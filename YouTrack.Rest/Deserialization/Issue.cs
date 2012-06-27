@@ -18,7 +18,7 @@ namespace YouTrack.Rest.Deserialization
 
             issue.CommentsCount = GetInt32("commentsCount");
             issue.Created = GetDateTime("created");
-            issue.Description = GetString("description");
+            issue.Description = GetString("description", "");
             issue.NumberInProject = GetInt32("numberInProject");
             issue.Priority = GetString("priority");
             issue.ProjectShortName = GetString("projectShortName");
@@ -56,11 +56,15 @@ namespace YouTrack.Rest.Deserialization
             throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
         }
 
-        private string GetString(string name)
+        private string GetString(string name, string defaultValue = null)
         {
             if (HasSingleFieldFor(name))
             {
                 return GetSingleFieldFor(name).GetValue();
+            }
+            else if (defaultValue != null)
+            {
+                return defaultValue;
             }
 
             throw new IssueWrappingException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
