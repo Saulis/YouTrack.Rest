@@ -73,17 +73,22 @@ namespace YouTrack.Rest.Deserialization
 
         private bool HasFieldFor(string name)
         {
-            return Fields.Any(f => f.Name.ToUpper() == name.ToUpper());
+            return Fields.Any(GetCompareNamesPredicate(name));
         }
 
         private bool HasSingleFieldFor(string name)
         {
-            return Fields.Count(f => f.Name.ToUpper() == name.ToUpper()) == 1;
+            return Fields.Count(GetCompareNamesPredicate(name)) == 1;
         }
 
         private Field GetSingleFieldFor(string name)
         {
-            return Fields.Single(f => f.Name.ToUpper() == name.ToUpper());
+            return Fields.Single(GetCompareNamesPredicate(name));
+        }
+
+        private Func<Field, bool> GetCompareNamesPredicate(string name)
+        {
+            return f => f.Name.ToUpper() == name.ToUpper();
         }
     }
 }
