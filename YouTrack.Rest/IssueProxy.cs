@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests;
 
@@ -30,7 +31,7 @@ namespace YouTrack.Rest
 
             CommentsCollection commentsCollection = Connection.Get<CommentsCollection>(request);
 
-            return commentsCollection.Comments;
+            return commentsCollection.GetComments(Connection);
         }
 
         public void ApplyCommand(string command)
@@ -84,6 +85,16 @@ namespace YouTrack.Rest
             AddCommentToIssueRequest request = new AddCommentToIssueRequest(Id, comment);
 
             Connection.Post(request);
+
+            //Force fetching when comments are needed next time.
+            comments = null;
+        }
+
+        public void RemoveComment(string commentId)
+        {
+            RemoveACommentForAnIssueRequest request = new RemoveACommentForAnIssueRequest(Id, commentId);
+
+            Connection.Delete(request);
 
             //Force fetching when comments are needed next time.
             comments = null;

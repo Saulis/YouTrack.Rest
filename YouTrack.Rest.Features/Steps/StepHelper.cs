@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using YouTrack.Rest.Repositories;
 
 namespace YouTrack.Rest.Features.Steps
@@ -122,6 +123,16 @@ namespace YouTrack.Rest.Features.Steps
         private IProjectRepository GetProjectRepository()
         {
             return youTrackClient.GetProjectRepository();
+        }
+
+        public void RemoveCommentForIssue(IIssueProxy issueProxy)
+        {
+            IEnumerable<IComment> comments = issueProxy.Comments;
+            string commentId = comments.Single().Id;
+
+            Console.WriteLine("Removing comment {0} for Issue with Id: {1}", commentId, issueProxy.Id);
+
+            issueProxy.RemoveComment(commentId);
         }
     }
 }

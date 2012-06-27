@@ -1,17 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
 
-namespace YouTrack.Rest.Tests
+namespace YouTrack.Rest.Tests.Deserialization
 {
-    class IssueDeserializationTests : TestFor<Deserialization.Issue>
+    class IssueDeserializationTests : TestFor<Rest.Deserialization.Issue>
     {
         private IConnection connection;
-        private List<Comment> comments;
+        private List<Rest.Deserialization.Comment> comments;
         private const string IssueId = "FOO-BAR";
         private const string ProjectShortName = "FOO";
         private const string Summary = "Summary";
@@ -38,9 +37,9 @@ namespace YouTrack.Rest.Tests
             connection = Mock<IConnection>();
         }
 
-        private static List<Comment> CreateComments()
+        private static List<Rest.Deserialization.Comment> CreateComments()
         {
-            return new List<Comment>() { new Comment()};
+            return new List<Rest.Deserialization.Comment>() { new Rest.Deserialization.Comment() { Id = "commentId" } };
         }
 
         private List<Field> CreateFields()
@@ -166,7 +165,12 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void CommentsAreSet()
         {
-            Assert.That(Sut.GetIssue(connection).Comments, Is.EquivalentTo(comments));
+            AssertThatCommentIdsMatch(comments, Sut.GetIssue(connection).Comments);
+        }
+
+        private void AssertThatCommentIdsMatch(IEnumerable<Rest.Deserialization.Comment> expectedComments, IEnumerable<IComment> actualComments)
+        {
+            Assert.That(actualComments.Select(c => c.Id), Is.EquivalentTo(expectedComments.Select(c => c.Id)));
         }
 
         [Test]

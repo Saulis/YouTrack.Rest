@@ -90,6 +90,12 @@
     </Compile>
     <Compile Include="General\Issues\GetIssuesInAProjectSteps.cs" />
     <Compile Include="General\Issues\IssueSteps.cs" />
+    <Compile Include="General\Issues\RemoveACommentForAnIssue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RemoveACommentForAnIssue.feature</DependentUpon>
+    </Compile>
+    <Compile Include="General\Issues\RemoveACommentForAnIssueSteps.cs" />
     <Compile Include="Login\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,6 +150,10 @@
     <None Include="General\Issues\GetIssuesInAProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetIssuesInAProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="General\Issues\RemoveACommentForAnIssue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveACommentForAnIssue.feature.cs</LastGenOutput>
     </None>
     <None Include="Login\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

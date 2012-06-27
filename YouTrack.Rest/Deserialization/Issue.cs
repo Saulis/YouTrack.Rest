@@ -31,7 +31,7 @@ namespace YouTrack.Rest.Deserialization
             issue.UpdaterName = GetString("updaterName");
             issue.VotesCount = GetInt32("votes");
 
-            issue.Comments = Comments.ToList<IComment>();
+            issue.Comments = Comments.Select(c => c.GetComment(connection));
 
             return issue;
         }

@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
+    <Compile Include="Deserialization\CommentDeserializationTests.cs" />
+    <Compile Include="Deserialization\IssueDeserializationTests.cs" />
     <Compile Include="IssueProxyTests.cs" />
     <Compile Include="ProjectProxyTests.cs" />
     <Compile Include="Repositories\IssueMock.cs" />
@@ -64,10 +66,10 @@
     <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssuesInAProjectRequestTests.cs" />
+    <Compile Include="Requests\RemoveACommentForAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
-    <Compile Include="IssueDeserializationTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssueRequestTests.cs" />

@@ -19,7 +19,7 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
-        private Deserialization.Issue issueDeserializer;
+        private Rest.Deserialization.Issue issueDeserializer;
         private IIssue issue;
         private CommentsCollection commentsCollection;
 
@@ -36,7 +36,7 @@ namespace YouTrack.Rest.Tests.Repositories
         private static CommentsCollection CreateCommentsWrapper()
         {
             CommentsCollection commentsCollection = new CommentsCollection();
-            commentsCollection.Comments = new List<Comment>();
+            commentsCollection.Comments = new List<Rest.Deserialization.Comment>();
 
             return commentsCollection;
         }
@@ -74,12 +74,12 @@ namespace YouTrack.Rest.Tests.Repositories
 
             Sut.GetIssue(IssueId);
 
-            connection.Received().Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>());
         }
 
         private void MockConnectionToReturnIssueDeserializerMockOnGetIssue()
         {
-            connection.Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
+            connection.Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace YouTrack.Rest.Tests.Repositories
             Sut.CreateAndGetIssue(Project, Summary, Description);
 
             connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            connection.Received().Get<Deserialization.Issue>(Arg.Any<GetIssueRequest>());
+            connection.Received().Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>());
         }
 
         [Test]

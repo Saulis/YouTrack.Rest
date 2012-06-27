@@ -26,7 +26,7 @@ namespace YouTrack.Rest.Tests
         protected override void SetupDependencies()
         {
             fileUrlCollection = new FileUrlCollection();
-            commentsCollection = new CommentsCollection { Comments = new List<Comment>() };
+            commentsCollection = new CommentsCollection { Comments = new List<Rest.Deserialization.Comment>() };
         }
 
         [Test]
@@ -35,6 +35,14 @@ namespace YouTrack.Rest.Tests
             Sut.AddComment("foobar");
 
             connection.Received().Post(Arg.Any<AddCommentToIssueRequest>());
+        }
+
+        [Test]
+        public void CommentIsDeleted()
+        {
+            Sut.RemoveComment("foobar");
+
+            connection.Received().Delete(Arg.Any<RemoveACommentForAnIssueRequest>());
         }
 
         [Test]

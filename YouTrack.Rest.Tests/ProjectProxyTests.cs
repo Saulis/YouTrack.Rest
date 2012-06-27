@@ -13,7 +13,7 @@ namespace YouTrack.Rest.Tests
     class ProjectProxyTests : TestFor<ProjectProxy>
     {
         private IConnection connection;
-        private List<Deserialization.Issue> issues;
+        private List<Rest.Deserialization.Issue> issues;
         private const string ProjectId = "FOOBAR";
 
         protected override ProjectProxy CreateSut()
@@ -24,10 +24,10 @@ namespace YouTrack.Rest.Tests
 
         protected override void SetupDependencies()
         {
-            issues = new List<Deserialization.Issue>();
+            issues = new List<Rest.Deserialization.Issue>();
             issues.Add(new IssueMock(Mock<IIssue>()));
 
-            connection.Get<List<Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(issues);
+            connection.Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(issues);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace YouTrack.Rest.Tests
         {
             Sut.GetIssues();
 
-            connection.Received().Get<List<Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace YouTrack.Rest.Tests
         {
             Sut.GetIssues("filter");
 
-            connection.Received().Get<List<Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
         }
     }
 }

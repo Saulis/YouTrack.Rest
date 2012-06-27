@@ -55,7 +55,7 @@ issue.Summary = "foobar";
 	* Apply Command to an Issue (next version)
 	* Get Issues in a Project (next version)
 	* Get a Number of Issues
-	* Remove a Comment for an Issue
+	* Remove a Comment for an Issue (next version)
 
 * Projects
 	* TBD

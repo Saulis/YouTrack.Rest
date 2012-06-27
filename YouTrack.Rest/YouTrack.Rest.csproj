@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Deserialization\Comment.cs" />
     <Compile Include="Deserialization\CommentsCollection.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Requests\IYouTrackPostWithFileRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Requests\RemoveACommentForAnIssueRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequest.cs" />

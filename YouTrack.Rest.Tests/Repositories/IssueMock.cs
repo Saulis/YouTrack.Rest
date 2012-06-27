@@ -2,7 +2,7 @@ using YouTrack.Rest.Deserialization;
 
 namespace YouTrack.Rest.Tests.Repositories
 {
-    class IssueMock : Deserialization.Issue
+    class IssueMock : Rest.Deserialization.Issue
     {
         private readonly IIssue issue;
 

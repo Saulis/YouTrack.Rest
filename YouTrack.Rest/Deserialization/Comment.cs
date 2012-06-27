@@ -1,6 +1,6 @@
 namespace YouTrack.Rest.Deserialization
 {
-    class Comment : IComment
+    class Comment
     {
         public string Id { get; set; }
         public string Author { get; set; }
@@ -9,5 +9,14 @@ namespace YouTrack.Rest.Deserialization
         public string Text { get; set; }
         public string ShownForIssueAuthor { get; set; }
         public string Created { get; set; }
+
+        public IComment GetComment(IConnection connection)
+        {
+            Rest.Comment comment = new Rest.Comment(Id);
+
+            comment.IssueId = IssueId;
+
+            return comment;
+        }
     }
 }
