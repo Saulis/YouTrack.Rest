@@ -15,6 +15,11 @@ Scenario: Getting a single issue with comments
 	 When I request the issue
 	 Then it has the comment set
 
+Scenario: Getting a single issue without description
+	Given I have created an issue without description
+	 When I request the issue
+	 Then it has the description set to an empty string
+
 @wip
 Scenario: Getting a single issue with attachments
 	Given I have created an issue

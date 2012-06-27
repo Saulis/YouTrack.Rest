@@ -15,6 +15,11 @@ namespace YouTrack.Rest.Features.General.Issues
             SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Fetching", "I can be fetched"));
         }
 
+        [Given(@"I have created an issue without description")]
+        public void GivenIHaveCreatedAnIssueWithoutDescription()
+        {
+            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Fetching Without Description", ""));
+        }
 
         [When(@"I request the issue")]
         public void WhenIRequestTheIssue()
@@ -51,6 +56,14 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(issue.Updated, Is.GreaterThan(DateTime.MinValue));
             Assert.That(issue.UpdaterName, Is.EqualTo("youtrackapi"));
             Assert.That(issue.VotesCount, Is.EqualTo(0));
+        }
+
+        [Then(@"it has the description set to an empty string")]
+        public void ThenItHasTheDescriptionSetToAnEmptyString()
+        {
+            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+
+            Assert.That(issue.Description, Is.EqualTo(""));
         }
 
         [Given(@"I have given it a comment")]
