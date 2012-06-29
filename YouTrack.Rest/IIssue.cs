@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest
 {
-    public interface IIssue : IIssueProxy
+    public interface IIssue : ILoadable
     {
         string Summary { get; }
         string Type { get; }
@@ -18,5 +20,15 @@ namespace YouTrack.Rest
         string ReporterName { get; }
         int VotesCount { get; }
         int CommentsCount { get; }
+        void AttachFile(string filePath);
+        IEnumerable<IAttachment> GetAttachments();
+        void AddComment(string comment);
+        void RemoveComment(string commentId);
+        IEnumerable<IComment> Comments { get; }
+        void SetSubsystem(string subsystem);
+        void SetType(string type);
+        void AttachFile(string fileName, byte[] bytes);
+        void ApplyCommand(string command);
+        void ApplyCommands(params string[] commands);
     }
 }

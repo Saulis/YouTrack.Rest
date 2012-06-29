@@ -25,7 +25,7 @@ namespace YouTrack.Rest.Tests
         protected override void SetupDependencies()
         {
             issues = new List<Rest.Deserialization.Issue>();
-            issues.Add(new IssueMock(Mock<IIssue>()));
+            issues.Add(new DeserializedIssueMock(Mock<IIssue>()));
 
             connection.Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(issues);
         }

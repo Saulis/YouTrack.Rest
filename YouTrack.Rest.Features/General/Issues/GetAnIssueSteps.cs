@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest.Features.General.Issues
 {
@@ -12,29 +13,25 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Fetching", "I can be fetched"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing Fetching", "I can be fetched"));
         }
 
         [Given(@"I have created an issue without description")]
         public void GivenIHaveCreatedAnIssueWithoutDescription()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Fetching Without Description", ""));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing Fetching Without Description", ""));
         }
 
         [When(@"I request the issue")]
         public void WhenIRequestTheIssue()
         {
-            string issueId = GetIssueProxy().Id;
-
-            IIssue issue = StepHelper.GetIssue(issueId);
-
-            ScenarioContext.Current.Set(issue);
+            ((ILoadable)GetSavedIssue()).Load();
         }
 
         [Then(@"the issue is returned")]
         public void ThenTheIssueIsReturned()
         {
-            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+            IIssue issue = GetSavedIssue();
 
             Assert.That(issue, Is.Not.Null);
         }
@@ -42,7 +39,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [Then(@"it has the default fields set")]
         public void ThenItHasTheDefaultFieldsSet()
         {
-            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+            IIssue issue = GetSavedIssue();
 
             Assert.That(issue.CommentsCount, Is.EqualTo(0));
             Assert.That(issue.Created, Is.GreaterThan(DateTime.MinValue));
@@ -61,7 +58,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [Then(@"it has the description set to an empty string")]
         public void ThenItHasTheDescriptionSetToAnEmptyString()
         {
-            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+            IIssue issue = GetSavedIssue();
 
             Assert.That(issue.Description, Is.EqualTo(""));
         }
@@ -69,13 +66,13 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have given it a comment")]
         public void GivenIHaveGivenItAComment()
         {
-            GetIssueProxy().AddComment("blah blah");
+            GetSavedIssue().AddComment("blah blah");
         }
 
         [Then(@"it has the comment set")]
         public void ThenItHasTheCommentSet()
         {
-            IIssue issue = ScenarioContext.Current.Get<IIssue>();
+            IIssue issue = GetSavedIssue();
 
             Assert.That(issue.Comments.Single().Text, Is.EqualTo("blah blah"));
         }

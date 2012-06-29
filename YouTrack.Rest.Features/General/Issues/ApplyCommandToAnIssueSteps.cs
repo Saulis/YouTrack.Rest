@@ -20,19 +20,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", CommentSummary, CommentDescription));
+            SaveIssue(StepHelper.CreateIssue("SB", CommentSummary, CommentDescription));
         }
 
         [When(@"I add a comment to the issue")]
         public void WhenIAddACommentToTheIssue()
         {
-            GetIssueProxy().AddComment(CommentText);
+            GetSavedIssue().AddComment(CommentText);
         }
 
         [Then(@"a comment is added to the issue")]
         public void ThenACommentIsAddedToTheIssue()
         {
-            IEnumerable<IComment> comments = StepHelper.GetComments(GetIssueProxy());
+            IEnumerable<IComment> comments = StepHelper.GetComments(GetSavedIssue());
             IComment comment = comments.Single();
 
             Assert.That(comment.Text, Is.EqualTo(CommentText));
@@ -41,15 +41,15 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I change the Subsystem of the Issue")]
         public void WhenIChangeTheSubsystemOfTheIssue()
         {
-            GetIssueProxy().SetSubsystem(Subsystem);
+            GetSavedIssue().SetSubsystem(Subsystem);
         }
 
         [Then(@"the Subsystem is changed")]
         public void ThenTheSubsystemIsChanged()
         {
-            IIssueProxy issueProxy = GetIssueProxy();
+            IIssue savedIssue = GetSavedIssue();
 
-            IIssue issue = StepHelper.GetIssue(issueProxy.Id);
+            IIssue issue = StepHelper.GetIssue(savedIssue.Id);
 
             Assert.That(issue.Subsystem, Is.EqualTo(Subsystem));
         }
@@ -57,21 +57,21 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I change the Subsystem and Type of the issue")]
         public void WhenIChangeTheSubsystemAndTypeOfTheIssue()
         {
-            GetIssueProxy().ApplyCommands(Commands.SetSubsystem(Subsystem), Commands.SetType(IssueType));
+            GetSavedIssue().ApplyCommands(Commands.SetSubsystem(Subsystem), Commands.SetType(IssueType));
         }
 
         [When(@"I change the Type of the Issue")]
         public void WhenIChangeTheTypeOfTheIssue()
         {
-            GetIssueProxy().SetType(IssueType);
+            GetSavedIssue().SetType(IssueType);
         }
 
         [Then(@"the Type is changed")]
         public void ThenTheTypeIsChanged()
         {
-            IIssueProxy issueProxy = GetIssueProxy();
+            IIssue savedIssue = GetSavedIssue();
 
-            IIssue issue = StepHelper.GetIssue(issueProxy.Id);
+            IIssue issue = StepHelper.GetIssue(savedIssue.Id);
 
             Assert.That(issue.Type, Is.EqualTo(IssueType));
         }

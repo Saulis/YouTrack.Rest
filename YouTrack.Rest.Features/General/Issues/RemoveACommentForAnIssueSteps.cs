@@ -15,28 +15,28 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Comment removing", "blah blah"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing Comment removing", "blah blah"));
         }
 
 
         [Given(@"I have created an comment to the issue")]
         public void GivenIHaveCreatedAnCommentToTheIssue()
         {
-            StepHelper.AddCommentToIssue(GetIssueProxy(), "comment");
+            StepHelper.AddCommentToIssue(GetSavedIssue(), "comment");
         }
 
         [When(@"I remove the comment")]
         public void WhenIRemoveTheComment()
         {
-            StepHelper.RemoveCommentForIssue(GetIssueProxy());
+            StepHelper.RemoveCommentForIssue(GetSavedIssue());
 
         }
 
         [Then(@"the comment is removed")]
         public void ThenTheCommentIsRemoved()
         {
-            IIssueProxy issueProxy = GetIssueProxy();
-            IEnumerable<IComment> comments = issueProxy.Comments;
+            IIssue savedIssue = GetSavedIssue();
+            IEnumerable<IComment> comments = savedIssue.Comments;
 
             Assert.That(comments, Is.Empty);
         }
@@ -46,7 +46,7 @@ namespace YouTrack.Rest.Features.General.Issues
         {
             try
             {
-                GetIssueProxy().RemoveComment("FOOBAR");
+                GetSavedIssue().RemoveComment("FOOBAR");
             }
             catch (Exception e)
             {

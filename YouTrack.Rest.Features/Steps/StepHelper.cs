@@ -15,23 +15,13 @@ namespace YouTrack.Rest.Features.Steps
             youTrackClient = new YouTrackClient(baseUrl, login, password);
         }
 
-        public IIssueProxy CreateIssue(string project, string summary, string description)
+        public IIssue CreateIssue(string project, string summary, string description)
         {
-            IIssueProxy issueProxy = GetIssueRepository().CreateIssue(project, summary, description);
-
-            Console.WriteLine("Issue created with Id: {0}", issueProxy.Id);
-
-            return issueProxy;
-        }
-
-        public IIssue CreateAndGetIssue(string project, string summary, string description)
-        {
-            IIssue issue = GetIssueRepository().CreateAndGetIssue(project, summary, description);
+            IIssue issue = GetIssueRepository().CreateIssue(project, summary, description);
 
             Console.WriteLine("Issue created with Id: {0}", issue.Id);
 
             return issue;
-
         }
 
         public void DeleteIssue(string issueId)
@@ -60,11 +50,11 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetSession();
         }
 
-        public void AddCommentToIssue(IIssueProxy issueProxy, string comment)
+        public void AddCommentToIssue(IIssue issue, string comment)
         {
-            Console.WriteLine("Adding comment {0} to Issue with Id: {1}", comment, issueProxy.Id);
+            Console.WriteLine("Adding comment {0} to Issue with Id: {1}", comment, issue.Id);
 
-            issueProxy.AddComment(comment);
+            issue.AddComment(comment);
         }
 
         private IIssueRepository GetIssueRepository()
@@ -72,38 +62,33 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetIssueRepository();
         }
 
-        public IEnumerable<IComment> GetComments(IIssueProxy issueProxy)
+        public IEnumerable<IComment> GetComments(IIssue issue)
         {
-            Console.WriteLine("Getting comments for issue with Id: {0}", issueProxy.Id);
+            Console.WriteLine("Getting comments for issue with Id: {0}", issue.Id);
 
-            return issueProxy.Comments;
+            return issue.Comments;
         }
 
-        public void AttachFile(IIssueProxy issueProxy, string filePath)
+        public void AttachFile(IIssue issue, string filePath)
         {
-            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", filePath, issueProxy.Id);
+            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", filePath, issue.Id);
 
-            issueProxy.AttachFile(filePath);
+            issue.AttachFile(filePath);
 
         }
 
-        public void AttachFile(IIssueProxy issueProxy, byte[] bytes, string fileName)
+        public void AttachFile(IIssue issue, byte[] bytes, string fileName)
         {
-            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", fileName, issueProxy.Id);
+            Console.WriteLine("Attaching file {0} for Issue with Id: {1}", fileName, issue.Id);
 
-            issueProxy.AttachFile(fileName, bytes);
+            issue.AttachFile(fileName, bytes);
         }
 
-        public IEnumerable<IAttachment> GetAttachments(IIssueProxy issueProxy)
+        public IEnumerable<IAttachment> GetAttachments(IIssue issue)
         {
-            Console.WriteLine("Getting attachments for Issue with Id: {0}", issueProxy.Id);
+            Console.WriteLine("Getting attachments for Issue with Id: {0}", issue.Id);
 
-            return issueProxy.GetAttachments();
-        }
-
-        public IIssueProxy GetIssueProxy(string issueId)
-        {
-            return GetIssueRepository().GetIssueProxy(issueId);
+            return issue.GetAttachments();
         }
 
         public IEnumerable<IIssue> GetIssues(string project, string filter)
@@ -125,14 +110,14 @@ namespace YouTrack.Rest.Features.Steps
             return youTrackClient.GetProjectRepository();
         }
 
-        public void RemoveCommentForIssue(IIssueProxy issueProxy)
+        public void RemoveCommentForIssue(IIssue issue)
         {
-            IEnumerable<IComment> comments = issueProxy.Comments;
+            IEnumerable<IComment> comments = issue.Comments;
             string commentId = comments.Single().Id;
 
-            Console.WriteLine("Removing comment {0} for Issue with Id: {1}", commentId, issueProxy.Id);
+            Console.WriteLine("Removing comment {0} for Issue with Id: {1}", commentId, issue.Id);
 
-            issueProxy.RemoveComment(commentId);
+            issue.RemoveComment(commentId);
         }
     }
 }

@@ -14,19 +14,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Exists", "I exist"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing Exists", "I exist"));
         }
 
         [Given(@"I haven't created an issue")]
         public void GivenIHavenTCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.GetIssueProxy("FOO-123"));
+            SaveIssue(StepHelper.GetIssue("FOO-123"));
         }
 
         [When(@"I check if the issue exists")]
         public void WhenICheckIfTheIssueExists()
         {
-            ScenarioContext.Current.Set(StepHelper.IssueExists(GetIssueProxy().Id));
+            ScenarioContext.Current.Set(StepHelper.IssueExists(GetSavedIssue().Id));
         }
 
         [Then(@"I am told it does exist")]

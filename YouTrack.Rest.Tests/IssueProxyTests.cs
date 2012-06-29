@@ -9,18 +9,18 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests
 {
-    class IssueProxyTests : TestFor<IssueProxy>
+    class IssueProxyTests : TestFor<Issue>
     {
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
         private FileUrlCollection fileUrlCollection;
         private CommentsCollection commentsCollection;
 
-        protected override IssueProxy CreateSut()
+        protected override Issue CreateSut()
         {
             connection = Mock<IConnection>();
 
-            return new IssueProxy(IssueId, connection);
+            return new Issue(IssueId, connection);
         }
 
         protected override void SetupDependencies()

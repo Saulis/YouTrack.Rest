@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.4.0.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
@@ -53,9 +56,13 @@
     <Compile Include="ConnectionTests.cs" />
     <Compile Include="Deserialization\CommentDeserializationTests.cs" />
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
+    <Compile Include="Factories\IssueFactoryTests.cs" />
+    <Compile Include="Interception\LazyGetterProxyGenerationHookTests.cs" />
+    <Compile Include="Interception\LoadableProxyInterceptorTests.cs" />
     <Compile Include="IssueProxyTests.cs" />
+    <Compile Include="IssueTests.cs" />
     <Compile Include="ProjectProxyTests.cs" />
-    <Compile Include="Repositories\IssueMock.cs" />
+    <Compile Include="Repositories\DeserializedIssueMock.cs" />
     <Compile Include="Repositories\ProjectRepositoryTests.cs" />
     <Compile Include="Requests\AddCommentToIssueRequestTests.cs" />
     <Compile Include="Requests\ApplyCommandsToAnIssueRequestTests.cs" />

@@ -14,7 +14,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing search", "blah blah"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing search", "blah blah"));
         }
 
         [When(@"I search for the issue with summary filter")]

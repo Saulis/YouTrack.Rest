@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Repositories;
 
 namespace YouTrack.Rest
@@ -28,7 +29,7 @@ namespace YouTrack.Rest
 
         public IIssueRepository GetIssueRepository()
         {
-            return new IssueRepository(connection);
+            return new IssueRepository(connection, new IssueFactory());
         }
 
         public IProjectRepository GetProjectRepository()

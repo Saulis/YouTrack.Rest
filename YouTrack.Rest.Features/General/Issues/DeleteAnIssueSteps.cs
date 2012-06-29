@@ -10,19 +10,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing Deletion", "I can be deleted"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing Deletion", "I can be deleted"));
         }
 
         [When(@"I delete the issue")]
         public void WhenIDeleteTheIssue()
         {
-            StepHelper.DeleteIssue(GetIssueProxy().Id);
+            StepHelper.DeleteIssue(GetSavedIssue().Id);
         }
 
         [Then(@"the issue is deleted")]
         public void ThenTheIssueIsDeleted()
         {
-            Assert.IsFalse(StepHelper.IssueExists(GetIssueProxy().Id));
+            Assert.IsFalse(StepHelper.IssueExists(GetSavedIssue().Id));
         }
 
     }

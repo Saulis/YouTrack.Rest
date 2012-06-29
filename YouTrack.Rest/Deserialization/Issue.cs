@@ -16,22 +16,7 @@ namespace YouTrack.Rest.Deserialization
         {
             Rest.Issue issue = new Rest.Issue(Id, connection);
 
-            issue.CommentsCount = GetInt32("commentsCount");
-            issue.Created = GetDateTime("created");
-            issue.Description = GetString("description", "");
-            issue.NumberInProject = GetInt32("numberInProject");
-            issue.Priority = GetString("priority");
-            issue.ProjectShortName = GetString("projectShortName");
-            issue.ReporterName = GetString("reporterName");
-            issue.State = GetString("state");
-            issue.Subsystem = GetString("subsystem");
-            issue.Summary = GetString("summary");
-            issue.Type = GetString("Type");
-            issue.Updated = GetDateTime("updated");
-            issue.UpdaterName = GetString("updaterName");
-            issue.VotesCount = GetInt32("votes");
-
-            issue.Comments = Comments.Select(c => c.GetComment(connection));
+            MapTo(issue, connection);
 
             return issue;
         }
@@ -89,6 +74,26 @@ namespace YouTrack.Rest.Deserialization
         private Func<Field, bool> GetCompareNamesPredicate(string name)
         {
             return f => f.Name.ToUpper() == name.ToUpper();
+        }
+
+        public void MapTo(Rest.Issue issue, IConnection connection)
+        {
+            issue.CommentsCount = GetInt32("commentsCount");
+            issue.Created = GetDateTime("created");
+            issue.Description = GetString("description", "");
+            issue.NumberInProject = GetInt32("numberInProject");
+            issue.Priority = GetString("priority");
+            issue.ProjectShortName = GetString("projectShortName");
+            issue.ReporterName = GetString("reporterName");
+            issue.State = GetString("state");
+            issue.Subsystem = GetString("subsystem");
+            issue.Summary = GetString("summary");
+            issue.Type = GetString("Type");
+            issue.Updated = GetDateTime("updated");
+            issue.UpdaterName = GetString("updaterName");
+            issue.VotesCount = GetInt32("votes");
+
+            issue.Comments = Comments.Select(c => c.GetComment(connection));
         }
     }
 }

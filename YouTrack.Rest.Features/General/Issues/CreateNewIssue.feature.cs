@@ -88,25 +88,6 @@ this.FeatureBackground();
 #line hidden
             this.ScenarioCleanup();
         }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Creating a new issue with attachments")]
-        [NUnit.Framework.IgnoreAttribute()]
-        public virtual void CreatingANewIssueWithAttachments()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with attachments", new string[] {
-                        "ignore"});
-#line 11
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 12
- testRunner.When("I create a new issue to a project with attachments");
-#line 13
- testRunner.Then("an issue is created with attachments");
-#line hidden
-            this.ScenarioCleanup();
-        }
     }
 }
 #pragma warning restore

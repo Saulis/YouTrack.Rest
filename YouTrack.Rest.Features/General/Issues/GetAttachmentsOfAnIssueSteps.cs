@@ -14,21 +14,21 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing attachments", "I will have two of them"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing attachments", "I will have two of them"));
         }
 
         [Given(@"attached two files to the issue")]
         public void GivenAttachedTwoFilesToTheIssue()
         {
-            StepHelper.AttachFile(GetIssueProxy(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
-            StepHelper.AttachFile(GetIssueProxy(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            StepHelper.AttachFile(GetSavedIssue(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            StepHelper.AttachFile(GetSavedIssue(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
         }
 
         [When(@"I get the attachments of the issue")]
         public void WhenIGetTheAttachmentsOfTheIssue()
         {
-            IIssueProxy issue = GetIssueProxy();
-            IEnumerable<IAttachment> attachments = StepHelper.GetAttachments(GetIssueProxy());
+            IIssue issue = GetSavedIssue();
+            IEnumerable<IAttachment> attachments = StepHelper.GetAttachments(GetSavedIssue());
 
             ScenarioContext.Current.Set(attachments);
         }

@@ -1,6 +1,6 @@
 using System.Linq;
-using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Repositories
@@ -8,36 +8,27 @@ namespace YouTrack.Rest.Repositories
     class IssueRepository : IIssueRepository
     {
         private readonly IConnection connection;
+        private readonly IIssueFactory issueFactory;
 
-        public IssueRepository(IConnection connection)
+        public IssueRepository(IConnection connection, IIssueFactory issueFactory)
         {
             this.connection = connection;
+            this.issueFactory = issueFactory;
         }
 
-        public IIssueProxy CreateIssue(string project, string summary, string description)
+        public IIssue CreateIssue(string project, string summary, string description)
         {
             CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description);
 
             string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();
 
-            return new Issue(issueId, connection);
-        }
-
-        public IIssue CreateAndGetIssue(string project, string summary, string description)
-        {
-            string issueId = CreateIssue(project, summary, description).Id;
-
-            return GetIssue(issueId);
+            return issueFactory.CreateIssue(issueId, connection);
         }
 
         public IIssue GetIssue(string issueId)
         {
-            GetIssueRequest getIssueRequest = new GetIssueRequest(issueId);
-
-            Deserialization.Issue issue = connection.Get<Deserialization.Issue>(getIssueRequest);
-
-            return issue.GetIssue(connection);
+            return issueFactory.CreateIssue(issueId, connection);
         }
 
         public void DeleteIssue(string issueId)
@@ -61,11 +52,6 @@ namespace YouTrack.Rest.Repositories
             {
                 return false;
             }
-        }
-
-        public IIssueProxy GetIssueProxy(string issueId)
-        {
-            return new Issue(issueId, connection);
         }
     }
 }

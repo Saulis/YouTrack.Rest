@@ -5,6 +5,7 @@ using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Tests.Requests;
@@ -19,18 +20,20 @@ namespace YouTrack.Rest.Tests.Repositories
         private const string Description = "description";
         private const string IssueId = "FOO-BAR";
         private IConnection connection;
-        private Rest.Deserialization.Issue issueDeserializer;
+        private Rest.Deserialization.Issue deSerializedIssueMock;
         private IIssue issue;
         private CommentsCollection commentsCollection;
+        private IIssueFactory issueFactory;
 
         protected override IssueRepository CreateSut()
         {
             connection = Mock<IConnection>();
             issue = Mock<IIssue>();
-            issueDeserializer = new IssueMock(issue);
+            deSerializedIssueMock = new DeserializedIssueMock(issue);
             commentsCollection = CreateCommentsWrapper();
+            issueFactory = Mock<IIssueFactory>();
 
-            return new IssueRepository(connection);
+            return new IssueRepository(connection, issueFactory);
         }
 
         private static CommentsCollection CreateCommentsWrapper()
@@ -42,13 +45,13 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void IssueIdIsReturned()
+        public void IssueIdIsAssigned()
         {
             connection.Put(Arg.Any<IYouTrackPutRequest>()).Returns("foobar");
 
-            IIssueProxy issueProxy = Sut.CreateIssue(Project, Summary, Description);
+            Sut.CreateIssue(Project, Summary, Description);
 
-            Assert.That(issueProxy.Id, Is.EqualTo("foobar"));
+            issueFactory.Received().CreateIssue("foobar", connection);
         }
 
         [Test]
@@ -68,45 +71,16 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void ConnectionIsCalledOnGetIssue()
+        public void FactoryIsCalledOnGetIssue()
         {
-            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
-
             Sut.GetIssue(IssueId);
 
-            connection.Received().Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>());
-        }
-
-        private void MockConnectionToReturnIssueDeserializerMockOnGetIssue()
-        {
-            connection.Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(issueDeserializer);
-        }
-
-        [Test]
-        public void IssueIsReturnedOnGetIssue()
-        {
-            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
-
-            Assert.That(Sut.GetIssue(IssueId), Is.SameAs(issue));
-        }
-
-        
-        [Test]
-        public void ConnectionIsCalledOnCreateAndGetIssue()
-        {
-            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
-
-            Sut.CreateAndGetIssue(Project, Summary, Description);
-
-            connection.Received().Put(Arg.Any<CreateNewIssueRequest>());
-            connection.Received().Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>());
+            issueFactory.Received().CreateIssue(IssueId, connection);
         }
 
         [Test]
         public void ConnectionIsCalledOnIssueExists()
         {
-            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
-
             Sut.IssueExists(IssueId);
 
             connection.Received().Get(Arg.Any<CheckIfIssueExistsRequest>());
@@ -115,8 +89,6 @@ namespace YouTrack.Rest.Tests.Repositories
         [Test]
         public void IssueExists()
         {
-            MockConnectionToReturnIssueDeserializerMockOnGetIssue();
-
             Assert.IsTrue(Sut.IssueExists(IssueId));
         }
 
@@ -129,19 +101,6 @@ namespace YouTrack.Rest.Tests.Repositories
                                                                                       });
 
             Assert.IsFalse(Sut.IssueExists(IssueId));
-        }
-
-
-        [Test]
-        public void ReturnsIssueProxy()
-        {
-            Assert.That(Sut.GetIssueProxy(IssueId), Is.TypeOf<Issue>());
-        }
-
-        [Test]
-        public void IdIsSetToProxy()
-        {
-            Assert.That(Sut.GetIssueProxy(IssueId).Id, Is.EqualTo(IssueId));
         }
     }
 }

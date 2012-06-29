@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.103.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -55,6 +58,7 @@
     <Compile Include="Deserialization\FileUrlCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Value_.cs" />
+    <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
     <Compile Include="Exceptions\IssueSerializationException.cs" />
@@ -62,15 +66,18 @@
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
+    <Compile Include="Factories\IIssueFactory.cs" />
+    <Compile Include="Factories\IssueFactory.cs" />
     <Compile Include="IAttachment.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
-    <Compile Include="IIssueProxy.cs" />
+    <Compile Include="Interception\ILoadable.cs" />
+    <Compile Include="Interception\LoadableProxyInterceptor.cs" />
+    <Compile Include="Interception\LazyGetterProxyGenerationHook.cs" />
     <Compile Include="IProjectProxy.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
-    <Compile Include="IssueProxy.cs" />
     <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />

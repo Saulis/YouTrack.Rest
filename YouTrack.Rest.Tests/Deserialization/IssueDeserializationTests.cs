@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Tests.Repositories;
 
 namespace YouTrack.Rest.Tests.Deserialization
 {
@@ -11,138 +12,109 @@ namespace YouTrack.Rest.Tests.Deserialization
     {
         private IConnection connection;
         private List<Rest.Deserialization.Comment> comments;
+        private Issue issue;
         private const string IssueId = "FOO-BAR";
-        private const string ProjectShortName = "FOO";
-        private const string Summary = "Summary";
-        private const string Type = "Bug";
-        private const int CommentsCount = 1;
-        private const int NumberInProject = 3;
-        private const string Description = "desc";
-        private const string Priority = "urgent";
-        private const string ReporterName = "reporter";
-        private const string UpdaterName = "updater";
-        private const string Subsystem = "sub";
-        private const string State = "foobar";
-        private const int VotesCount = 2;
-        private const int UpdatedMillis = 2123;
-        private const int CreatedMillis = 1234;
 
         protected override void SetupDependencies()
         {
-            comments = CreateComments();
+            DeserializedIssueMock deserializedIssueMock = new DeserializedIssueMock();
+
+            comments = deserializedIssueMock.Comments;
 
             Sut.Id = IssueId;
-            Sut.Fields = CreateFields();
+            Sut.Fields = deserializedIssueMock.Fields;
             Sut.Comments = comments;
             connection = Mock<IConnection>();
-        }
 
-        private static List<Rest.Deserialization.Comment> CreateComments()
-        {
-            return new List<Rest.Deserialization.Comment>() { new Rest.Deserialization.Comment() { Id = "commentId" } };
-        }
-
-        private List<Field> CreateFields()
-        {
-            List<Field> fields = new List<Field>();
-
-            fields.Add(CreateField("projectShortName", ProjectShortName));
-            fields.Add(CreateField("summary", Summary));
-            fields.Add(CreateField("Type", Type));
-            fields.Add(CreateField("commentsCount", CommentsCount.ToString()));
-            fields.Add(CreateField("created", CreatedMillis.ToString()));
-            fields.Add(CreateField("description", Description));
-            fields.Add(CreateField("numberInProject", NumberInProject.ToString()));
-            fields.Add(CreateField("priority", Priority));
-            fields.Add(CreateField("reporterName", ReporterName));
-            fields.Add(CreateField("updaterName", UpdaterName));
-            fields.Add(CreateField("state", State));
-            fields.Add(CreateField("subsystem", Subsystem));
-            fields.Add(CreateField("updated", UpdatedMillis.ToString()));
-            fields.Add(CreateField("votes", VotesCount.ToString()));
-
-            return fields;
-        }
-
-        private static Field CreateField(string name, string value)
-        {
-            Value_ value_ = new Value_() {Value = value};
-
-            Field field = new Field() {Name = name, Values = new List<Value_> { value_ }};
-
-            return field;
-        }
-
-        [Test]
-        public void IdIsWrapped()
-        {
-            Assert.That(Sut.GetIssue(connection).Id, Is.EqualTo(IssueId));
+            issue = new Issue(IssueId, connection);
         }
 
         [Test]
         public void ProjectShortNameIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).ProjectShortName, Is.EqualTo(ProjectShortName));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.ProjectShortName, Is.EqualTo(DeserializedIssueMock.ProjectShortName));
         }
 
         [Test]
         public void SummaryIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).Summary, Is.EqualTo(Summary));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.Summary, Is.EqualTo(DeserializedIssueMock.Summary));
         }
 
         [Test]
         public void TypeIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).Type, Is.EqualTo(Type));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.Type, Is.EqualTo(DeserializedIssueMock.Type));
         }
 
         [Test]
         public void CommentsCountIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).CommentsCount, Is.EqualTo(CommentsCount));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.CommentsCount, Is.EqualTo(DeserializedIssueMock.CommentsCount));
         }
 
         [Test]
         public void CreatedIsWrapped()
         {
-            Assert.That(GetYouTrackMilliseconds(Sut.GetIssue(connection).Created), Is.EqualTo(CreatedMillis));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(GetYouTrackMilliseconds(issue.Created), Is.EqualTo(DeserializedIssueMock.CreatedMillis));
         }
 
         [Test]
         public void DescriptionIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).Description, Is.EqualTo(Description));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.Description, Is.EqualTo(DeserializedIssueMock.Description));
         }
 
         [Test]
         public void NumberInProjectIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).NumberInProject, Is.EqualTo(NumberInProject));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.NumberInProject, Is.EqualTo(DeserializedIssueMock.NumberInProject));
         }
 
         [Test]
         public void ReporterNameIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).ReporterName, Is.EqualTo(ReporterName));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.ReporterName, Is.EqualTo(DeserializedIssueMock.ReporterName));
         }
 
         [Test]
         public void StateIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).State, Is.EqualTo(State));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.State, Is.EqualTo(DeserializedIssueMock.State));
         }
 
         [Test]
         public void SubsystemIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).Subsystem, Is.EqualTo(Subsystem));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.Subsystem, Is.EqualTo(DeserializedIssueMock.Subsystem));
         }
 
         [Test]
         public void UpdatedIsWrapped()
         {
-            Assert.That(GetYouTrackMilliseconds(Sut.GetIssue(connection).Updated), Is.EqualTo(UpdatedMillis));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(GetYouTrackMilliseconds(issue.Updated), Is.EqualTo(DeserializedIssueMock.UpdatedMillis));
         }
 
         private double GetYouTrackMilliseconds(DateTime value)
@@ -153,19 +125,25 @@ namespace YouTrack.Rest.Tests.Deserialization
         [Test]
         public void UpdaterNameIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).UpdaterName, Is.EqualTo(UpdaterName));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.UpdaterName, Is.EqualTo(DeserializedIssueMock.UpdaterName));
         }
 
         [Test]
         public void VotesCountIsWrapped()
         {
-            Assert.That(Sut.GetIssue(connection).VotesCount, Is.EqualTo(VotesCount));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.VotesCount, Is.EqualTo(DeserializedIssueMock.VotesCount));
         }
 
         [Test]
         public void CommentsAreSet()
         {
-            AssertThatCommentIdsMatch(comments, Sut.GetIssue(connection).Comments);
+            Sut.MapTo(issue, connection);
+
+            AssertThatCommentIdsMatch(comments, issue.Comments);
         }
 
         private void AssertThatCommentIdsMatch(IEnumerable<Rest.Deserialization.Comment> expectedComments, IEnumerable<IComment> actualComments)
@@ -178,7 +156,9 @@ namespace YouTrack.Rest.Tests.Deserialization
         {
             RemoveDescriptionField();
 
-            Assert.That(Sut.GetIssue(connection).Description, Is.EqualTo(String.Empty));
+            Sut.MapTo(issue, connection);
+
+            Assert.That(issue.Description, Is.EqualTo(String.Empty));
         }
 
         [Test]

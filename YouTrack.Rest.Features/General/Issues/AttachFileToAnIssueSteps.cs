@@ -17,13 +17,13 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing attachments", "Blah"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing attachments", "Blah"));
         }
 
         [When(@"I attach an file to the issue using a path")]
         public void WhenIAttachAnFileToTheIssue()
         {
-            StepHelper.AttachFile(GetIssueProxy(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            StepHelper.AttachFile(GetSavedIssue(), @"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
 
             expectedFileName = "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production1.jpg";
         }
@@ -31,7 +31,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I attach an file to the issue using bytes")]
         public void WhenIAttachAnFileToTheIssueUsingBytes()
         {
-            StepHelper.AttachFile(GetIssueProxy(), File.ReadAllBytes(@"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg"), "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
+            StepHelper.AttachFile(GetSavedIssue(), File.ReadAllBytes(@"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg"), "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
 
             //Extra .jpg is added to the attachment name.. in RestSharp or YouTrack... don't know why.
             expectedFileName = "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg1.jpg";
@@ -41,7 +41,7 @@ namespace YouTrack.Rest.Features.General.Issues
         [Then(@"the file is attached")]
         public void ThenTheFileIsAttached()
         {
-            IIssueProxy issue = GetIssueProxy();
+            IIssue issue = GetSavedIssue();
 
             IEnumerable<IAttachment> attachments = issue.GetAttachments();
 

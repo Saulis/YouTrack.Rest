@@ -12,19 +12,19 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created an issue")]
         public void GivenIHaveCreatedAnIssue()
         {
-            SetIssueProxy(StepHelper.CreateIssue("SB", "Testing", "Fetching Comments"));
+            SaveIssue(StepHelper.CreateIssue("SB", "Testing", "Fetching Comments"));
         }
 
         [Given(@"I have created an comment to the issue")]
         public void GivenIHaveCreatedAnCommentToTheIssue()
         {
-            StepHelper.AddCommentToIssue(GetIssueProxy(), "testing");
+            StepHelper.AddCommentToIssue(GetSavedIssue(), "testing");
         }
 
         [When(@"I fetch the comments for the issue")]
         public void WhenIFetchTheCommentsForTheIssue()
         {
-            IEnumerable<IComment> comments = StepHelper.GetComments(GetIssueProxy());
+            IEnumerable<IComment> comments = StepHelper.GetComments(GetSavedIssue());
 
             ScenarioContext.Current.Set(comments);
         }
@@ -38,8 +38,8 @@ namespace YouTrack.Rest.Features.General.Issues
         [Given(@"I have created two comments to the issue")]
         public void GivenIHaveCreatedTwoCommentsToTheIssue()
         {
-            StepHelper.AddCommentToIssue(GetIssueProxy(), "comment 1");
-            StepHelper.AddCommentToIssue(GetIssueProxy(), "comment 2");
+            StepHelper.AddCommentToIssue(GetSavedIssue(), "comment 1");
+            StepHelper.AddCommentToIssue(GetSavedIssue(), "comment 2");
         }
 
         [Then(@"I receive two comments")]
