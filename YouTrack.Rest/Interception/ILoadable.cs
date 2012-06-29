@@ -4,6 +4,5 @@ namespace YouTrack.Rest.Interception
     {
         bool IsLoaded { get; }
         void Load();
-        string Id { get; }
     }
 }

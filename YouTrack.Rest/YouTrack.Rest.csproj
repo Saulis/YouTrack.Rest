@@ -73,7 +73,7 @@
     <Compile Include="IConnection.cs" />
     <Compile Include="Interception\ILoadable.cs" />
     <Compile Include="Interception\LoadableProxyInterceptor.cs" />
-    <Compile Include="Interception\LazyGetterProxyGenerationHook.cs" />
+    <Compile Include="Interception\PropertyGetterProxyGenerationHook.cs" />
     <Compile Include="IProjectProxy.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />

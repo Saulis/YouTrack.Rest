@@ -7,7 +7,7 @@ using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest
 {
-    class Issue : ILoadable, IIssue
+    class Issue : IIssue, ILoadable
     {
         public string Id { get; private set; }
         private bool isLoaded;
