@@ -2,7 +2,6 @@
 using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest.Features.General.Issues
 {
@@ -25,7 +24,8 @@ namespace YouTrack.Rest.Features.General.Issues
         [When(@"I request the issue")]
         public void WhenIRequestTheIssue()
         {
-            ((ILoadable)GetSavedIssue()).Load();
+            //Using property getter will trigger fetching.
+            string description = GetSavedIssue().Description;
         }
 
         [Then(@"the issue is returned")]

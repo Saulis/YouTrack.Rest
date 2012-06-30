@@ -15,6 +15,7 @@ namespace YouTrack.Rest.Deserialization
             Rest.Comment comment = new Rest.Comment(Id);
 
             comment.IssueId = IssueId;
+            comment.Text = Text;
 
             return comment;
         }

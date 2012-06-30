@@ -7,7 +7,7 @@ namespace YouTrack.Rest.Tests.Interception
     {
         protected override PropertyGetterProxyGenerationHook<TestType> CreateSut()
         {
-            return new PropertyGetterProxyGenerationHook<TestType>(x => x.Id);
+            return new PropertyGetterProxyGenerationHook<TestType>();
         }
 
         [Test]
@@ -17,9 +17,9 @@ namespace YouTrack.Rest.Tests.Interception
         }
 
         [Test]
-        public void ExcludedIdGetterShouldNotBeInspected()
+        public void GetterInNonProxiedTypeShouldNotBeInspected()
         {
-            Assert.IsFalse(Sut.ShouldInterceptMethod(typeof(TestType), typeof(TestType).GetMethod("get_Id")));
+            Assert.IsFalse(Sut.ShouldInterceptMethod(typeof(AnotherTestType), typeof(AnotherTestType).GetMethod("get_Property")));
         }
 
         [Test]
@@ -45,5 +45,10 @@ namespace YouTrack.Rest.Tests.Interception
         {
 
         }
+    }
+
+    public class AnotherTestType
+    {
+        public string Property { get; set; }
     }
 }

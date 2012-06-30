@@ -10,7 +10,7 @@ namespace YouTrack.Rest.Factories
             ProxyGenerator proxyGenerator = new ProxyGenerator();
 
             Issue issue = new Issue(issueId, connection);
-            ProxyGenerationOptions proxyGenerationOptions = new ProxyGenerationOptions(new PropertyGetterProxyGenerationHook<Issue>(x => x.Id));
+            ProxyGenerationOptions proxyGenerationOptions = new ProxyGenerationOptions(new PropertyGetterProxyGenerationHook<IIssue>());
 
             object issueProxy = proxyGenerator.CreateInterfaceProxyWithTargetInterface(typeof (IIssue), issue, proxyGenerationOptions, new LoadableProxyInterceptor());
 

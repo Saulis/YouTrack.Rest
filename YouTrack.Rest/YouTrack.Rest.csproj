@@ -71,6 +71,7 @@
     <Compile Include="IAttachment.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
+    <Compile Include="IIssueActions.cs" />
     <Compile Include="Interception\ILoadable.cs" />
     <Compile Include="Interception\LoadableProxyInterceptor.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHook.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
+    <Compile Include="IssueActions.cs" />
     <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
