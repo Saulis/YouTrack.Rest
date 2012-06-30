@@ -5,6 +5,7 @@ Easy-to-use .NET client for Jetbrains' YouTrack REST API (http://www.jetbrains.c
 Compatible with YouTrack v3.x with v4.x support planned. (http://confluence.jetbrains.net/display/YTD3/YouTrack+REST+API+Reference)
 
 Built on top of RestSharp: https://github.com/restsharp/RestSharp / http://restsharp.org
+and CastleProject's DynamicProxy: https://github.com/castleproject/Castle.Core-READONLY / http://www.castleproject.org/
 
 ## Usage
 
@@ -16,25 +17,19 @@ IYouTrackClient youTrackClient = new YouTrackClient("http://youtrack.address.com
 // Fetching and creating issues is done using the IssueRepository
 IIssueRepository issueRepository = youTrackClient.GetIssueRepository();
 
-// Creating issue and fetching the created issue
-IIssue issue = issueRepository.CreateAndGetIssue("project", "summary", "description");
+// Creating issue
+IIssue issue = issueRepository.CreateIssue("project", "summary", "description");
 
-// You can also use another method to only creates the issue and returns a proxy object
-IIssueProxy issueProxy = issueRepository.CreateIssue("project", "summary", "description");
+// YouTrack.Rest uses Castle DynamicProxy for lazy loading which allows you to execute various commands related to an issue without actually fetching the issue from YouTrack.
+issue.AttachFile(@"C:\temp\foo.jpg");
+issue.AddComment("blah blah");
 
-// IssueProxy is a proxy class which allows you to execute various commands related to an issue without actually fetching the issue from YouTrack.
-issueProxy.AttachFile(@"C:\temp\foo.jpg");
-
-// IssueProxy can be fetched from the repository without making a query to YouTrack
-IIssueProxy anotherIssueProxy = issueRepository.GetIssueProxy("FOO-123");
-anotherIssueProxy.AddComment("blah blah");
-
-// Issue of course has the same methods as IssueProxy, plus Project, Summary and Description.
-issue.Summary = "foobar";
+// Using properties which use issue details will trigger a REST request:
+Console.WriteLine(issue.Summary);
 
 ```
 
-## Supported API Features (v0.3.3)
+## Supported API Features (v0.4.0)
 
 * Issues
 	* Create New Issue
@@ -44,7 +39,9 @@ issue.Summary = "foobar";
 	* Get Comments of an Issue
 	* Attach File to an Issue
 	* Delete an Issue
-
+	* Apply Command(s) to an Issue
+	* Get Issues in a Project
+	* Remove a Comment for an Issue
 	
 ## Not (yet) Supported API Features
 
@@ -52,10 +49,7 @@ issue.Summary = "foobar";
 	* Get Issue History
 	* Get Historical Changes of an Issue
 	* Get Links of an Issue
-	* Apply Command to an Issue (next version)
-	* Get Issues in a Project (next version)
 	* Get a Number of Issues
-	* Remove a Comment for an Issue (next version)
 
 * Projects
 	* TBD

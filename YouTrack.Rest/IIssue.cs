@@ -1,5 +1,4 @@
 ﻿using System;
-using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest
 {

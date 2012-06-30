@@ -1,4 +1,8 @@
 - Unreleased Changes
+
+- RELEASE v0.4.0 [2012-06-30]
+* [BREAKING] ILMerge added to merge RestSharp and Castle.Core
+* [BREAKING] Castle DynamicProxy added, IIssueProxy no longer used
 * [FEATURE] Apply command(s) to an issue
 * [FEATURE] Get issues in a project
 * [FEATURE] Remove a comment for an issue
