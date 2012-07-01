@@ -64,30 +64,20 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Getting a single issue")]
         public virtual void GettingASingleIssue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
  testRunner.When("I request the issue");
-#line 9
+#line 6
  testRunner.Then("the issue is returned");
-#line 10
+#line 7
   testRunner.And("it has the default fields set");
 #line hidden
             this.ScenarioCleanup();
@@ -98,17 +88,15 @@ this.FeatureBackground();
         public virtual void GettingASingleIssueWithComments()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with comments", ((string[])(null)));
-#line 12
+#line 9
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 13
+#line 10
  testRunner.Given("I have created an issue");
-#line 14
+#line 11
    testRunner.And("I have given it a comment");
-#line 15
+#line 12
   testRunner.When("I request the issue");
-#line 16
+#line 13
   testRunner.Then("it has the comment set");
 #line hidden
             this.ScenarioCleanup();
@@ -119,15 +107,13 @@ this.FeatureBackground();
         public virtual void GettingASingleIssueWithoutDescription()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue without description", ((string[])(null)));
-#line 18
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 19
+#line 16
  testRunner.Given("I have created an issue without description");
-#line 20
+#line 17
   testRunner.When("I request the issue");
-#line 21
+#line 18
   testRunner.Then("it has the description set to an empty string");
 #line hidden
             this.ScenarioCleanup();
@@ -140,17 +126,15 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with attachments", new string[] {
                         "wip"});
-#line 24
+#line 21
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 25
+#line 22
  testRunner.Given("I have created an issue");
-#line 26
+#line 23
    testRunner.And("I have added an attachment to it");
-#line 27
+#line 24
   testRunner.When("I request the issue");
-#line 28
+#line 25
   testRunner.Then("it has the attachment set");
 #line hidden
             this.ScenarioCleanup();
@@ -163,17 +147,15 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with links", new string[] {
                         "wip"});
-#line 31
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 32
+#line 29
  testRunner.Given("I have created an issue");
-#line 33
+#line 30
    testRunner.And("I have linked it to another issue");
-#line 34
+#line 31
   testRunner.When("I request the issue");
-#line 35
+#line 32
   testRunner.Then("it has the link to another issue");
 #line hidden
             this.ScenarioCleanup();
@@ -186,17 +168,15 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a single issue with multiple fix versions", new string[] {
                         "wip"});
-#line 38
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 39
+#line 36
  testRunner.Given("I have created an issue");
-#line 40
+#line 37
    testRunner.And("I have added two fix versions to it");
-#line 41
+#line 38
   testRunner.When("I request the issue");
-#line 42
+#line 39
   testRunner.Then("the issue has both fix versions");
 #line hidden
             this.ScenarioCleanup();

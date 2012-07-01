@@ -64,28 +64,18 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add comment to an Issue")]
         public virtual void AddCommentToAnIssue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add comment to an Issue", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
  testRunner.When("I add a comment to the issue");
-#line 9
+#line 6
  testRunner.Then("a comment is added to the issue");
 #line hidden
             this.ScenarioCleanup();
@@ -96,15 +86,13 @@ this.FeatureBackground();
         public virtual void EditSubsystemOfAnIssue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit Subsystem of an Issue", ((string[])(null)));
-#line 11
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 12
+#line 9
  testRunner.Given("I have created an issue");
-#line 13
+#line 10
   testRunner.When("I change the Subsystem of the Issue");
-#line 14
+#line 11
   testRunner.Then("the Subsystem is changed");
 #line hidden
             this.ScenarioCleanup();
@@ -115,15 +103,13 @@ this.FeatureBackground();
         public virtual void EditTypeOfAnIssue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit Type of an Issue", ((string[])(null)));
-#line 16
+#line 13
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 17
+#line 14
  testRunner.Given("I have created an issue");
-#line 18
+#line 15
   testRunner.When("I change the Type of the Issue");
-#line 19
+#line 16
   testRunner.Then("the Type is changed");
 #line hidden
             this.ScenarioCleanup();
@@ -134,17 +120,15 @@ this.FeatureBackground();
         public virtual void EditSubsystemAndTypeWithSameCommand()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit Subsystem and Type with same command", ((string[])(null)));
-#line 21
+#line 18
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 22
+#line 19
  testRunner.Given("I have created an issue");
-#line 23
+#line 20
   testRunner.When("I change the Subsystem and Type of the issue");
-#line 24
+#line 21
   testRunner.Then("the Subsystem is changed");
-#line 25
+#line 22
    testRunner.And("the Type is changed");
 #line hidden
             this.ScenarioCleanup();

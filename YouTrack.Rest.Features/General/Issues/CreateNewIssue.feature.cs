@@ -64,26 +64,16 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Creating a new issue with basic parameters")]
         public virtual void CreatingANewIssueWithBasicParameters()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new issue with basic parameters", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.When("I create a new issue to a project with summary and description");
-#line 8
+#line 5
  testRunner.Then("an issue is created");
 #line hidden
             this.ScenarioCleanup();

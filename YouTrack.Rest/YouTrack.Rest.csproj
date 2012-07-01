@@ -92,7 +92,9 @@
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Requests\AddCommentToIssueRequest.cs" />
     <Compile Include="Requests\ApplyCommandsToAnIssueRequest.cs" />
     <Compile Include="Requests\ApplyCommandToAnIssueRequest.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequest.cs" />
+    <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="YouTrackClient.cs" />
     <Compile Include="Session.cs" />
@@ -131,7 +134,7 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
- <Target Name="AfterBuild" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <Target Name="AfterBuild" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreateItem Include="@(ReferenceCopyLocalPaths)" Condition="'%(Extension)'=='.dll'">
       <Output ItemName="AssembliesToMerge" TaskParameter="Include" />
     </CreateItem>

@@ -36,5 +36,11 @@ namespace YouTrack.Rest.Tests
         {
             Assert.That(Sut.GetProjectRepository(), Is.TypeOf<ProjectRepository>());
         }
+
+        [Test]
+        public void UserRepositoryIsReturned()
+        {
+            Assert.That(Sut.GetUserRepository(), Is.TypeOf<UserRepository>());
+        }
     }
 }

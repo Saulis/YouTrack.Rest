@@ -36,5 +36,10 @@ namespace YouTrack.Rest
         {
             return new ProjectRepository(connection);
         }
+
+        public IUserRepository GetUserRepository()
+        {
+            return new UserRepository(connection);
+        }
     }
 }

@@ -64,28 +64,18 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get all Issues in a project")]
         public virtual void GetAllIssuesInAProject()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all Issues in a project", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
   testRunner.When("I search all the issues of the project");
-#line 9
+#line 6
   testRunner.Then("I receive the issue");
 #line hidden
             this.ScenarioCleanup();
@@ -96,15 +86,13 @@ this.FeatureBackground();
         public virtual void GetIssuesInAProjectWithSearch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Issues in a project with search", ((string[])(null)));
-#line 11
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 12
+#line 9
  testRunner.Given("I have created an issue");
-#line 13
+#line 10
   testRunner.When("I search for the issue with summary filter");
-#line 14
+#line 11
   testRunner.Then("I receive the issue");
 #line hidden
             this.ScenarioCleanup();

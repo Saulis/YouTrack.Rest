@@ -1,8 +1,5 @@
 ﻿Feature: Get Comments of an Issue
 
-Background: 
-	Given I am authenticated
-
 Scenario: Issue without comments
 	Given I have created an issue
 	When I fetch the comments for the issue

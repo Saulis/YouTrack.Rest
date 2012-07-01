@@ -1,4 +1,5 @@
 using TechTalk.SpecFlow;
+using System.Linq;
 
 namespace YouTrack.Rest.Features.Steps
 {
@@ -13,6 +14,11 @@ namespace YouTrack.Rest.Features.Steps
         public virtual void Setup()
         {
             ScenarioContext.Current.Set(new StepHelper());
+
+            if (!ScenarioContext.Current.ScenarioInfo.Tags.Contains("unauthenticated"))
+            {
+                StepHelper.InitializeYouTrackClient(TestSettings.BaseUrl, TestSettings.Username, TestSettings.Password);
+            }
         }
 
     }

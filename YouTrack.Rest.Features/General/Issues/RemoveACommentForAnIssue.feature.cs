@@ -64,30 +64,20 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Remove existing comment")]
         public virtual void RemoveExistingComment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove existing comment", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
    testRunner.And("I have created an comment to the issue");
-#line 9
+#line 6
   testRunner.When("I remove the comment");
-#line 10
+#line 7
   testRunner.Then("the comment is removed");
 #line hidden
             this.ScenarioCleanup();
@@ -98,15 +88,13 @@ this.FeatureBackground();
         public virtual void TryToRemoveNon_ExistingComment()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to remove non-existing comment", ((string[])(null)));
-#line 12
+#line 9
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 13
+#line 10
  testRunner.Given("I have created an issue");
-#line 14
+#line 11
   testRunner.When("I try to remove a comment");
-#line 15
+#line 12
   testRunner.Then("the comment is not found");
 #line hidden
             this.ScenarioCleanup();

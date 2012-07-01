@@ -1,8 +1,5 @@
 ﻿Feature: Remove a comment for an issue
 
-Background:
-	Given I am authenticated
-
 Scenario: Remove existing comment
 	Given I have created an issue
 	  And I have created an comment to the issue

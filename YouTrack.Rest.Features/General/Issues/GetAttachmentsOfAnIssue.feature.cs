@@ -64,30 +64,20 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get multiple Attachments of an Issue")]
         public virtual void GetMultipleAttachmentsOfAnIssue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get multiple Attachments of an Issue", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
    testRunner.And("attached two files to the issue");
-#line 9
+#line 6
   testRunner.When("I get the attachments of the issue");
-#line 10
+#line 7
   testRunner.Then("I get two attached files");
 #line hidden
             this.ScenarioCleanup();

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace YouTrack.Rest.Features.Login
+namespace YouTrack.Rest.Features.Administration.Users
 {
     using TechTalk.SpecFlow;
     
@@ -19,20 +19,20 @@ namespace YouTrack.Rest.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Authentication with Login and Password")]
-    public partial class AuthenticationWithLoginAndPasswordFeature
+    [NUnit.Framework.DescriptionAttribute("Get User (admin)")]
+    public partial class GetUserAdminFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Login.feature"
+#line 1 "GetUser.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Authentication with Login and Password", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get User (admin)", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,36 +65,18 @@ namespace YouTrack.Rest.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Valid authentication")]
-        [NUnit.Framework.CategoryAttribute("unauthenticated")]
-        public virtual void ValidAuthentication()
+        [NUnit.Framework.DescriptionAttribute("Get an existing user")]
+        public virtual void GetAnExistingUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid authentication", new string[] {
-                        "unauthenticated"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an existing user", ((string[])(null)));
+#line 3
+this.ScenarioSetup(scenarioInfo);
 #line 4
-this.ScenarioSetup(scenarioInfo);
+ testRunner.Given("I have added an user");
 #line 5
- testRunner.When("I authenticate with login \"youtrack.rest\" and password \"youtrack.rest\" to \"http:/" +
-                    "/localhost:8484\"");
+  testRunner.When("I fetch the user");
 #line 6
- testRunner.Then("I am authenticated");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Invalid authentication")]
-        [NUnit.Framework.CategoryAttribute("unauthenticated")]
-        public virtual void InvalidAuthentication()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid authentication", new string[] {
-                        "unauthenticated"});
-#line 9
-this.ScenarioSetup(scenarioInfo);
-#line 10
- testRunner.When("I authenticate with login \"foo\" and password \"bar\" to \"http://localhost:8484\"");
-#line 11
- testRunner.Then("I am not authenticated");
+  testRunner.Then("user is fetched");
 #line hidden
             this.ScenarioCleanup();
         }

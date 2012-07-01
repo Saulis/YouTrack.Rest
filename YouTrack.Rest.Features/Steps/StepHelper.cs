@@ -119,5 +119,17 @@ namespace YouTrack.Rest.Features.Steps
 
             issue.RemoveComment(commentId);
         }
+
+        public void CreateUser(string login, string fullname, string email, string password)
+        {
+            IUserRepository userRepository = GetUserRepository();
+
+            userRepository.CreateUser(login, password, email, fullname);
+        }
+
+        private IUserRepository GetUserRepository()
+        {
+            return youTrackClient.GetUserRepository();
+        }
     }
 }

@@ -64,28 +64,18 @@ namespace YouTrack.Rest.Features.General.Issues
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-#line 4
- testRunner.Given("I am authenticated");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Issue does exist")]
         public virtual void IssueDoesExist()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Issue does exist", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
 #line 3
-this.FeatureBackground();
-#line 7
+this.ScenarioSetup(scenarioInfo);
+#line 4
  testRunner.Given("I have created an issue");
-#line 8
+#line 5
   testRunner.When("I check if the issue exists");
-#line 9
+#line 6
   testRunner.Then("I am told it does exist");
 #line hidden
             this.ScenarioCleanup();
@@ -96,15 +86,13 @@ this.FeatureBackground();
         public virtual void IssueDoesNotExist()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Issue does not exist", ((string[])(null)));
-#line 11
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
-#line 12
+#line 9
  testRunner.Given("I haven\'t created an issue");
-#line 13
+#line 10
   testRunner.When("I check if the issue exists");
-#line 14
+#line 11
   testRunner.Then("I am told it does not exist");
 #line hidden
             this.ScenarioCleanup();
