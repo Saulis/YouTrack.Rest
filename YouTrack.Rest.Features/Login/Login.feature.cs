@@ -72,8 +72,8 @@ namespace YouTrack.Rest.Features.Login
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.When("I authenticate with login \"youtrackapi\" and password \"youtrackapi\" to \"http://you" +
-                    "track.codebetter.com\"");
+ testRunner.When("I authenticate with login \"youtrack.rest\" and password \"youtrack.rest\" to \"http:/" +
+                    "/localhost:8484\"");
 #line 5
  testRunner.Then("I am authenticated");
 #line hidden
@@ -88,8 +88,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.When("I authenticate with login \"foo\" and password \"bar\" to \"http://youtrack.codebetter" +
-                    ".com\"");
+ testRunner.When("I authenticate with login \"foo\" and password \"bar\" to \"http://localhost:8484\"");
 #line 9
  testRunner.Then("I am not authenticated");
 #line hidden

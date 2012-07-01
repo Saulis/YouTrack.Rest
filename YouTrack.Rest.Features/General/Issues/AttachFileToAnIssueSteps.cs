@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using YouTrack.Rest.Features.Steps;
 
 namespace YouTrack.Rest.Features.General.Issues
 {
@@ -49,7 +50,7 @@ namespace YouTrack.Rest.Features.General.Issues
             
             IAttachment attachment = attachments.Single();
             Assert.That(attachment.Name, Is.EqualTo(expectedFileName));
-            Assert.That(attachment.AuthorLogin, Is.EqualTo("youtrackapi"));
+            Assert.That(attachment.AuthorLogin, Is.EqualTo(TestSettings.Username));
             Assert.That(attachment.Group, Is.EqualTo("All Users"));
         }
 

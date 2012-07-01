@@ -65,3 +65,15 @@ Console.WriteLine(issue.Summary);
 
 * Import
 	* TBD
+	
+## Contributing
+
+Don't see the feature you need in the list? Feel free to post your own implementations or bug fixes and I'll be happy to integrate them into the code!
+
+You can also post an issue or send me a message and I'll try to sort it out.
+
+* Alright, what do I need to know?
+	* In order to run Acceptance tests, you need to install YouTrack 4.0 locally:
+		* Install YouTrack 4.0(http://www.jetbrains.com/youtrack/download/get_youtrack.html)
+		* Use port 8484 (well, you can use whatever port you want but then you have to change the tests a bit)
+		* Run the YouTrack.Rest.Sandbox.Installer

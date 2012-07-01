@@ -124,6 +124,7 @@
     <Compile Include="Steps\CommonSteps.cs" />
     <Compile Include="Steps\Steps.cs" />
     <Compile Include="Steps\StepHelper.cs" />
+    <Compile Include="Steps\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

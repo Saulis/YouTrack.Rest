@@ -7,5 +7,21 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another .NET client for the YouTrack REST API</description>
     <copyright>Copyright 2012</copyright>
+	<tags>JetBrains YouTrack REST API</tags>
+	<dependencies>
+	   <group targetFramework="sl4">
+			<dependency id="RestSharp" version="[103.1]" />
+			<dependency id="Castle.Core" version="[3.0.0.4001]" />
+		</group>
+		<group targetFramework="sl4-wp71">
+			<dependency id="RestSharp" version="[103.1]" />
+			<dependency id="Castle.Core" version="[3.0.0.4001]" />
+		</group>
+	</dependencies>
   </metadata>
+  <files>
+	<file src="bin\Release\YouTrack.Rest.dll" target="lib\net40" />
+	<file src="bin\Release-Unmerged\YouTrack.Rest.dll" target="lib\sl4" />
+	<file src="bin\Release-Unmerged\YouTrack.Rest.dll" target="lib\sl4-wp71" />
+  </files>
 </package>

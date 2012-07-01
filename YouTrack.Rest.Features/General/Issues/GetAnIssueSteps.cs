@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using YouTrack.Rest.Features.Steps;
 
 namespace YouTrack.Rest.Features.General.Issues
 {
@@ -47,11 +48,11 @@ namespace YouTrack.Rest.Features.General.Issues
             Assert.That(issue.NumberInProject, Is.GreaterThan(0));
             Assert.That(issue.Priority, Is.EqualTo("Normal")); //Default value for the Sandbox
             Assert.That(issue.ProjectShortName, Is.EqualTo("SB")); //Sandbox Project
-            Assert.That(issue.ReporterName, Is.EqualTo("youtrackapi"));
+            Assert.That(issue.ReporterName, Is.EqualTo(TestSettings.Username));
             Assert.That(issue.State, Is.EqualTo("Submitted")); //Default value for the Sandbox
             Assert.That(issue.Type, Is.EqualTo("Bug")); //Default value for the Sandbox
             Assert.That(issue.Updated, Is.GreaterThan(DateTime.MinValue));
-            Assert.That(issue.UpdaterName, Is.EqualTo("youtrackapi"));
+            Assert.That(issue.UpdaterName, Is.EqualTo(TestSettings.Username));
             Assert.That(issue.VotesCount, Is.EqualTo(0));
         }
 
