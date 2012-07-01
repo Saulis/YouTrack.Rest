@@ -65,6 +65,7 @@
     <Compile Include="Deserialization\FileUrl.cs" />
     <Compile Include="Deserialization\FileUrlCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
+    <Compile Include="Deserialization\User.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="IssueActions.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Requests\Users\DeleteUserRequest.cs" />
     <Compile Include="Requests\Users\GetUserRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="YouTrackClient.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="IYouTrackClient.cs" />
