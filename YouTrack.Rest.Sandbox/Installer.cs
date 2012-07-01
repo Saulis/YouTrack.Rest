@@ -6,82 +6,51 @@ using YouTrack.Rest.Repositories;
 
 namespace YouTrack.Rest.Sandbox
 {
-    class Installer
+    internal class Installer
     {
         public const string ProjectShortname = "SB";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             YouTrackClient youTrackClient = new YouTrackClient("http://localhost:8484", "youtrack.rest", "youtrack.rest");
 
-            //1. Check if user exists / create user
-            //3. Check rights / set admin rights
-            //4. Check project / create project
-            //5. Check subsystem / add subsystem Test
-            //6. Check issue / add issue
-
-            //RunInstallationSteps(new CreateUser(youTrackClient));
-                
-                //new SetupInitialIssue(youTrackClient));
+            CreateUser(youTrackClient);
+            CreateProject(youTrackClient);
+            AddSubsystem(youTrackClient);
+            CreateInitialIssue(youTrackClient);
         }
 
-        private static void RunInstallationSteps(params ISandboxInstallationStep[] installationSteps)
+        private static void CreateInitialIssue(YouTrackClient youTrackClient)
         {
-            foreach (ISandboxInstallationStep installationStep in installationSteps)
-            {
-                RunInstallationStep(installationStep);
-            }
-        }
-
-        private static void RunInstallationStep(ISandboxInstallationStep installationStep)
-        {
-            if(installationStep.IsNotDone())
-            {
-                installationStep.DoIt();
-            }
-        }
-    }
-
-    internal class CreateUser : ISandboxInstallationStep
-    {
-        public bool IsNotDone()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DoIt()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class SetupInitialIssue : ISandboxInstallationStep
-    {
-        private YouTrackClient youTrackClient;
-
-        public SetupInitialIssue(YouTrackClient youTrackClient)
-        {
-            this.youTrackClient = youTrackClient;
-        }
-
-        public bool IsNotDone()
-        {
-            IProjectRepository projectRepository = youTrackClient.GetProjectRepository();
-
-            IProjectProxy projectProxy = projectRepository.GetProjectProxy(Installer.ProjectShortname);
+            //1. Check if sandbox has any issues
+            //2. Create issue
 
             throw new NotImplementedException();
         }
 
-        public void DoIt()
+        private static void AddSubsystem(YouTrackClient youTrackClient)
         {
+            //1. Check if subsystem Test exists
+            //2. Add subsystem Test
+
             throw new NotImplementedException();
         }
-    }
 
-    internal interface ISandboxInstallationStep
-    {
-        bool IsNotDone();
-        void DoIt();
+        private static void CreateUser(YouTrackClient youTrackClient)
+        {
+            //1. Check if user exists
+            //2. Create user
+            //3. Set admin rights
+
+            throw new NotImplementedException();
+        }
+
+        private static void CreateProject(YouTrackClient youTrackClient)
+        {
+            //1. Check if project exists
+            //2. Create project
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -45,32 +45,9 @@ Console.WriteLine(issue.Summary);
 	
 * Admin
 	* Users
-		* Create a new user
-		* Delete user
-		* Get user
-	
-## Not (yet) Supported API Features
-
-* Issues
-	* Get Issue History
-	* Get Historical Changes of an Issue
-	* Get Links of an Issue
-	* Get a Number of Issues
-
-* Projects
-	* TBD
-
-* Users
-	* TBD
-
-* Admin
-	* TBD
-
-* Export
-	* TBD
-
-* Import
-	* TBD
+		* Create a new user (next release)
+		* Delete user (next release)
+		* Get user (next release)
 	
 ## Contributing
 
@@ -82,4 +59,4 @@ You can also post an issue or send me a message and I'll try to sort it out.
 	* In order to run Acceptance tests, you need to install YouTrack 4.0 locally:
 		* Install YouTrack 4.0(http://www.jetbrains.com/youtrack/download/get_youtrack.html)
 		* Use port 8484 (well, you can use whatever port you want but then you have to change the tests a bit)
-		* Run the YouTrack.Rest.Sandbox.Installer
+		* Run the YouTrack.Rest.Sandbox.Installer (still in progress, heres the manual procedure: Add user with admin rights, add Sandbox project, add subsystem Test to it, add one issue to project)
