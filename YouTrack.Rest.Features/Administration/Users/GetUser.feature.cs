@@ -66,16 +66,18 @@ namespace YouTrack.Rest.Features.Administration.Users
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get an existing user")]
+        [NUnit.Framework.CategoryAttribute("wip")]
         public virtual void GetAnExistingUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an existing user", ((string[])(null)));
-#line 3
-this.ScenarioSetup(scenarioInfo);
-#line 4
- testRunner.Given("I have added an user");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an existing user", new string[] {
+                        "wip"});
 #line 5
-  testRunner.When("I fetch the user");
+this.ScenarioSetup(scenarioInfo);
 #line 6
+ testRunner.Given("I have added an user");
+#line 7
+  testRunner.When("I fetch the user");
+#line 8
   testRunner.Then("user is fetched");
 #line hidden
             this.ScenarioCleanup();

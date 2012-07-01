@@ -13,22 +13,13 @@ namespace YouTrack.Rest.Features.Administration.Users
         [When(@"I create a new user")]
         public void WhenICreateANewUser()
         {
-            CreateUser("foo", "Mr. Fullname", "email@com.com", "password");
+            CreateUser("foo", "password", "email@com.com", "Mr. Fullname");
         }
 
         [Then(@"the user is created")]
         public void ThenTheUserIsCreated()
         {
-            //No exceptions, hurray!
+            //No exceptions, hurray! //get user here and check fields
         }
-    }
-
-    public class UserSteps : Steps.Steps
-    {
-        protected void CreateUser(string login, string fullname, string email, string password)
-        {
-            StepHelper.CreateUser(login, fullname, email, password);
-        }
-
     }
 }

@@ -118,6 +118,8 @@
     <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequest.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
+    <Compile Include="Requests\Users\DeleteUserRequest.cs" />
+    <Compile Include="Requests\Users\GetUserRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="YouTrackClient.cs" />
     <Compile Include="Session.cs" />

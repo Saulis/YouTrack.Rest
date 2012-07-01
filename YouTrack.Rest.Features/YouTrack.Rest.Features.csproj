@@ -59,12 +59,19 @@
       <DependentUpon>CreateANewUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Users\CreateANewUserSteps.cs" />
+    <Compile Include="Administration\Users\DeleteUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\DeleteUserSteps.cs" />
     <Compile Include="Administration\Users\GetUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Users\GetUserSteps.cs" />
+    <Compile Include="Administration\Users\UserSteps.cs" />
     <Compile Include="General\Issues\ApplyCommandToAnIssue.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +148,10 @@
     <None Include="Administration\Users\CreateANewUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateANewUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\DeleteUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteUser.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Users\GetUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

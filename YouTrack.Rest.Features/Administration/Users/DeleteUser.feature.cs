@@ -19,20 +19,20 @@ namespace YouTrack.Rest.Features.Administration.Users
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.8.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Create a new user")]
-    public partial class CreateANewUserFeature
+    [NUnit.Framework.DescriptionAttribute("Delete User")]
+    public partial class DeleteUserFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateANewUser.feature"
+#line 1 "DeleteUser.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create a new user", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Delete User", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,16 +65,18 @@ namespace YouTrack.Rest.Features.Administration.Users
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new user")]
-        public virtual void CreateANewUser()
+        [NUnit.Framework.DescriptionAttribute("Delete a specific user")]
+        public virtual void DeleteASpecificUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new user", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a specific user", ((string[])(null)));
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.When("I create a new user");
+ testRunner.Given("I have create a user");
 #line 6
- testRunner.Then("the user is created");
+  testRunner.When("I delete the user");
+#line 7
+  testRunner.Then("the user is deleted");
 #line hidden
             this.ScenarioCleanup();
         }

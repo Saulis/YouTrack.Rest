@@ -77,6 +77,8 @@
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequestTests.cs" />
+    <Compile Include="Requests\Users\DeleteUserRequestTests.cs" />
+    <Compile Include="Requests\Users\GetUserRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\DeleteIssueRequestTests.cs" />

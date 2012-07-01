@@ -120,8 +120,10 @@ namespace YouTrack.Rest.Features.Steps
             issue.RemoveComment(commentId);
         }
 
-        public void CreateUser(string login, string fullname, string email, string password)
+        public void CreateUser(string login, string password, string email, string fullname = null)
         {
+            Console.WriteLine(String.Format("Creating user {0}", login));
+
             IUserRepository userRepository = GetUserRepository();
 
             userRepository.CreateUser(login, password, email, fullname);
@@ -130,6 +132,18 @@ namespace YouTrack.Rest.Features.Steps
         private IUserRepository GetUserRepository()
         {
             return youTrackClient.GetUserRepository();
+        }
+
+        public void DeleteUser(string login)
+        {
+            Console.WriteLine(String.Format("Deleting user {0}", login));
+
+            GetUserRepository().DeleteUser(login);
+        }
+
+        public bool UserExists(string login)
+        {
+            return GetUserRepository().UserExists(login);
         }
     }
 }
