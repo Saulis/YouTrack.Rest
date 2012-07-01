@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Repositories;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Users;
 
 namespace YouTrack.Rest.Tests.Repositories
@@ -39,8 +34,19 @@ namespace YouTrack.Rest.Tests.Repositories
             connection.Received().Delete(Arg.Any<DeleteUserRequest>());
         }
 
+
         [Test]
         public void GetUserRequestIsUsed()
+        {
+            connection.Get<Rest.Deserialization.User>(Arg.Any<GetUserRequest>()).Returns(new Rest.Deserialization.User());
+
+            Sut.GetUser("foobar");
+
+            connection.Received().Get<Rest.Deserialization.User>(Arg.Any<GetUserRequest>());
+        }
+
+        [Test]
+        public void UserExists()
         {
             Sut.UserExists("foobar");
 

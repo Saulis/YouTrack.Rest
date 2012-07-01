@@ -145,5 +145,12 @@ namespace YouTrack.Rest.Features.Steps
         {
             return GetUserRepository().UserExists(login);
         }
+
+        public IUser GetUser(string login)
+        {
+            Console.WriteLine(String.Format("Getting user {0}", login));
+
+            return GetUserRepository().GetUser(login);
+        }
     }
 }

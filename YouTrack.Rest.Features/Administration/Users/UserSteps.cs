@@ -57,5 +57,10 @@ namespace YouTrack.Rest.Features.Administration.Users
         {
             return StepHelper.UserExists(login);
         }
+
+        protected IUser GetUser(string login)
+        {
+            return StepHelper.GetUser(login);
+        }
     }
 }

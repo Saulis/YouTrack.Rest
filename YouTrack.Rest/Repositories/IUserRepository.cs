@@ -5,5 +5,6 @@ namespace YouTrack.Rest.Repositories
         void CreateUser(string login, string password, string email, string fullname = null);
         void DeleteUser(string login);
         bool UserExists(string login);
+        IUser GetUser(string login);
     }
 }

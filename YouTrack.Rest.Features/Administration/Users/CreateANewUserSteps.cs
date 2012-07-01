@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace YouTrack.Rest.Features.Administration.Users
@@ -19,7 +20,8 @@ namespace YouTrack.Rest.Features.Administration.Users
         [Then(@"the user is created")]
         public void ThenTheUserIsCreated()
         {
-            //No exceptions, hurray! //get user here and check fields
+            Assert.IsTrue(UserExists("foo"));
+
         }
     }
 }

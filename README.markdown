@@ -43,6 +43,12 @@ Console.WriteLine(issue.Summary);
 	* Get Issues in a Project
 	* Remove a Comment for an Issue
 	
+* Admin
+	* Users
+		* Create a new user
+		* Delete user
+		* Get user
+	
 ## Not (yet) Supported API Features
 
 * Issues

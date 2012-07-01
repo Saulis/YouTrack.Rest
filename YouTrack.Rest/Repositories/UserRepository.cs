@@ -37,5 +37,12 @@ namespace YouTrack.Rest.Repositories
                 return false;
             }
         }
+
+        public IUser GetUser(string login)
+        {
+            Deserialization.User user = connection.Get<Deserialization.User>(new GetUserRequest(login));
+
+            return user.GetUser();
+        }
     }
 }
