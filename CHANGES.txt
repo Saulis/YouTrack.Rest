@@ -1,8 +1,9 @@
 - Unreleased Changes
-* [FEATURE] Create a new project
 * [FEATURE] Get user
 * [FEATURE] Create a new user
 * [FEATURE] Delete user
+* [FEATURE] Create a new project
+* [FEATURE] Delete project
 
 - RELEASE v0.4.0 [2012-06-30]
 * [BREAKING] ILMerge added to merge RestSharp and Castle.Core

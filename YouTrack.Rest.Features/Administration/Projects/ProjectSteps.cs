@@ -16,13 +16,18 @@ namespace YouTrack.Rest.Features.Administration.Projects
         {
             Console.WriteLine("Tearing down the Scenario...");
 
-            if (HasSavedProject())
+            if (SavedProjectExists())
             {
                 DeleteProject(GetSavedProject().Id);
             }
         }
 
-        private bool HasSavedProject()
+        private bool SavedProjectExists()
+        {
+            return HasSavedProject() && ProjectExists(GetSavedProject().Id);
+        }
+
+        private static bool HasSavedProject()
         {
             return ScenarioContext.Current.ContainsKey("savedProject");
         }

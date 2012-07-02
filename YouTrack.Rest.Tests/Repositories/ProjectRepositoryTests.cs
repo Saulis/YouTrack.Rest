@@ -64,5 +64,13 @@ namespace YouTrack.Rest.Tests.Repositories
 
             connection.Received().Put(Arg.Any<CreateNewProjectRequest>());
         }
+
+        [Test]
+        public void DeleteProjectRequestIsUsed()
+        {
+            Sut.DeleteProject("foobar");
+
+            connection.Delete(Arg.Any<DeleteProjectRequest>());
+        }
     }
 }

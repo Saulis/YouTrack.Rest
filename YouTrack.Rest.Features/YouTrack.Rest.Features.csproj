@@ -59,6 +59,12 @@
       <DependentUpon>CreateNewProject.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Projects\CreateNewProjectSteps.cs" />
+    <Compile Include="Administration\Projects\DeleteProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Projects\DeleteProjectSteps.cs" />
     <Compile Include="Administration\Projects\GetProject.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +166,10 @@
     <None Include="Administration\Projects\CreateNewProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateNewProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Projects\DeleteProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteProject.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Projects\GetProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

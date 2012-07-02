@@ -45,7 +45,7 @@ namespace YouTrack.Rest.Repositories
 
         public void DeleteProject(string projectid)
         {
-            throw new System.NotImplementedException();
+            connection.Delete(new DeleteProjectRequest(projectid));
         }
     }
 }

@@ -46,6 +46,7 @@ Console.WriteLine(issue.Summary);
 * Admin
 	* Projects
 		* Create a new project (next release)
+		* Delete project (next release)
 	* Users
 		* Create a new user (next release)
 		* Delete user (next release)
