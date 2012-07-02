@@ -53,6 +53,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\Projects\CreateNewProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateNewProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Projects\CreateNewProjectSteps.cs" />
+    <Compile Include="Administration\Projects\GetProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Projects\ProjectSteps.cs" />
     <Compile Include="Administration\Users\CreateANewUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,6 +157,14 @@
     <Compile Include="Steps\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Administration\Projects\CreateNewProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateNewProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Projects\GetProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetProject.feature.cs</LastGenOutput>
+    </None>
     <None Include="Administration\Users\CreateANewUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateANewUser.feature.cs</LastGenOutput>

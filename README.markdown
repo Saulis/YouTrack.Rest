@@ -44,6 +44,8 @@ Console.WriteLine(issue.Summary);
 	* Remove a Comment for an Issue
 	
 * Admin
+	* Projects
+		* Create a new project (next release)
 	* Users
 		* Create a new user (next release)
 		* Delete user (next release)

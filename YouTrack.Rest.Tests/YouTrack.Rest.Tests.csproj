@@ -74,6 +74,8 @@
     <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssuesInAProjectRequestTests.cs" />
+    <Compile Include="Requests\Projects\CreateNewProjectRequestTests.cs" />
+    <Compile Include="Requests\Projects\GetProjectRequestTests.cs" />
     <Compile Include="Requests\RemoveACommentForAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />

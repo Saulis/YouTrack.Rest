@@ -115,6 +115,8 @@
     <Compile Include="Requests\IYouTrackPostWithFileRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Requests\Projects\CreateNewProjectRequest.cs" />
+    <Compile Include="Requests\Projects\GetProjectRequest.cs" />
     <Compile Include="Requests\RemoveACommentForAnIssueRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />

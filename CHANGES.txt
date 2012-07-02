@@ -1,4 +1,5 @@
 - Unreleased Changes
+* [FEATURE] Create a new project
 * [FEATURE] Get user
 * [FEATURE] Create a new user
 * [FEATURE] Delete user

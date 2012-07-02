@@ -105,7 +105,7 @@ namespace YouTrack.Rest.Features.Steps
             return projectProxy.GetIssues();
         }
 
-        private IProjectRepository GetProjectRepository()
+        public IProjectRepository GetProjectRepository()
         {
             return youTrackClient.GetProjectRepository();
         }
