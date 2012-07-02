@@ -63,6 +63,23 @@ namespace YouTrack.Rest.Features.Administration.Projects
         {
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get project by its project identifier")]
+        public virtual void GetProjectByItsProjectIdentifier()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get project by its project identifier", ((string[])(null)));
+#line 4
+this.ScenarioSetup(scenarioInfo);
+#line 5
+ testRunner.Given("I have created a new project");
+#line 6
+  testRunner.When("I fetch the project");
+#line 7
+  testRunner.Then("the project is fetched");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
