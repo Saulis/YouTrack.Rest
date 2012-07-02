@@ -34,7 +34,7 @@ namespace YouTrack.Rest
 
         public IProjectRepository GetProjectRepository()
         {
-            return new ProjectRepository(connection);
+            return new ProjectRepository(connection, new ProjectFactory());
         }
 
         public IUserRepository GetUserRepository()

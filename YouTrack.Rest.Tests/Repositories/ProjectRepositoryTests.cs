@@ -6,6 +6,7 @@ using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests.Projects;
 
@@ -20,7 +21,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             connection = Mock<IConnection>();
 
-            return new ProjectRepository(connection);
+            return new ProjectRepository(connection, Mock<IProjectFactory>());
         }
 
         [Test]

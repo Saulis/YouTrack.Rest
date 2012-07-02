@@ -76,7 +76,10 @@
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
     <Compile Include="Factories\IIssueFactory.cs" />
+    <Compile Include="Factories\IProjectFactory.cs" />
     <Compile Include="Factories\IssueFactory.cs" />
+    <Compile Include="Factories\ProjectFactory.cs" />
+    <Compile Include="Factories\ProxyFactory.cs" />
     <Compile Include="IAttachment.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
@@ -84,12 +87,14 @@
     <Compile Include="Interception\ILoadable.cs" />
     <Compile Include="Interception\LoadableProxyInterceptor.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHook.cs" />
+    <Compile Include="IProject.cs" />
     <Compile Include="IProjectProxy.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="IssueActions.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="ProjectProxy.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />

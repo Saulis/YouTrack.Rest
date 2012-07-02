@@ -58,6 +58,7 @@
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
     <Compile Include="Deserialization\UserDeserializationTests.cs" />
     <Compile Include="Factories\IssueFactoryTests.cs" />
+    <Compile Include="Factories\ProjectFactoryTests.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHookTests.cs" />
     <Compile Include="Interception\LoadableProxyInterceptorTests.cs" />
     <Compile Include="IssueTests.cs" />

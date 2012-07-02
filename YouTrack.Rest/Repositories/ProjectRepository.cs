@@ -1,4 +1,5 @@
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests.Projects;
 
 namespace YouTrack.Rest.Repositories
@@ -6,10 +7,12 @@ namespace YouTrack.Rest.Repositories
     class ProjectRepository : IProjectRepository
     {
         private readonly IConnection connection;
+        private readonly IProjectFactory projectFactory;
 
-        public ProjectRepository(IConnection connection)
+        public ProjectRepository(IConnection connection, IProjectFactory projectFactory)
         {
             this.connection = connection;
+            this.projectFactory = projectFactory;
         }
 
         public IProjectProxy GetProjectProxy(string projectid)
@@ -17,9 +20,11 @@ namespace YouTrack.Rest.Repositories
             return new ProjectProxy(projectid, connection);
         }
 
-        public void CreateProject(string projectId, string projectName, string projectLeadLogin, int startingNumber = 1, string description = null)
+        public IProject CreateProject(string projectId, string projectName, string projectLeadLogin, int startingNumber = 1, string description = null)
         {
             connection.Put(new CreateNewProjectRequest(projectId, projectName, projectLeadLogin, startingNumber, description));
+
+            return projectFactory.CreateProject(projectId, connection);
         }
 
         public bool ProjectExists(string projectId)
@@ -36,6 +41,11 @@ namespace YouTrack.Rest.Repositories
             {
                 return false;
             }
+        }
+
+        public void DeleteProject(string projectid)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
