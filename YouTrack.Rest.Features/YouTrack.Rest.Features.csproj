@@ -70,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetProject.feature</DependentUpon>
     </Compile>
+    <Compile Include="Administration\Projects\GetProjectSteps.cs" />
     <Compile Include="Administration\Projects\ProjectSteps.cs" />
     <Compile Include="Administration\Users\CreateANewUser.feature.cs">
       <AutoGen>True</AutoGen>
