@@ -78,6 +78,11 @@ namespace YouTrack.Rest
             return response.Data;
         }
 
+        public void GetAsync<TResponse>(IYouTrackGetRequest request, Action<TResponse> onSuccess)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Get(IYouTrackGetRequest request)
         {
             ExecuteRequestWithAuthentication(request, Method.GET);
@@ -97,6 +102,7 @@ namespace YouTrack.Rest
         {
             ExecuteRequestWithAuthenticationAndFile(request, Method.POST);
         }
+
 
         private string GetLocationHeaderValue(IRestResponse response)
         {

@@ -57,7 +57,9 @@
     <Compile Include="Deserialization\CommentDeserializationTests.cs" />
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
     <Compile Include="Deserialization\UserDeserializationTests.cs" />
+    <Compile Include="Factories\IssueAsyncRequestFactoryTests.cs" />
     <Compile Include="Factories\IssueFactoryTests.cs" />
+    <Compile Include="Factories\IssueSyncRequestFactoryTests.cs" />
     <Compile Include="Factories\ProjectFactoryTests.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHookTests.cs" />
     <Compile Include="Interception\LoadableProxyInterceptorTests.cs" />
@@ -75,6 +77,8 @@
     <Compile Include="Requests\GetAttachmentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetCommentsOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\GetIssuesInAProjectRequestTests.cs" />
+    <Compile Include="Requests\Issues\GetIssueAsyncRequestTests.cs" />
+    <Compile Include="Requests\Issues\GetIssueSyncRequestTests.cs" />
     <Compile Include="Requests\Projects\CreateNewProjectRequestTests.cs" />
     <Compile Include="Requests\Projects\DeleteProjectRequestTests.cs" />
     <Compile Include="Requests\Projects\GetProjectRequestTests.cs" />

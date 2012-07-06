@@ -149,6 +149,19 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void RestClientCalledWitGetAsyncMethodAndResponseType()
+        {
+            Sut.GetAsync<ConnectionTestItem>(Mock<IYouTrackGetRequest>(), x => x.ToString());
+
+            AssertThatRestClientExecuteAsyncWasCalledWithMethod<ConnectionTestItem>(Method.GET);
+        }
+
+        private void AssertThatRestClientExecuteAsyncWasCalledWithMethod<T>(Method get)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
         public void RestClientCalledWithDeleteMethod()
         {
             Sut.Delete(Mock<IYouTrackDeleteRequest>());

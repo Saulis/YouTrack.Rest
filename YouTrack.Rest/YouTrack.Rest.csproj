@@ -76,8 +76,11 @@
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
     <Compile Include="Factories\IIssueFactory.cs" />
+    <Compile Include="Factories\IIssueRequestFactory.cs" />
     <Compile Include="Factories\IProjectFactory.cs" />
+    <Compile Include="Factories\IssueAsyncRequestFactory.cs" />
     <Compile Include="Factories\IssueFactory.cs" />
+    <Compile Include="Factories\IssueSyncRequestFactory.cs" />
     <Compile Include="Factories\ProjectFactory.cs" />
     <Compile Include="Factories\ProxyFactory.cs" />
     <Compile Include="IAttachment.cs" />
@@ -113,6 +116,8 @@
     <Compile Include="Requests\GetCommentsOfAnIssueRequest.cs" />
     <Compile Include="Requests\GetIssueRequest.cs" />
     <Compile Include="Requests\GetIssuesInAProjectRequest.cs" />
+    <Compile Include="Requests\Issues\GetIssueAsyncRequest.cs" />
+    <Compile Include="Requests\Issues\GetIssueSyncRequest.cs" />
     <Compile Include="Requests\IYouTrackDeleteRequest.cs" />
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
     <Compile Include="Requests\IYouTrackPostRequest.cs" />

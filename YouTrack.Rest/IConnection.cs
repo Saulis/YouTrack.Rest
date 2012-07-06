@@ -1,4 +1,6 @@
+using System;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
 {
@@ -10,5 +12,6 @@ namespace YouTrack.Rest
         void Delete(IYouTrackDeleteRequest request);
         void Post(IYouTrackPostRequest request);
         void PostWithFile(IYouTrackPostWithFileRequest request);
+        void GetAsync<TResponse>(IYouTrackGetRequest request, Action<TResponse> onSuccess);
     }
 }

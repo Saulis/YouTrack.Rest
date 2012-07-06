@@ -2,11 +2,18 @@ using System;
 
 namespace YouTrack.Rest.Requests
 {
-    class GetIssueRequest : YouTrackRequest, IYouTrackGetRequest
+    abstract class GetIssueRequest : YouTrackRequest, IYouTrackGetRequest<IIssue>
     {
-        public GetIssueRequest(string issueId)
-            : base(String.Format("/rest/issue/{0}", issueId))
+        protected IIssue Issue { get; set; }
+        protected IConnection Connection { get; set; }
+
+        protected GetIssueRequest(IIssue issue, IConnection connection)
+            : base(String.Format("/rest/issue/{0}", issue.Id))
         {
+            Issue = issue;
+            Connection = connection;
         }
+
+        public abstract IIssue Execute();
     }
 }

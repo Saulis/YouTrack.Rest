@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
 {
@@ -26,11 +27,9 @@ namespace YouTrack.Rest
 
         public void Load()
         {
-            GetIssueRequest request = new GetIssueRequest(Id);
+            GetIssueRequest request = new GetIssueSyncRequest(this, Connection);
 
-            Deserialization.Issue issue = Connection.Get<Deserialization.Issue>(request);
-
-            issue.MapTo(this, Connection);
+            request.Execute();
 
             IsLoaded = true;
         }

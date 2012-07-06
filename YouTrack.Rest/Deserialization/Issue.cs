@@ -76,7 +76,7 @@ namespace YouTrack.Rest.Deserialization
             return f => f.Name.ToUpper() == name.ToUpper();
         }
 
-        public void MapTo(Rest.Issue issue, IConnection connection)
+        public virtual void MapTo(Rest.Issue issue, IConnection connection)
         {
             issue.CommentsCount = GetInt32("commentsCount");
             issue.Created = GetDateTime("created");
@@ -94,6 +94,14 @@ namespace YouTrack.Rest.Deserialization
             issue.VotesCount = GetInt32("votes");
 
             issue.Comments = Comments.Select(c => c.GetComment(connection));
+        }
+
+        public virtual void MapTo(IIssue issue, IConnection connection)
+        {
+            if(issue is Rest.Issue)
+            {
+                MapTo(issue as Rest.Issue, connection);
+            }
         }
     }
 }

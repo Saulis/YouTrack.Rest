@@ -1,17 +1,37 @@
-﻿using YouTrack.Rest.Requests;
+﻿using System;
+using NSubstitute;
+using NUnit.Framework;
+using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests.Requests
 {
-    class GetIssueRequestTests : YouTrackRequestTests<GetIssueRequest, IYouTrackGetRequest>
+    abstract class GetIssueRequestTests<TRequest> : YouTrackRequestTests<TRequest, IYouTrackGetRequest> where TRequest : GetIssueRequest
     {
-        protected override GetIssueRequest CreateSut()
-        {
-            return new GetIssueRequest("FOO-123");
-        }
-
         protected override string ExpectedRestResource
         {
-            get { return "/rest/issue/FOO-123"; }
+            get { return String.Format("/rest/issue/{0}", Issue.Id); }
+        }
+
+        protected IConnection Connection { get; set; }
+        protected IIssue Issue { get; set; }
+        protected Rest.Deserialization.Issue DeserializedIssue { get; set; }
+
+        [Test]
+        public void IssueIsMapped()
+        {
+            Sut.Execute();
+
+            DeserializedIssue.Received().MapTo(Issue, Connection);
+        }
+
+        [Test]
+        public void EventRaisedAfterExecution()
+        {
+            Sut.Executed += (sender, args) => Assert.Pass();
+
+            Sut.Execute();
+
+            Assert.Fail();
         }
     }
 }
