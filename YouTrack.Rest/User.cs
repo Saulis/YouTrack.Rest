@@ -1,6 +1,6 @@
 ﻿namespace YouTrack.Rest
 {
-    class User : IUser
+    class User : UserActions, IUser
     {
         public User(string login)
         {

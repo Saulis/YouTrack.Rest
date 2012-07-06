@@ -92,6 +92,7 @@
     <Compile Include="Requests\GetIssueRequestTests.cs" />
     <Compile Include="Requests\LoginRequestTests.cs" />
     <Compile Include="Requests\YouTrackRequestTests.cs" />
+    <Compile Include="UserActionsTests.cs" />
     <Compile Include="YouTrackClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestFor.cs" />

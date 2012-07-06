@@ -95,6 +95,7 @@
     <Compile Include="Issue.cs" />
     <Compile Include="IssueActions.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="IUserGroup.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectActions.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Requests\Users\GetUserRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserActions.cs" />
     <Compile Include="YouTrackClient.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="IYouTrackClient.cs" />

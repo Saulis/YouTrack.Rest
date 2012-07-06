@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="Administration\Projects\GetProjectSteps.cs" />
     <Compile Include="Administration\Projects\ProjectSteps.cs" />
+    <Compile Include="Administration\Users\AddUserToGroup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddUserToGroup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\AddUserToGroupSteps.cs" />
     <Compile Include="Administration\Users\CreateANewUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -175,6 +181,10 @@
     <None Include="Administration\Projects\GetProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetProject.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\AddUserToGroup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddUserToGroup.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Users\CreateANewUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
