@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Factories;
 
 namespace YouTrack.Rest.Tests.Repositories
 {
@@ -35,7 +36,7 @@ namespace YouTrack.Rest.Tests.Repositories
             this.issue = issue;
         }
 
-        public override IIssue GetIssue(IConnection connection)
+        public override IIssue GetIssue(IConnection connection, IIssueRequestFactory issueRequestFactory)
         {
             return issue;
         }

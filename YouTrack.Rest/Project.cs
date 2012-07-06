@@ -1,10 +1,12 @@
-﻿using YouTrack.Rest.Interception;
+﻿using System;
+using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest
 {
     class Project : IProject, ILoadable
     {
         private IConnection connection;
+        public event EventHandler Loaded;
 
         public Project(string projectId, IConnection connection)
         {
@@ -22,7 +24,15 @@ namespace YouTrack.Rest
 
         public void Load()
         {
+            OnLoaded();
+        }
+
+        public void OnLoaded()
+        {
             IsLoaded = true;
+
+            EventHandler handler = Loaded;
+            if (handler != null) handler(this, new EventArgs());
         }
     }
 }

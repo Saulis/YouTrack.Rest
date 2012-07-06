@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Tests.Repositories;
@@ -19,7 +20,7 @@ namespace YouTrack.Rest.Tests
         protected override Issue CreateSut()
         {
             connection = Mock<IConnection>();
-            return new Issue("FOO-BAR", connection);
+            return new Issue("FOO-BAR", connection, Mock<IIssueRequestFactory>());
         }
 
         protected override void SetupDependencies()

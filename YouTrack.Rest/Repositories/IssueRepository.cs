@@ -9,11 +9,13 @@ namespace YouTrack.Rest.Repositories
     {
         private readonly IConnection connection;
         private readonly IIssueFactory issueFactory;
+        private readonly IIssueRequestFactory issueRequestFactory;
 
-        public IssueRepository(IConnection connection, IIssueFactory issueFactory)
+        public IssueRepository(IConnection connection, IIssueFactory issueFactory, IIssueRequestFactory issueRequestFactory)
         {
             this.connection = connection;
             this.issueFactory = issueFactory;
+            this.issueRequestFactory = issueRequestFactory;
         }
 
         public IIssue CreateIssue(string project, string summary, string description)
@@ -23,12 +25,12 @@ namespace YouTrack.Rest.Repositories
             string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();
 
-            return issueFactory.CreateIssue(issueId, connection);
+            return issueFactory.CreateIssue(issueId, connection, issueRequestFactory);
         }
 
         public IIssue GetIssue(string issueId)
         {
-            return issueFactory.CreateIssue(issueId, connection);
+            return issueFactory.CreateIssue(issueId, connection, issueRequestFactory);
         }
 
         public void DeleteIssue(string issueId)

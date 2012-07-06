@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 
 namespace YouTrack.Rest.Deserialization
 {
@@ -10,11 +11,11 @@ namespace YouTrack.Rest.Deserialization
     {
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
-        public List<Comment> Comments { get; set; } 
+        public List<Comment> Comments { get; set; }
 
-        public virtual IIssue GetIssue(IConnection connection)
+        public virtual IIssue GetIssue(IConnection connection, IIssueRequestFactory issueRequestFactory)
         {
-            Rest.Issue issue = new Rest.Issue(Id, connection);
+            Rest.Issue issue = new Rest.Issue(Id, connection, issueRequestFactory);
 
             MapTo(issue, connection);
 
@@ -98,6 +99,7 @@ namespace YouTrack.Rest.Deserialization
 
         public virtual void MapTo(IIssue issue, IConnection connection)
         {
+            //TODO: A better solution than casting...
             if(issue is Rest.Issue)
             {
                 MapTo(issue as Rest.Issue, connection);

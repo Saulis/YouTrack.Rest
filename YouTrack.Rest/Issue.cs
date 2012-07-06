@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
@@ -8,6 +9,9 @@ namespace YouTrack.Rest
 {
     class Issue : IssueActions, IIssue, ILoadable
     {
+        private readonly IIssueRequestFactory issueRequestFactory;
+        public event EventHandler Loaded;
+
         public string Summary { get; set; }
         public string Type { get; set; }
         public string ProjectShortName { get; set; }
@@ -27,15 +31,25 @@ namespace YouTrack.Rest
 
         public void Load()
         {
-            GetIssueRequest request = new GetIssueSyncRequest(this, Connection);
+            IYouTrackGetRequest<IIssue> request = issueRequestFactory.GetIssueRequest(this, Connection);
 
             request.Execute();
 
-            IsLoaded = true;
+            OnLoaded(); 
         }
 
-        public Issue(string issueId, IConnection connection) : base(issueId, connection)
+        public void OnLoaded()
         {
+            IsLoaded = true;
+
+            EventHandler handler = Loaded;
+            if (handler != null) handler(this, new EventArgs());
+        }
+
+        public Issue(string issueId, IConnection connection, IIssueRequestFactory issueRequestFactory)
+            : base(issueId, connection)
+        {
+            this.issueRequestFactory = issueRequestFactory;
             IsLoaded = false;
         }
 

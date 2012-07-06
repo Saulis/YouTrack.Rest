@@ -5,6 +5,7 @@ using System.Text;
 using NSubstitute;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Tests.Repositories;
 
@@ -19,7 +20,7 @@ namespace YouTrack.Rest.Tests
         protected override ProjectProxy CreateSut()
         {
             connection = Mock<IConnection>();
-            return new ProjectProxy(ProjectId, connection);
+            return new ProjectProxy(ProjectId, connection, Mock<IIssueRequestFactory>());
         }
 
         protected override void SetupDependencies()

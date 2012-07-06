@@ -9,15 +9,19 @@ namespace YouTrack.Rest.Repositories
         private readonly IConnection connection;
         private readonly IProjectFactory projectFactory;
 
-        public ProjectRepository(IConnection connection, IProjectFactory projectFactory)
+        //TODO: Get rid of this dependency
+        private readonly IIssueRequestFactory issueRequestFactory;
+
+        public ProjectRepository(IConnection connection, IProjectFactory projectFactory, IIssueRequestFactory issueRequestFactory)
         {
             this.connection = connection;
             this.projectFactory = projectFactory;
+            this.issueRequestFactory = issueRequestFactory;
         }
 
         public IProjectProxy GetProjectProxy(string projectid)
         {
-            return new ProjectProxy(projectid, connection);
+            return new ProjectProxy(projectid, connection, issueRequestFactory);
         }
 
         public IProject CreateProject(string projectId, string projectName, string projectLeadLogin, int startingNumber = 1, string description = null)

@@ -2,6 +2,6 @@ namespace YouTrack.Rest.Factories
 {
     public interface IIssueFactory
     {
-        IIssue CreateIssue(string issueId, IConnection connection);
+        IIssue CreateIssue(string issueId, IConnection connection, IIssueRequestFactory issueRequestFactory);
     }
 }

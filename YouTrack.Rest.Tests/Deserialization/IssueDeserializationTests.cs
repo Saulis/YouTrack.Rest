@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Tests.Repositories;
 
 namespace YouTrack.Rest.Tests.Deserialization
@@ -26,7 +27,7 @@ namespace YouTrack.Rest.Tests.Deserialization
             Sut.Comments = comments;
             connection = Mock<IConnection>();
 
-            issue = new Issue(IssueId, connection);
+            issue = new Issue(IssueId, connection, Mock<IIssueRequestFactory>());
         }
 
         [Test]
@@ -166,7 +167,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         {
             AddAnotherDescriptionField();
 
-            Assert.Throws<IssueSerializationException>(() => Sut.GetIssue(connection));
+            Assert.Throws<IssueSerializationException>(() => Sut.GetIssue(connection, Mock<IIssueRequestFactory>()));
         }
 
         private void AddAnotherDescriptionField()

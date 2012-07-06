@@ -15,7 +15,7 @@ namespace YouTrack.Rest.Tests.Factories
         [Test]
         public void IssueProxyIsCreated()
         {
-            IIssue issue = Sut.CreateIssue(IssueId, Mock<IConnection>());
+            IIssue issue = Sut.CreateIssue(IssueId, Mock<IConnection>(), Mock<IIssueRequestFactory>());
 
             Assert.That(issue.GetType().Name, Is.EqualTo("IIssueProxy"));
         }
@@ -23,7 +23,7 @@ namespace YouTrack.Rest.Tests.Factories
         [Test]
         public void IssueIdIsAssigned()
         {
-            IIssue issue = Sut.CreateIssue(IssueId, Mock<IConnection>());
+            IIssue issue = Sut.CreateIssue(IssueId, Mock<IConnection>(), Mock<IIssueRequestFactory>());
 
             Assert.That(issue.Id, Is.EqualTo(IssueId));
         }

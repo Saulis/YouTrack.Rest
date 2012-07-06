@@ -24,6 +24,7 @@ namespace YouTrack.Rest.Tests.Repositories
         private IIssue issue;
         private CommentsCollection commentsCollection;
         private IIssueFactory issueFactory;
+        private IIssueRequestFactory issueRequestFactory;
 
         protected override IssueRepository CreateSut()
         {
@@ -32,8 +33,9 @@ namespace YouTrack.Rest.Tests.Repositories
             deSerializedIssueMock = new DeserializedIssueMock(issue);
             commentsCollection = CreateCommentsWrapper();
             issueFactory = Mock<IIssueFactory>();
+            issueRequestFactory = Mock<IIssueRequestFactory>();
 
-            return new IssueRepository(connection, issueFactory);
+            return new IssueRepository(connection, issueFactory, issueRequestFactory);
         }
 
         private static CommentsCollection CreateCommentsWrapper()
@@ -51,7 +53,7 @@ namespace YouTrack.Rest.Tests.Repositories
 
             Sut.CreateIssue(Project, Summary, Description);
 
-            issueFactory.Received().CreateIssue("foobar", connection);
+            issueFactory.Received().CreateIssue("foobar", connection, issueRequestFactory);
         }
 
         [Test]
@@ -75,7 +77,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             Sut.GetIssue(IssueId);
 
-            issueFactory.Received().CreateIssue(IssueId, connection);
+            issueFactory.Received().CreateIssue(IssueId, connection, issueRequestFactory);
         }
 
         [Test]

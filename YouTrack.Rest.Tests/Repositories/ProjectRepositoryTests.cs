@@ -21,7 +21,7 @@ namespace YouTrack.Rest.Tests.Repositories
         {
             connection = Mock<IConnection>();
 
-            return new ProjectRepository(connection, Mock<IProjectFactory>());
+            return new ProjectRepository(connection, Mock<IProjectFactory>(), Mock<IIssueRequestFactory>());
         }
 
         [Test]

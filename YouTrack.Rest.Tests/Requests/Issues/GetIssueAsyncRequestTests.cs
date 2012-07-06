@@ -1,6 +1,7 @@
 ﻿using System;
 using NSubstitute;
 using NUnit.Framework;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 
@@ -11,7 +12,7 @@ namespace YouTrack.Rest.Tests.Requests.Issues
         protected override GetIssueAsyncRequest CreateSut()
         {
             Connection = Mock<IConnection>();
-            Issue = new Issue("FOO-123", Connection);
+            Issue = new Issue("FOO-123", Connection, Mock<IIssueRequestFactory>());
 
             return new GetIssueAsyncRequest(Issue, Connection);
         }
