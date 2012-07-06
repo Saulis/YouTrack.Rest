@@ -65,6 +65,7 @@
     <Compile Include="Deserialization\FileUrl.cs" />
     <Compile Include="Deserialization\FileUrlCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
+    <Compile Include="Deserialization\Project.cs" />
     <Compile Include="Deserialization\User.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />

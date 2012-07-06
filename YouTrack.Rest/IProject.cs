@@ -1,8 +1,7 @@
 ﻿namespace YouTrack.Rest
 {
-    public interface IProject
+    public interface IProject : IProjectActions
     {
-        string Id { get; }
         string Description { get; }
         string Name { get; }
         int StartingNumber { get; }

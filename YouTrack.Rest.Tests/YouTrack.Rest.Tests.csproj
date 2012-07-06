@@ -56,6 +56,7 @@
     <Compile Include="ConnectionTests.cs" />
     <Compile Include="Deserialization\CommentDeserializationTests.cs" />
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
+    <Compile Include="Deserialization\ProjectDeserializationTests.cs" />
     <Compile Include="Deserialization\UserDeserializationTests.cs" />
     <Compile Include="Factories\IssueFactoryTests.cs" />
     <Compile Include="Factories\ProjectFactoryTests.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interception\LoadableProxyInterceptorTests.cs" />
     <Compile Include="IssueTests.cs" />
     <Compile Include="ProjectProxyTests.cs" />
+    <Compile Include="ProjectTests.cs" />
     <Compile Include="Repositories\DeserializedIssueMock.cs" />
     <Compile Include="Repositories\ProjectRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />

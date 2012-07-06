@@ -31,9 +31,8 @@ namespace YouTrack.Rest.Features.Administration.Projects
             IProject project = GetSavedProject();
 
             Assert.That(project.Name, Is.EqualTo("foobar"));
-            Assert.That(project.StartingNumber, Is.EqualTo(1));
             Assert.That(project.ProjectLeadLogin, Is.EqualTo(TestSettings.Username));
-            Assert.That(project.Description, Is.EqualTo("desc"));
+            Assert.That(project.Description, Is.EqualTo("Desc"));
         }
 
     }
