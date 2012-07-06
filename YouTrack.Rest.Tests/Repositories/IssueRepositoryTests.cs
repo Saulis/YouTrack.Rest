@@ -45,7 +45,7 @@ namespace YouTrack.Rest.Tests.Repositories
         }
 
         [Test]
-        public void IssueIdIsAssigned()
+        public void IssueIsCreated()
         {
             connection.Put(Arg.Any<IYouTrackPutRequest>()).Returns("foobar");
 

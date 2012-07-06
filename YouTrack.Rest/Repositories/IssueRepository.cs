@@ -23,7 +23,7 @@ namespace YouTrack.Rest.Repositories
             string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();
 
-            return issueFactory.CreateIssue(issueId, connection);
+            return GetIssue(issueId);
         }
 
         public IIssue GetIssue(string issueId)

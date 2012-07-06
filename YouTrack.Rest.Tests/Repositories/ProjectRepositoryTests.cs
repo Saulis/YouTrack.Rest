@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
@@ -15,27 +11,23 @@ namespace YouTrack.Rest.Tests.Repositories
     class ProjectRepositoryTests : TestFor<ProjectRepository>
     {
         private IConnection connection;
+        private IProjectFactory projectFactory;
         private const string ProjectId = "projectId";
 
         protected override ProjectRepository CreateSut()
         {
             connection = Mock<IConnection>();
+            projectFactory = Mock<IProjectFactory>();
 
-            return new ProjectRepository(connection, Mock<IProjectFactory>());
+            return new ProjectRepository(connection, projectFactory);
         }
 
         [Test]
-        public void ProjectProxyIsReturned()
+        public void ProjectIsCreated()
         {
-            Assert.That(Sut.GetProjectProxy(ProjectId), Is.TypeOf<ProjectProxy>());
-        }
+            IProject project = Sut.GetProject(ProjectId);
 
-        [Test]
-        public void ProjectIdIsAssignedToProxy()
-        {
-            IProjectProxy projectProxy = Sut.GetProjectProxy(ProjectId);
-
-            Assert.That(projectProxy.Id, Is.EqualTo(ProjectId));
+            projectFactory.Received().CreateProject(ProjectId, connection);
         }
 
         [Test]

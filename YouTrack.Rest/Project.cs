@@ -3,23 +3,6 @@ using YouTrack.Rest.Requests.Projects;
 
 namespace YouTrack.Rest
 {
-    public interface IProjectActions
-    {
-        string Id { get; }
-    }
-
-    class ProjectActions : IProjectActions
-    {
-        public ProjectActions(string projectId, IConnection connection)
-        {
-            Id = projectId;
-            Connection = connection;
-        }
-
-        public string Id { get; private set; }
-        protected IConnection Connection { get; private set; }
-    }
-
     class Project : ProjectActions, IProject, ILoadable
     {
         public Project(string projectId, IConnection connection) : base(projectId, connection)

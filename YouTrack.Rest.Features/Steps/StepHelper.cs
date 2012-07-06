@@ -91,18 +91,18 @@ namespace YouTrack.Rest.Features.Steps
             return issue.GetAttachments();
         }
 
-        public IEnumerable<IIssue> GetIssues(string project, string filter)
+        public IEnumerable<IIssue> GetIssues(string projectId, string filter)
         {
-            IProjectProxy projectProxy = GetProjectRepository().GetProjectProxy(project);
+            IProject project = GetProjectRepository().GetProject(projectId);
 
-            return projectProxy.GetIssues(filter);
+            return project.GetIssues(filter);
         }
 
-        public IEnumerable<IIssue> GetIssues(string project)
+        public IEnumerable<IIssue> GetIssues(string projectId)
         {
-            IProjectProxy projectProxy = GetProjectRepository().GetProjectProxy(project);
+            IProject project = GetProjectRepository().GetProject(projectId);
 
-            return projectProxy.GetIssues();
+            return project.GetIssues();
         }
 
         public IProjectRepository GetProjectRepository()

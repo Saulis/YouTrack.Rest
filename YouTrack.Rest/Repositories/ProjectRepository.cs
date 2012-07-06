@@ -15,16 +15,16 @@ namespace YouTrack.Rest.Repositories
             this.projectFactory = projectFactory;
         }
 
-        public IProjectProxy GetProjectProxy(string projectid)
+        public IProject GetProject(string projectId)
         {
-            return new ProjectProxy(projectid, connection);
+            return projectFactory.CreateProject(projectId, connection);
         }
 
         public IProject CreateProject(string projectId, string projectName, string projectLeadLogin, int startingNumber = 1, string description = null)
         {
             connection.Put(new CreateNewProjectRequest(projectId, projectName, projectLeadLogin, startingNumber, description));
 
-            return projectFactory.CreateProject(projectId, connection);
+            return GetProject(projectId);
         }
 
         public bool ProjectExists(string projectId)

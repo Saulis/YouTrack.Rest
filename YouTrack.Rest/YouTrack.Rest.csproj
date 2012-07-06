@@ -89,14 +89,14 @@
     <Compile Include="Interception\LoadableProxyInterceptor.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHook.cs" />
     <Compile Include="IProject.cs" />
-    <Compile Include="IProjectProxy.cs" />
+    <Compile Include="IProjectActions.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="IssueActions.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectProxy.cs" />
+    <Compile Include="ProjectActions.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
