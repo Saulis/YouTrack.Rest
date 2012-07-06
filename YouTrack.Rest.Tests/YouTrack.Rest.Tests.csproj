@@ -64,6 +64,7 @@
     <Compile Include="Interception\PropertyGetterProxyGenerationHookTests.cs" />
     <Compile Include="Interception\LoadableProxyInterceptorTests.cs" />
     <Compile Include="IssueTests.cs" />
+    <Compile Include="LoadableIssueTests.cs" />
     <Compile Include="ProjectProxyTests.cs" />
     <Compile Include="Repositories\DeserializedIssueMock.cs" />
     <Compile Include="Repositories\ProjectRepositoryTests.cs" />

@@ -4,7 +4,6 @@ using NSubstitute;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Factories;
-using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Tests.Repositories;
 
@@ -28,22 +27,6 @@ namespace YouTrack.Rest.Tests
             connection.Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(new DeserializedIssueMock());
             fileUrlCollection = new FileUrlCollection();
             commentsCollection = new CommentsCollection { Comments = new List<Rest.Deserialization.Comment>() };
-        }
-
-        [Test]
-        public void IsNotLoadedWhenConstructed()
-        {
-            Assert.IsFalse(((ILoadable)Sut).IsLoaded);
-        }
-
-        [Test]
-        public void LoadSetLoaded()
-        {
-            ILoadable loadable = Sut;
-
-            loadable.Load();
-
-            Assert.IsTrue(loadable.IsLoaded);
         }
 
         [Test]
@@ -160,14 +143,5 @@ namespace YouTrack.Rest.Tests
             AssertThatCommandsAreApplied("Foo Bar");
         }
 
-        [Test]
-        public void IssueStatusNotLoadedAfterApplyingCommand()
-        {
-            Sut.Load();
-
-            Sut.ApplyCommands("Foo", "Bar");
-
-            Assert.IsFalse(Sut.IsLoaded);
-        }
     }
 }

@@ -1,12 +1,10 @@
-﻿namespace YouTrack.Rest.Factories
+namespace YouTrack.Rest.Factories
 {
-    class IssueFactory : ProxyFactory, IIssueFactory
+    class IssueFactory : IIssueFactory
     {
         public IIssue CreateIssue(string issueId, IConnection connection, IIssueRequestFactory issueRequestFactory)
         {
-            Issue issue = new Issue(issueId, connection, issueRequestFactory);
-
-            return CreateProxy<IIssue>(issue);
+            return new Issue(issueId, connection, issueRequestFactory);
         }
     }
 }

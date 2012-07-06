@@ -8,7 +8,7 @@ using YouTrack.Rest.Interception;
 
 namespace YouTrack.Rest.Tests.Factories
 {
-    class IssueFactoryTests : TestFor<IssueFactory>
+    class IssueProxyFactoryTests : TestFor<IssueProxyFactory>
     {
         private const string IssueId = "FOO-BAR";
 

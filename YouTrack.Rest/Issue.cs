@@ -7,10 +7,51 @@ using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
 {
-    class Issue : IssueActions, IIssue, ILoadable
+    class LoadableIssue : Issue, ILoadable
     {
-        private readonly IIssueRequestFactory issueRequestFactory;
+        public LoadableIssue(string issueId, IConnection connection, IIssueRequestFactory issueRequestFactory) : base(issueId, connection, issueRequestFactory)
+        {
+            IsLoaded = false;
+        }
+
         public event EventHandler Loaded;
+        public bool IsLoaded { get; private set; }
+
+        public void Load()
+        {
+            IYouTrackGetRequest<IIssue> request = IssueRequestFactory.GetIssueRequest(this, Connection);
+
+            request.Execute();
+
+            OnLoaded();
+        }
+
+        public void OnLoaded()
+        {
+            IsLoaded = true;
+
+            EventHandler handler = Loaded;
+            if (handler != null) handler(this, new EventArgs());
+        }
+
+        public override void ApplyCommand(string command)
+        {
+            base.ApplyCommand(command);
+
+            IsLoaded = false;
+        }
+
+        public override void ApplyCommands(params string[] commands)
+        {
+            base.ApplyCommands(commands);
+
+            IsLoaded = false;
+        }
+    }
+
+    class Issue : IssueActions, IIssue
+    {
+        protected IIssueRequestFactory IssueRequestFactory { get; set; }
 
         public string Summary { get; set; }
         public string Type { get; set; }
@@ -27,44 +68,11 @@ namespace YouTrack.Rest
         public string State { get; internal set; }
         public string Subsystem { get; internal set; }
 
-        public bool IsLoaded { get; private set; }
-
-        public void Load()
-        {
-            IYouTrackGetRequest<IIssue> request = issueRequestFactory.GetIssueRequest(this, Connection);
-
-            request.Execute();
-
-            OnLoaded(); 
-        }
-
-        public void OnLoaded()
-        {
-            IsLoaded = true;
-
-            EventHandler handler = Loaded;
-            if (handler != null) handler(this, new EventArgs());
-        }
-
         public Issue(string issueId, IConnection connection, IIssueRequestFactory issueRequestFactory)
             : base(issueId, connection)
         {
-            this.issueRequestFactory = issueRequestFactory;
-            IsLoaded = false;
+            IssueRequestFactory = issueRequestFactory;
         }
 
-        public override void ApplyCommand(string command)
-        {
-            base.ApplyCommand(command);
-
-            IsLoaded = false;
-        }
-
-        public override void ApplyCommands(params string[] commands)
-        {
-            base.ApplyCommands(commands);
-
-            IsLoaded = false;
-        }
     }
 }

@@ -29,7 +29,12 @@ namespace YouTrack.Rest
 
         public IIssueRepository GetIssueRepository()
         {
-            return new IssueRepository(connection, new IssueFactory(), GetIssueRequestFactory());
+            return new IssueRepository(connection, GetIssueFactory(), GetIssueRequestFactory());
+        }
+
+        protected virtual IIssueFactory GetIssueFactory()
+        {
+            return new IssueProxyFactory();
         }
 
         protected virtual IIssueRequestFactory GetIssueRequestFactory()
@@ -48,15 +53,20 @@ namespace YouTrack.Rest
         }
     }
 
-    public class AsyncYouTrackClient: YouTrackClient
+    public class SilverLightYouTrackClient: YouTrackClient
     {
-        public AsyncYouTrackClient(string baseUrl, string login, string password) : base(baseUrl, login, password)
+        public SilverLightYouTrackClient(string baseUrl, string login, string password) : base(baseUrl, login, password)
         {
         }
 
         protected override IIssueRequestFactory GetIssueRequestFactory()
         {
             return new IssueAsyncRequestFactory();
+        }
+
+        protected override IIssueFactory GetIssueFactory()
+        {
+            return new IssueFactory();
         }
     }
 }
