@@ -68,6 +68,7 @@
     <Compile Include="Deserialization\Project.cs" />
     <Compile Include="Deserialization\User.cs" />
     <Compile Include="Deserialization\UserGroup.cs" />
+    <Compile Include="Deserialization\UserGroupCollection.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
     <Compile Include="Requests\Users\DeleteUserRequest.cs" />
     <Compile Include="Requests\Users\GetUserRequest.cs" />
+    <Compile Include="Requests\Users\GetUsersGroupsRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserActions.cs" />
