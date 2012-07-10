@@ -42,7 +42,7 @@ namespace YouTrack.Rest.Repositories
         {
             Deserialization.User user = connection.Get<Deserialization.User>(new GetUserRequest(login));
 
-            return user.GetUser();
+            return user.GetUser(connection);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         [Test]
         public void UserIsReturned()
         {
-            IUser user = Sut.GetUser();
+            IUser user = Sut.GetUser(connection);
 
             Assert.That(user, Is.TypeOf<User>());
         }
@@ -33,7 +33,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         [Test]
         public void LoginIsAssigned()
         {
-            IUser user = Sut.GetUser();
+            IUser user = Sut.GetUser(connection);
 
             Assert.That(user.Login, Is.EqualTo(Login));
         }
@@ -41,7 +41,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         [Test]
         public void FullNameIsAssigned()
         {
-            IUser user = Sut.GetUser();
+            IUser user = Sut.GetUser(connection);
 
             Assert.That(user.FullName, Is.EqualTo(FullName));
         }
@@ -49,7 +49,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         [Test]
         public void EmailIsAssigned()
         {
-            IUser user = Sut.GetUser();
+            IUser user = Sut.GetUser(connection);
 
             Assert.That(user.Email, Is.EqualTo(Email));
         }

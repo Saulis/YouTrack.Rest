@@ -6,9 +6,9 @@
         public string Email { get; set; }
         public string FullName { get; set; }
 
-        public IUser GetUser()
+        public IUser GetUser(IConnection connection)
         {
-            Rest.User user = new Rest.User(Login);
+            Rest.User user = new Rest.User(Login, connection);
 
             MapTo(user);
 

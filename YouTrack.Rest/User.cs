@@ -2,12 +2,10 @@
 {
     class User : UserActions, IUser
     {
-        public User(string login)
+        public User(string login, IConnection connection) : base(login, connection)
         {
-            Login = login;
         }
 
-        public string Login { get; private set; }
         public string FullName { get; internal set; }
         public string Email { get; internal set; }
     }

@@ -83,6 +83,7 @@
     <Compile Include="Requests\RemoveACommentForAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetSubsystemOfAnIssueRequestTests.cs" />
     <Compile Include="Requests\SetTypeOfAnIssueRequestTests.cs" />
+    <Compile Include="Requests\Users\AddUserToGroupRequestTests.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequestTests.cs" />
     <Compile Include="Requests\Users\DeleteUserRequestTests.cs" />
     <Compile Include="Requests\Users\GetUserRequestTests.cs" />
