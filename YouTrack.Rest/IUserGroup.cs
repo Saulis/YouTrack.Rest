@@ -7,6 +7,6 @@ namespace YouTrack.Rest
 {
     public interface IUserGroup
     {
-        IUserGroup Name { get; }
+        string Name { get; }
     }
 }

@@ -2,7 +2,10 @@
 * [FEATURE] Get user
 * [FEATURE] Create a new user
 * [FEATURE] Delete user
+* [FEATURE] Add user to group
+* [FEATURE] Get users groups
 * [FEATURE] Create a new project
+* [FEATURE] Get project
 * [FEATURE] Delete project
 
 - RELEASE v0.4.0 [2012-06-30]

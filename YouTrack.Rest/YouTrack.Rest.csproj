@@ -67,6 +67,7 @@
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Project.cs" />
     <Compile Include="Deserialization\User.cs" />
+    <Compile Include="Deserialization\UserGroup.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
