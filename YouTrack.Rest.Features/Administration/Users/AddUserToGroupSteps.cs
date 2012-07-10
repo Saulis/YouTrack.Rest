@@ -14,23 +14,23 @@ namespace YouTrack.Rest.Features.Administration.Users
         [Given("I have created a user")]
         public void GivenIHaveCreatedAUser()
         {
-            CreateUser(TestSettings.Username, TestSettings.Password, TestSettings.BaseUrl);
+            CreateUser("foo", "bar", TestSettings.BaseUrl);
         }
 
-        [When("I add the user to admin group")]
-        public void WhenIAddUserToAdminGroup()
+        [When("I add the user to reporters group")]
+        public void WhenIAddUserToReportersGroup()
         {
             IUser user = GetUser(GetSavedLogin());
 
-            user.JoinGroup("Admin");
+            user.JoinGroup("Reporters");
         }
 
-        [Then("I add the user to admin group")]
-        public void ThenUserBelongsToAdminGroup()
+        [Then("the user belongs to reporters group")]
+        public void ThenUserBelongsToReportersGroup()
         {
             IUser user = GetUser(GetSavedLogin());
 
-            Assert.That(user.Groups.Select(g => g.Name), Contains.Item("Admin"));
+            Assert.That(user.Groups.Select(g => g.Name), Contains.Item("Reporters"));
         }
     }
 }

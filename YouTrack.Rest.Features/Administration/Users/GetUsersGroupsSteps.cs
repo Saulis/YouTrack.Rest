@@ -27,8 +27,8 @@ namespace YouTrack.Rest.Features.Administration.Users
            ScenarioContext.Current.Set(userGroups);
        }
 
-        [Then("the user belongs to admin group")]
-        public void ThenUserBelongsToAdminGroup()
+        [Then("the user belongs to new users group")]
+        public void ThenUserBelongsToNewUsersGroup()
         {
             IEnumerable<IUserGroup> userGroups = ScenarioContext.Current.Get<IEnumerable<IUserGroup>>();
 
