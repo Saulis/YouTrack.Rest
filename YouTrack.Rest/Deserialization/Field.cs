@@ -5,7 +5,7 @@ using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest.Deserialization
 {
-    internal class Field
+    class Field
     {
         public string Name { get; set; }
         public List<Value_> Values { get; set; }
