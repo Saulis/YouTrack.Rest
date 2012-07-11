@@ -105,17 +105,20 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Requests\AddCommentToIssueRequest.cs" />
-    <Compile Include="Requests\ApplyCommandsToAnIssueRequest.cs" />
-    <Compile Include="Requests\ApplyCommandToAnIssueRequest.cs" />
-    <Compile Include="Requests\AttachFileToAnIssueRequest.cs" />
-    <Compile Include="Requests\CheckIfIssueExistsRequest.cs" />
-    <Compile Include="Requests\CreateNewIssueRequest.cs" />
-    <Compile Include="Requests\DeleteIssueRequest.cs" />
-    <Compile Include="Requests\GetAttachmentsOfAnIssueRequest.cs" />
-    <Compile Include="Requests\GetCommentsOfAnIssueRequest.cs" />
-    <Compile Include="Requests\GetIssueRequest.cs" />
-    <Compile Include="Requests\GetIssuesInAProjectRequest.cs" />
+    <Compile Include="Requests\Issues\AddCommentToIssueRequest.cs" />
+    <Compile Include="Requests\Issues\ApplyCommandsToAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\ApplyCommandToAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\AttachFileToAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\CheckIfIssueExistsRequest.cs" />
+    <Compile Include="Requests\Issues\CreateNewIssueRequest.cs" />
+    <Compile Include="Requests\Issues\DeleteIssueRequest.cs" />
+    <Compile Include="Requests\Issues\GetAttachmentsOfAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\GetCommentsOfAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\GetIssueRequest.cs" />
+    <Compile Include="Requests\Issues\GetIssuesInAProjectRequest.cs" />
+    <Compile Include="Requests\Issues\RemoveACommentForAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\SetSubsystemOfAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\SetTypeOfAnIssueRequest.cs" />
     <Compile Include="Requests\IYouTrackDeleteRequest.cs" />
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
     <Compile Include="Requests\IYouTrackPostRequest.cs" />
@@ -126,10 +129,7 @@
     <Compile Include="Requests\Projects\CreateNewProjectRequest.cs" />
     <Compile Include="Requests\Projects\DeleteProjectRequest.cs" />
     <Compile Include="Requests\Projects\GetProjectRequest.cs" />
-    <Compile Include="Requests\RemoveACommentForAnIssueRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
-    <Compile Include="Requests\SetSubsystemOfAnIssueRequest.cs" />
-    <Compile Include="Requests\SetTypeOfAnIssueRequest.cs" />
     <Compile Include="Requests\Users\AddUserToGroupRequest.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
     <Compile Include="Requests\Users\DeleteUserRequest.cs" />
@@ -147,6 +147,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

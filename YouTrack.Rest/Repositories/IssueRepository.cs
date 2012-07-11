@@ -2,6 +2,7 @@ using System.Linq;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest.Repositories
 {

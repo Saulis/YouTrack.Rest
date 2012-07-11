@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
 {

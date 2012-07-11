@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace YouTrack.Rest.Requests
+namespace YouTrack.Rest.Requests.Issues
 {
     class ApplyCommandToAnIssueRequest : YouTrackRequest, IYouTrackPostRequest
     {

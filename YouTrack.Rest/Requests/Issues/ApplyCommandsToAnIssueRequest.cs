@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace YouTrack.Rest.Requests
+namespace YouTrack.Rest.Requests.Issues
 {
     class ApplyCommandsToAnIssueRequest : YouTrackRequest, IYouTrackPostRequest
     {

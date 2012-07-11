@@ -1,6 +1,6 @@
 using System;
 
-namespace YouTrack.Rest.Requests
+namespace YouTrack.Rest.Requests.Issues
 {
     class GetIssueRequest : YouTrackRequest, IYouTrackGetRequest
     {

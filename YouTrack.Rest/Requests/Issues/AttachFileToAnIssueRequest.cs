@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace YouTrack.Rest.Requests
+namespace YouTrack.Rest.Requests.Issues
 {
     class AttachFileToAnIssueRequest : YouTrackRequest, IYouTrackPostWithFileRequest
     {

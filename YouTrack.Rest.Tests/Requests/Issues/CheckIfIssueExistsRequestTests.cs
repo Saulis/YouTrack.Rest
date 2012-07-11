@@ -1,6 +1,7 @@
-﻿using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 
-namespace YouTrack.Rest.Tests.Requests
+namespace YouTrack.Rest.Tests.Requests.Issues
 {
     class CheckIfIssueExistsRequestTests : YouTrackRequestTests<CheckIfIssueExistsRequest, IYouTrackGetRequest>
     {

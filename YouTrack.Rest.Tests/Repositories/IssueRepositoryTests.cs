@@ -8,6 +8,7 @@ using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Factories;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 using YouTrack.Rest.Tests.Requests;
 
 namespace YouTrack.Rest.Tests.Repositories

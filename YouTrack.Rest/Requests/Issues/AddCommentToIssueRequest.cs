@@ -1,4 +1,4 @@
-﻿namespace YouTrack.Rest.Requests
+namespace YouTrack.Rest.Requests.Issues
 {
     class AddCommentToIssueRequest : ApplyCommandToAnIssueRequest
     {

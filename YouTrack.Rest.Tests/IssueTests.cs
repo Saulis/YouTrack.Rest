@@ -5,6 +5,7 @@ using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
+using YouTrack.Rest.Requests.Issues;
 using YouTrack.Rest.Tests.Repositories;
 
 namespace YouTrack.Rest.Tests
