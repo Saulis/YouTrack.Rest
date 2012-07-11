@@ -80,11 +80,20 @@ namespace YouTrack.Rest.Tests.Deserialization
         }
 
         [Test]
-        public void ValueIsParsed()
+        public void StringIsParsed()
         {
             Sut.Values.Add(stringValue);
 
             Assert.That(Sut.GetValue(), Is.EqualTo(expectedString));
+        }
+
+        [Test]
+        public void FieldIsConvertedToString()
+        {
+            Sut.Name = "Foo";
+            Sut.Values.Add(integerValue);
+
+            Assert.That(Sut.ToString(), Is.EqualTo(String.Format("{0}: {1}", Sut.Name, expectedInteger)));
         }
     }
 }
