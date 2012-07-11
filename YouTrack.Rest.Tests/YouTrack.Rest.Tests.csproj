@@ -87,6 +87,7 @@
     <Compile Include="Requests\Projects\CreateNewProjectRequestTests.cs" />
     <Compile Include="Requests\Projects\DeleteProjectRequestTests.cs" />
     <Compile Include="Requests\Projects\GetProjectRequestTests.cs" />
+    <Compile Include="Requests\RestRequestResourceBuilderTests.cs" />
     <Compile Include="Requests\Users\AddUserToGroupRequestTests.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequestTests.cs" />
     <Compile Include="Requests\Users\DeleteUserRequestTests.cs" />

@@ -56,20 +56,5 @@ namespace YouTrack.Rest.Requests
                 throw new ParameterAlreadyAddedException();
             }
         }
-
-        public void AddParameter(string parameterName, byte[] parameterValue)
-        {
-            this.AddParameter(parameterName, ConvertToString(parameterValue));
-        }
-
-        private string ConvertToString(object parameterValue)
-        {
-            if(parameterValue == null)
-            {
-                return null;
-            }
-
-            throw new NotImplementedException();
-        }
     }
 }
