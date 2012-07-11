@@ -44,6 +44,16 @@ namespace YouTrack.Rest.Tests
         public void LoginRequestIsUsedOnLogin()
         {
             Sut.Login();
+
+            restClient.Received().Execute(Arg.Is<IRestRequest>(r => r.Resource == "/rest/user/login?login=login&password=password"));
+        }
+
+        [Test]
+        public void IsAuthenticatedAfterLogin()
+        {
+            Sut.Login();
+
+            Assert.IsTrue(Sut.IsAuthenticated);
         }
     }
 }
