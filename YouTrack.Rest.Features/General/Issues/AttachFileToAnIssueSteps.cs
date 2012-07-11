@@ -34,8 +34,7 @@ namespace YouTrack.Rest.Features.General.Issues
         {
             StepHelper.AttachFile(GetSavedIssue(), File.ReadAllBytes(@"Steps\Attachments\I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg"), "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg");
 
-            //Extra .jpg is added to the attachment name.. in RestSharp or YouTrack... don't know why.
-            expectedFileName = "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production.jpg1.jpg";
+            expectedFileName = "I-don't-usually-test-my-code-But-when-I-do-it,-I-do-it-in-production1.jpg";
         }
 
 

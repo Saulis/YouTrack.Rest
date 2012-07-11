@@ -21,7 +21,7 @@ namespace YouTrack.Rest.Requests
             this.bytes = bytes;
             FileName = fileName;
 
-            ResourceBuilder.AddParameter("name", fileName);
+            ResourceBuilder.AddParameter("name", Path.GetFileNameWithoutExtension(fileName));
         }
 
         public string FilePath { get; private set; }
