@@ -62,5 +62,18 @@ namespace YouTrack.Rest.Tests
 
             connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
         }
+
+        [Test]
+        public void ConnectionCalledOnGetSubsystems()
+        {
+            IEnumerable<ISubsystem> subsystems = Sut.Subsystems;
+        }
+
+        [Test]
+        public void SubsystemAreCached()
+        {
+            IEnumerable<ISubsystem> subsystems = Sut.Subsystems;
+            subsystems = Sut.Subsystems;
+        }
     }
 }

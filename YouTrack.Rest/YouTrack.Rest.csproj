@@ -95,6 +95,7 @@
     <Compile Include="IIssue.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="IssueActions.cs" />
+    <Compile Include="ISubsystem.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IUserGroup.cs" />
     <Compile Include="Project.cs" />

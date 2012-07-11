@@ -16,6 +16,11 @@ namespace YouTrack.Rest
         protected IConnection Connection { get; private set; }
         public string Id { get; private set; }
 
+        public IEnumerable<ISubsystem> Subsystems
+        {
+            get { throw new System.NotImplementedException(); }
+        }
+
         public IEnumerable<IIssue> GetIssues()
         {
             GetIssuesInAProjectRequest request = new GetIssuesInAProjectRequest(Id);
@@ -29,6 +34,7 @@ namespace YouTrack.Rest
 
             return GetIssues(request);
         }
+
 
         private IEnumerable<IIssue> GetIssues(GetIssuesInAProjectRequest request)
         {
