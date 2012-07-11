@@ -178,22 +178,7 @@ namespace YouTrack.Rest
 
         private void SetAcceptToXml(RestRequest restRequest)
         {
-            Func<Parameter, bool> acceptPredicate = p => p.Name == "Accept";
-
-            if (restRequest.Parameters.Count(acceptPredicate) > 1)
-            {
-                throw new InvalidAcceptHeaderCountException(restRequest);
-            }
-
-            if (restRequest.Parameters.Count(acceptPredicate) == 1)
-            {
-                Parameter parameter = restRequest.Parameters.Single(acceptPredicate);
-                parameter.Value = "application/xml";
-            }
-            else
-            {
-                restRequest.AddHeader("Accept", "application/xml");
-            }
+            restRequest.AddHeader("Accept", "application/xml");
         }
 
         private void SetAuthenticationCookies(RestRequest restRequest)
