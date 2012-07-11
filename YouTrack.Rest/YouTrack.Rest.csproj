@@ -71,7 +71,6 @@
     <Compile Include="Deserialization\UserGroupCollection.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
-    <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
     <Compile Include="Exceptions\IssueDeserializationException.cs" />
     <Compile Include="Exceptions\LocationHeaderCountInvalidException.cs" />
