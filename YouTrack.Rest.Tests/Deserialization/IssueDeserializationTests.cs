@@ -30,6 +30,18 @@ namespace YouTrack.Rest.Tests.Deserialization
         }
 
         [Test]
+        public void IssueIsReturned()
+        {
+            Assert.That(Sut.GetIssue(connection), Is.TypeOf<Issue>());
+        }
+
+        [Test]
+        public void IdIsSet()
+        {
+            Assert.That(Sut.GetIssue(connection).Id, Is.EqualTo(IssueId));
+        }
+
+        [Test]
         public void ProjectShortNameIsWrapped()
         {
             Sut.MapTo(issue, connection);
