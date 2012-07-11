@@ -9,7 +9,8 @@ namespace YouTrack.Rest.Tests.Deserialization
     class FieldTests : TestFor<Field>
     {
         private Value_ dateTimeValue;
-        private readonly DateTime expectedDateTime = new DateTime(2010, 2, 24, 18, 51, 0);
+        private const ulong expectedMilliseconds = 1000;
+        private readonly DateTime expectedDateTime = new DateTime(1970, 1, 1).AddMilliseconds(expectedMilliseconds).ToLocalTime();
         private Value_ stringValue;
         private Value_ integerValue;
         private static string expectedString = "foobar";
@@ -43,7 +44,7 @@ namespace YouTrack.Rest.Tests.Deserialization
         private static Value_ CreateDateTimeValue()
         {
             Value_ timeValue = new Value_();
-            timeValue.Value = "1267030260000";
+            timeValue.Value = expectedMilliseconds.ToString();
 
             return timeValue;
         }
