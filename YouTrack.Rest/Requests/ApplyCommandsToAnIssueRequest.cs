@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace YouTrack.Rest.Requests
 {
@@ -13,9 +15,9 @@ namespace YouTrack.Rest.Requests
             ResourceBuilder.AddParameter("command", String.Join(" ", commands));
         }
 
-        private void ThrowIfCommandsAreNull(string[] commands)
+        private void ThrowIfCommandsAreNull(IEnumerable<string> commands)
         {
-            if(commands == null)
+            if(commands == null || !commands.Any())
             {
                 throw new ArgumentNullException("commands");
             }
