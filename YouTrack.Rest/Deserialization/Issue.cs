@@ -28,7 +28,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetInt32();
             }
 
-            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
         }
 
         private DateTime GetDateTime(string name)
@@ -38,7 +38,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetDateTime();
             }
 
-            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
         }
 
         private string GetString(string name, string defaultValue = null)
@@ -53,7 +53,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetValue();
             }
 
-            throw new IssueSerializationException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
         }
 
         private bool HasFieldFor(string name)

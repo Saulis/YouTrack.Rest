@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest.Tests.Deserialization
 {
@@ -94,6 +95,21 @@ namespace YouTrack.Rest.Tests.Deserialization
             Sut.Values.Add(integerValue);
 
             Assert.That(Sut.ToString(), Is.EqualTo(String.Format("{0}: {1}", Sut.Name, expectedInteger)));
+        }
+
+        [Test]
+        public void ExceptionThrownIfNoValues()
+        {
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetValue());
+        }
+
+        [Test]
+        public void ExceptionThrownIfMoreThanOneValue()
+        {
+            Sut.Values.Add(stringValue);
+            Sut.Values.Add(stringValue);
+
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetValue());
         }
     }
 }

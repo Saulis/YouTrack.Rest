@@ -162,11 +162,45 @@ namespace YouTrack.Rest.Tests.Deserialization
         }
 
         [Test]
+        public void ExceptionThrownOnMissingDateTimeField()
+        {
+            Field createdField = Sut.Fields.Single(f => f.Name == "created");
+            Sut.Fields.Remove(createdField);
+
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetIssue(connection));
+        }
+
+        [Test]
+        public void ExceptionThrownOnDuplicateDateTimeField()
+        {
+            Sut.Fields.Add(new Field() { Name = "created" });
+
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetIssue(connection));
+        }
+
+        [Test]
+        public void ExceptionThrownOnMissingIntegerField()
+        {
+            Field commentsCountField = Sut.Fields.Single(f => f.Name == "commentsCount");
+            Sut.Fields.Remove(commentsCountField);
+
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetIssue(connection));
+        }
+
+        [Test]
+        public void ExceptionThrownOnDuplicateIntegerField()
+        {
+            Sut.Fields.Add(new Field() { Name = "commentsCount" });
+
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetIssue(connection));
+        }
+
+        [Test]
         public void ExceptionIsThrownOnMultipleFields()
         {
             AddAnotherDescriptionField();
 
-            Assert.Throws<IssueSerializationException>(() => Sut.GetIssue(connection));
+            Assert.Throws<IssueDeserializationException>(() => Sut.GetIssue(connection));
         }
 
         private void AddAnotherDescriptionField()
