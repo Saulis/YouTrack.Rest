@@ -13,7 +13,8 @@ namespace YouTrack.Rest.Tests
     class ProjectActionsTests : TestFor<ProjectActions>
     {
         private IConnection connection;
-        private List<Rest.Deserialization.Issue> issues;
+        private List<Rest.Deserialization.Issue> deserializedIssues;
+        private Rest.Deserialization.Issue deserializedIssue;
         private const string ProjectId = "FOOBAR";
 
         protected override ProjectActions CreateSut()
@@ -24,10 +25,11 @@ namespace YouTrack.Rest.Tests
 
         protected override void SetupDependencies()
         {
-            issues = new List<Rest.Deserialization.Issue>();
-            issues.Add(new DeserializedIssueMock(Mock<IIssue>()));
+            deserializedIssues = new List<Rest.Deserialization.Issue>();
+            deserializedIssue = Mock<Rest.Deserialization.Issue>();
+            deserializedIssues.Add(deserializedIssue);
 
-            connection.Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(issues);
+            connection.Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(deserializedIssues);
         }
 
         [Test]
@@ -42,6 +44,14 @@ namespace YouTrack.Rest.Tests
             Sut.GetIssues();
 
             connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+        }
+
+        [Test]
+        public void GetIssueIsCalledOnEachIssue()
+        {
+            IEnumerable<IIssue> issues = Sut.GetIssues().ToList();
+
+            deserializedIssue.Received().GetIssue(connection);
         }
 
         [Test]
