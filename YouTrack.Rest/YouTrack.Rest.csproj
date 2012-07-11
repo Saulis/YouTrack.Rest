@@ -73,7 +73,7 @@
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\InvalidAcceptHeaderCountException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
-    <Compile Include="Exceptions\IssueSerializationException.cs" />
+    <Compile Include="Exceptions\IssueDeserializationException.cs" />
     <Compile Include="Exceptions\LocationHeaderCountInvalidException.cs" />
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />

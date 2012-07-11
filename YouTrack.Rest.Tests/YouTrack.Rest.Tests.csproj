@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="ConnectionTests.cs" />
     <Compile Include="Deserialization\CommentDeserializationTests.cs" />
+    <Compile Include="Deserialization\CommentsCollectionTests.cs" />
+    <Compile Include="Deserialization\FieldTests.cs" />
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
     <Compile Include="Deserialization\ProjectDeserializationTests.cs" />
     <Compile Include="Deserialization\UserDeserializationTests.cs" />
