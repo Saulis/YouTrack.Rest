@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NSubstitute;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
-using YouTrack.Rest.Tests.Repositories;
+using YouTrack.Rest.Requests.Projects;
 
 namespace YouTrack.Rest.Tests
 {
@@ -16,6 +13,7 @@ namespace YouTrack.Rest.Tests
         private IConnection connection;
         private List<Rest.Deserialization.Issue> deserializedIssues;
         private Rest.Deserialization.Issue deserializedIssue;
+        private SubsystemCollection subsystemCollection;
         private const string ProjectId = "FOOBAR";
 
         protected override ProjectActions CreateSut()
@@ -31,6 +29,9 @@ namespace YouTrack.Rest.Tests
             deserializedIssues.Add(deserializedIssue);
 
             connection.Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>()).Returns(deserializedIssues);
+
+            subsystemCollection = Mock<SubsystemCollection>();
+            subsystemCollection.Subsystems.Returns(new List<Subsystem>());
         }
 
         [Test]
@@ -67,13 +68,19 @@ namespace YouTrack.Rest.Tests
         public void ConnectionCalledOnGetSubsystems()
         {
             IEnumerable<ISubsystem> subsystems = Sut.Subsystems;
+
+            connection.Received().Get<SubsystemCollection>(Arg.Any<GetProjectSubsystemsRequest>());
         }
 
         [Test]
         public void SubsystemAreCached()
         {
+            connection.Get<SubsystemCollection>(Arg.Any<GetProjectSubsystemsRequest>()).Returns(subsystemCollection);
+
             IEnumerable<ISubsystem> subsystems = Sut.Subsystems;
             subsystems = Sut.Subsystems;
+
+            connection.Received(1).Get<SubsystemCollection>(Arg.Any<GetProjectSubsystemsRequest>());
         }
     }
 }

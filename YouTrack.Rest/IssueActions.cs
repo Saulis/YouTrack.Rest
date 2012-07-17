@@ -28,9 +28,9 @@ namespace YouTrack.Rest
         {
             GetCommentsOfAnIssueRequest request = new GetCommentsOfAnIssueRequest(Id);
 
-            CommentsCollection commentsCollection = Connection.Get<CommentsCollection>(request);
+            CommentCollection commentCollection = Connection.Get<CommentCollection>(request);
 
-            return commentsCollection.GetComments(Connection);
+            return commentCollection.GetComments(Connection);
         }
 
         public virtual void ApplyCommand(string command)

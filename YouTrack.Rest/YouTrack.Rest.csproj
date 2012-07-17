@@ -60,12 +60,14 @@
     <Compile Include="Comment.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Deserialization\Comment.cs" />
-    <Compile Include="Deserialization\CommentsCollection.cs" />
+    <Compile Include="Deserialization\CommentCollection.cs" />
     <Compile Include="Deserialization\Field.cs" />
     <Compile Include="Deserialization\FileUrl.cs" />
     <Compile Include="Deserialization\FileUrlCollection.cs" />
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Project.cs" />
+    <Compile Include="Deserialization\Subsystem.cs" />
+    <Compile Include="Deserialization\SubsystemCollection.cs" />
     <Compile Include="Deserialization\User.cs" />
     <Compile Include="Deserialization\UserGroup.cs" />
     <Compile Include="Deserialization\UserGroupCollection.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="Requests\Projects\CreateNewProjectRequest.cs" />
     <Compile Include="Requests\Projects\DeleteProjectRequest.cs" />
     <Compile Include="Requests\Projects\GetProjectRequest.cs" />
+    <Compile Include="Requests\Projects\GetProjectSubsystemsRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
     <Compile Include="Requests\Users\AddUserToGroupRequest.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />

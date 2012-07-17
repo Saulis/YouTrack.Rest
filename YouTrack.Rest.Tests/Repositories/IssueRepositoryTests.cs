@@ -23,7 +23,7 @@ namespace YouTrack.Rest.Tests.Repositories
         private IConnection connection;
         private Rest.Deserialization.Issue deSerializedIssueMock;
         private IIssue issue;
-        private CommentsCollection commentsCollection;
+        private CommentCollection commentCollection;
         private IIssueFactory issueFactory;
 
         protected override IssueRepository CreateSut()
@@ -31,18 +31,18 @@ namespace YouTrack.Rest.Tests.Repositories
             connection = Mock<IConnection>();
             issue = Mock<IIssue>();
             deSerializedIssueMock = new DeserializedIssueMock(issue);
-            commentsCollection = CreateCommentsWrapper();
+            commentCollection = CreateCommentsWrapper();
             issueFactory = Mock<IIssueFactory>();
 
             return new IssueRepository(connection, issueFactory);
         }
 
-        private static CommentsCollection CreateCommentsWrapper()
+        private static CommentCollection CreateCommentsWrapper()
         {
-            CommentsCollection commentsCollection = new CommentsCollection();
-            commentsCollection.Comments = new List<Rest.Deserialization.Comment>();
+            CommentCollection commentCollection = new CommentCollection();
+            commentCollection.Comments = new List<Rest.Deserialization.Comment>();
 
-            return commentsCollection;
+            return commentCollection;
         }
 
         [Test]

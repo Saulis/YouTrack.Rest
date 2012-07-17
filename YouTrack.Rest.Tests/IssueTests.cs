@@ -15,7 +15,7 @@ namespace YouTrack.Rest.Tests
         private IConnection connection;
         private const string IssueId = "FOO-BAR";
         private FileUrlCollection fileUrlCollection;
-        private CommentsCollection commentsCollection;
+        private CommentCollection commentCollection;
 
         protected override Issue CreateSut()
         {
@@ -27,7 +27,7 @@ namespace YouTrack.Rest.Tests
         {
             connection.Get<Rest.Deserialization.Issue>(Arg.Any<GetIssueRequest>()).Returns(new DeserializedIssueMock());
             fileUrlCollection = new FileUrlCollection();
-            commentsCollection = new CommentsCollection { Comments = new List<Rest.Deserialization.Comment>() };
+            commentCollection = new CommentCollection { Comments = new List<Rest.Deserialization.Comment>() };
         }
 
         [Test]
@@ -65,13 +65,13 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void CommentsAreFetchedAgainAfterAddingComment()
         {
-            connection.Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsCollection);
+            connection.Get<CommentCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentCollection);
 
             IEnumerable<IComment> comments = Sut.Comments;
             Sut.AddComment("foobar");
             comments = Sut.Comments;
 
-            connection.Received(2).Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
+            connection.Received(2).Get<CommentCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
 
         [Test]
@@ -103,11 +103,11 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void ConnectionIsCalledWithGetComments()
         {
-            connection.Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentsCollection);
+            connection.Get<CommentCollection>(Arg.Any<GetCommentsOfAnIssueRequest>()).Returns(commentCollection);
 
             IEnumerable<IComment> comments = Sut.Comments;
 
-            connection.Received().Get<CommentsCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
+            connection.Received().Get<CommentCollection>(Arg.Any<GetCommentsOfAnIssueRequest>());
         }
 
         [Test]

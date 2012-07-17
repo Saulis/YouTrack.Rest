@@ -6,7 +6,7 @@ using YouTrack.Rest.Deserialization;
 
 namespace YouTrack.Rest.Tests.Deserialization
 {
-    class CommentsCollectionTests : TestFor<CommentsCollection>
+    class CommentsCollectionTests : TestFor<CommentCollection>
     {
         private Rest.Deserialization.Comment deserializedComment;
         private List<Rest.Deserialization.Comment> deserializedComments;

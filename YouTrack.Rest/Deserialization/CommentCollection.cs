@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace YouTrack.Rest.Deserialization
 {
-    class CommentsCollection
+    class CommentCollection
     {
         public List<Comment> Comments { get; set; }
 

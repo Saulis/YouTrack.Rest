@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
+using YouTrack.Rest.Requests.Projects;
 
 namespace YouTrack.Rest
 {
     class ProjectActions : IProjectActions
     {
+        private IEnumerable<ISubsystem> subsystems;
+
         public ProjectActions(string projectId, IConnection connection)
         {
             Id = projectId;
@@ -18,7 +22,16 @@ namespace YouTrack.Rest
 
         public IEnumerable<ISubsystem> Subsystems
         {
-            get { throw new System.NotImplementedException(); }
+            get { return subsystems ?? (subsystems = GetSubsystems()); }
+        }
+
+        private IEnumerable<ISubsystem> GetSubsystems()
+        {
+            GetProjectSubsystemsRequest request = new GetProjectSubsystemsRequest(Id);
+
+            SubsystemCollection subsystemCollection = Connection.Get<SubsystemCollection>(request);
+
+            return subsystemCollection.Subsystems;
         }
 
         public IEnumerable<IIssue> GetIssues()
