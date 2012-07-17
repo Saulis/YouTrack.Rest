@@ -90,22 +90,52 @@
       <DependentUpon>AddUserToGroup.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Users\AddUserToGroupSteps.cs" />
+    <Compile Include="Administration\Users\AssignRoleToUserGroup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssignRoleToUserGroup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\AssignRoleToUserGroupSteps.cs" />
     <Compile Include="Administration\Users\CreateANewUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateANewUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Users\CreateANewUserSteps.cs" />
+    <Compile Include="Administration\Users\CreateUserGroup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateUserGroup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\CreateUserGroupSteps.cs" />
     <Compile Include="Administration\Users\DeleteUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DeleteUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Administration\Users\DeleteUserGroup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteUserGroup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\DeleteUserGroupSteps.cs" />
     <Compile Include="Administration\Users\DeleteUserSteps.cs" />
+    <Compile Include="Administration\Users\GetAllUserGroups.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAllUserGroups.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\GetAllUserGroupsSteps.cs" />
     <Compile Include="Administration\Users\GetUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\GetUserGroupRolesSteps.cs" />
+    <Compile Include="Administration\Users\GetUserGroupRoles.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetUserGroupRoles.feature</DependentUpon>
     </Compile>
     <Compile Include="Administration\Users\GetUserRoles.feature.cs">
       <AutoGen>True</AutoGen>
@@ -218,17 +248,37 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddUserToGroup.feature.cs</LastGenOutput>
     </None>
+    <None Include="Administration\Users\AssignRoleToUserGroup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AssignRoleToUserGroup.feature.cs</LastGenOutput>
+    </None>
     <None Include="Administration\Users\CreateANewUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateANewUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\CreateUserGroup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateUserGroup.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Users\DeleteUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DeleteUser.feature.cs</LastGenOutput>
     </None>
+    <None Include="Administration\Users\DeleteUserGroup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteUserGroup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\GetAllUserGroups.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAllUserGroups.feature.cs</LastGenOutput>
+    </None>
     <None Include="Administration\Users\GetUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\GetUserGroupRoles.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetUserGroupRoles.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Users\GetUserRoles.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

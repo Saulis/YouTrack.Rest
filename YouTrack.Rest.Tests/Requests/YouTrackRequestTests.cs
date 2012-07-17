@@ -18,5 +18,21 @@ namespace YouTrack.Rest.Tests.Requests
         {
             Assert.That(Sut, Is.AssignableTo<TRequestType>());
         }
+
+        [Test]
+        public void HasBody()
+        {
+            Sut.Body = "foobar";
+
+            Assert.That(Sut.HasBody);
+        }
+
+        [Test]
+        public void DoesNotHaveBody()
+        {
+            Sut.Body = null;
+
+            Assert.IsFalse(Sut.HasBody);
+        }
     }
 }

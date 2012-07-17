@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace YouTrack.Rest.Deserialization
+﻿namespace YouTrack.Rest.Deserialization
 {
-    class UserGroup : IUserGroup
+    class UserGroup
     {
         public string Name { get; set; }
+
+        public virtual IUserGroup GetUserGroup(IConnection connection)
+        {
+            return new Rest.UserGroup(Name, connection);
+        }
     }
 }

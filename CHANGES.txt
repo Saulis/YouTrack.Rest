@@ -3,6 +3,11 @@
 * [FEATURE] Get project subsystems
 * [FEATURE] Add subsystem to project
 * [FEATURE] Get user roles
+* [FEATURE] Create user group
+* [FEATURE] Assign user role to user group
+* [FEATURE] Delete user group
+* [FEATURE] Get all user groups
+* [FEATURE] Get user group roles
 
 - RELEASE v0.5.0 [2012-07-11]
 * [FEATURE] Get user

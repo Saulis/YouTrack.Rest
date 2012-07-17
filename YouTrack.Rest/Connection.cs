@@ -57,6 +57,7 @@ namespace YouTrack.Rest
                 case HttpStatusCode.BadRequest:
                 case HttpStatusCode.Forbidden:
                 case HttpStatusCode.Unauthorized:
+                case HttpStatusCode.UnsupportedMediaType:
                     throw new RequestFailedException(response);
 
                 case HttpStatusCode.NotFound:
@@ -116,7 +117,7 @@ namespace YouTrack.Rest
 
             if (response.Headers.Count(locationPredicate) != 1)
             {
-                throw new LocationHeaderCountInvalidException(response.Headers);
+                throw new LocationHeaderCountInvalidException(response.Headers.Count(locationPredicate));
             }
         }
 
@@ -144,6 +145,11 @@ namespace YouTrack.Rest
         private IRestRequest CreateRestRequest(IYouTrackRequest request, Method method)
         {
             RestRequest restRequest = new RestRequest(request.RestResource, method);
+
+            if(request.HasBody)
+            {
+                restRequest.AddBody(request.Body);
+            }
 
             SetAcceptToXml(restRequest);
 

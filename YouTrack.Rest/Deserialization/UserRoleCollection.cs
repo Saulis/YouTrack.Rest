@@ -4,6 +4,6 @@ namespace YouTrack.Rest.Deserialization
 {
     class UserRoleCollection
     {
-        public List<UserRole> UserRoles { get; set; } 
+        public virtual List<UserRole> UserRoles { get; set; } 
     }
 }

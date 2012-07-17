@@ -1,6 +1,8 @@
-﻿using NSubstitute;
+﻿using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
+using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Repositories;
 using YouTrack.Rest.Requests.Users;
@@ -9,6 +11,7 @@ namespace YouTrack.Rest.Tests.Repositories
 {
     class UserRepositoryTests : TestFor<UserRepository>
     {
+        private const string UserGroupName = "foobarGroup";
         private IConnection connection;
 
         protected override UserRepository CreateSut()
@@ -62,6 +65,32 @@ namespace YouTrack.Rest.Tests.Repositories
                                                                           });
 
             Assert.IsFalse(Sut.UserExists("foo"));
+        }
+
+        [Test]
+        public void CreateUserGroupRequestIsUsed()
+        {
+            Sut.CreateUserGroup(UserGroupName);
+
+            connection.Put(Arg.Any<CreateUserGroupRequest>());
+        }
+
+        [Test]
+        public void GetAllUserGroupsRequestIsUsed()
+        {
+            connection.Get<UserGroupCollection>(Arg.Any<GetAllUserGroupsRequest>()).Returns(Mock<UserGroupCollection>());
+
+            Sut.GetUserGroups();
+
+            connection.Get<UserGroupCollection>(Arg.Any<GetAllUserGroupsRequest>());
+        }
+
+        [Test]
+        public void DeleteUserGroupRequestIsUsed()
+        {
+            Sut.DeleteUserGroup("foobar");
+
+            connection.Delete(Arg.Any<DeleteUserGroupRequest>());
         }
     }
 }

@@ -15,8 +15,14 @@ namespace YouTrack.Rest.Tests
 
     }
 
+    public class RequestBodyItem
+    {
+        public string Value { get; set; }
+    }
+
     class ConnectionTests : TestFor<Connection>
     {
+        private const string RequestBody = "requestBody";
         private IRestClient restClient;
         private IRestResponse restResponse;
         private IRestResponse<ConnectionTestItem> restResponseWithTestItem;
@@ -24,6 +30,7 @@ namespace YouTrack.Rest.Tests
         private ISession session;
         private Dictionary<string, string> authenticationCookies;
         private IYouTrackPostWithFileRequest postWithFileRequest;
+        private IYouTrackPostRequest requestWithBody;
 
         protected override Connection CreateSut()
         {
@@ -45,6 +52,17 @@ namespace YouTrack.Rest.Tests
             restClient.Execute<ConnectionTestItem>(Arg.Any<IRestRequest>()).Returns(restResponseWithTestItem);
 
             postWithFileRequest = Mock<IYouTrackPostWithFileRequest>();
+
+            requestWithBody = CreateRequestWithBody();
+        }
+
+        private IYouTrackPostRequest CreateRequestWithBody()
+        {
+            IYouTrackPostRequest request = Mock<IYouTrackPostRequest>();
+            request.HasBody.Returns(true);
+            request.Body.Returns(new RequestBodyItem { Value = RequestBody });
+
+            return request;
         }
 
         private Dictionary<string, string> CreateAuthenticationCookies()
@@ -99,6 +117,19 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void RequestHasBody()
+        {
+            Sut.Post(requestWithBody);
+
+            AssertThatRestClientExecuteWasCalledWithRequestBody(RequestBody);
+        }
+
+        private void AssertThatRestClientExecuteWasCalledWithRequestBody(string requestBody)
+        {
+            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Parameters.Any(p => p.Type == ParameterType.RequestBody && p.Value.ToString().Contains(requestBody))));
+        }
+
+        [Test]
         public void RequestNotFoundExceptionThrownOnNotFound()
         {
             restResponse.StatusCode.Returns(HttpStatusCode.NotFound);
@@ -126,6 +157,14 @@ namespace YouTrack.Rest.Tests
         public void RequestFailedExceptionThrownOnUnauthorized()
         {
             restResponse.StatusCode.Returns(HttpStatusCode.Unauthorized);
+
+            Assert.Throws<RequestFailedException>(() => Sut.Get(Mock<IYouTrackGetRequest>()));
+        }
+
+        [Test]
+        public void RequestFailedExceptionThrownOnUnsupportedMediaType()
+        {
+            restResponse.StatusCode.Returns(HttpStatusCode.UnsupportedMediaType);
 
             Assert.Throws<RequestFailedException>(() => Sut.Get(Mock<IYouTrackGetRequest>()));
         }
@@ -246,5 +285,6 @@ namespace YouTrack.Rest.Tests
         {
             restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.Name == name)));
         }
+
     }
 }

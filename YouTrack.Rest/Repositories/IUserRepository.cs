@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace YouTrack.Rest.Repositories
 {
     public interface IUserRepository
@@ -6,5 +8,8 @@ namespace YouTrack.Rest.Repositories
         void DeleteUser(string login);
         bool UserExists(string login);
         IUser GetUser(string login);
+        IUserGroup CreateUserGroup(string userGroupName);
+        IEnumerable<IUserGroup> GetUserGroups();
+        void DeleteUserGroup(string userGroupName);
     }
 }

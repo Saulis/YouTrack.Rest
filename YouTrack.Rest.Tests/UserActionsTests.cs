@@ -36,8 +36,8 @@ namespace YouTrack.Rest.Tests
 
         private UserGroupCollection CreateUserGroupCollection()
         {
-            UserGroupCollection userGroupCollection = new UserGroupCollection();
-            userGroupCollection.UserGroups = new List<UserGroup>();
+            UserGroupCollection userGroupCollection = Mock<UserGroupCollection>();
+            userGroupCollection.GetUserGroups(connection).Returns(new List<IUserGroup>());
 
             return userGroupCollection;
         }

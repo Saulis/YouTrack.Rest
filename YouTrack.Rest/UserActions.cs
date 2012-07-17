@@ -51,7 +51,7 @@ namespace YouTrack.Rest
 
             UserGroupCollection userGroupCollection = connection.Get<UserGroupCollection>(request);
 
-            return userGroupCollection.UserGroups;
+            return userGroupCollection.GetUserGroups(connection);
         }
     }
 }

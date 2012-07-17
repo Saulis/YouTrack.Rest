@@ -60,6 +60,8 @@
     <Compile Include="Deserialization\IssueDeserializationTests.cs" />
     <Compile Include="Deserialization\ProjectDeserializationTests.cs" />
     <Compile Include="Deserialization\UserDeserializationTests.cs" />
+    <Compile Include="Deserialization\UserGroupCollectionTests.cs" />
+    <Compile Include="Deserialization\UserGroupDeserializationTests.cs" />
     <Compile Include="Factories\IssueFactoryTests.cs" />
     <Compile Include="Factories\ProjectFactoryTests.cs" />
     <Compile Include="Interception\PropertyGetterProxyGenerationHookTests.cs" />
@@ -91,8 +93,13 @@
     <Compile Include="Requests\Projects\GetProjectSubsystemsRequestTests.cs" />
     <Compile Include="Requests\RestRequestResourceBuilderTests.cs" />
     <Compile Include="Requests\Users\AddUserToGroupRequestTests.cs" />
+    <Compile Include="Requests\Users\AssignRoleToUserGroupRequestTests.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequestTests.cs" />
+    <Compile Include="Requests\Users\CreateUserGroupRequestTests.cs" />
+    <Compile Include="Requests\Users\DeleteUserGroupRequestTests.cs" />
     <Compile Include="Requests\Users\DeleteUserRequestTests.cs" />
+    <Compile Include="Requests\Users\GetAllUserGroupsRequestTests.cs" />
+    <Compile Include="Requests\Users\GetUserGroupRolesRequestTests.cs" />
     <Compile Include="Requests\Users\GetUserRequestTests.cs" />
     <Compile Include="Requests\Users\GetUserRolesRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
@@ -100,6 +107,7 @@
     <Compile Include="Requests\LoginRequestTests.cs" />
     <Compile Include="Requests\YouTrackRequestTests.cs" />
     <Compile Include="UserActionsTests.cs" />
+    <Compile Include="UserGroupTests.cs" />
     <Compile Include="YouTrackClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestFor.cs" />

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace YouTrack.Rest.Features.Administration.Users
@@ -14,6 +15,11 @@ namespace YouTrack.Rest.Features.Administration.Users
             {
                 DeleteUser(GetSavedLogin());
             }
+
+            if(HasSavedUserGroup())
+            {
+                DeleteUserGroup(GetSavedUserGroup());
+            }
         }
 
         private bool HasSavedUser()
@@ -24,6 +30,11 @@ namespace YouTrack.Rest.Features.Administration.Users
             }
 
             return false;
+        }
+
+        private bool HasSavedUserGroup()
+        {
+            return ScenarioContext.Current.ContainsKey("savedUserGroup") && ScenarioContext.Current["savedUserGroup"] != null;
         }
 
         private bool HasSavedLogin()
@@ -66,6 +77,41 @@ namespace YouTrack.Rest.Features.Administration.Users
         protected IUser GetUser(string login)
         {
             return StepHelper.GetUser(login);
+        }
+
+        protected void CreateUserGroup(string userGroupName)
+        {
+            IUserGroup userGroup = StepHelper.CreateUserGroup(userGroupName);
+
+            ScenarioContext.Current.Set(userGroup, "savedUserGroup");
+        }
+
+        protected IUserGroup GetSavedUserGroup()
+        {
+            if(HasSavedUserGroup())
+            {
+                return ScenarioContext.Current.Get<IUserGroup>("savedUserGroup");
+            }
+
+            throw new ApplicationException("Usergroup hasn't been saved to ScenarioContext.");
+        }
+
+
+        protected void DeleteUserGroup(string userGroupName)
+        {
+            StepHelper.DeleteUserGroup(userGroupName);
+
+            ScenarioContext.Current["savedUserGroup"] = null;
+        }
+
+        private void DeleteUserGroup(IUserGroup userGroup)
+        {
+            DeleteUserGroup(userGroup.Name);
+        }
+
+        protected IEnumerable<IUserGroup> GetAllUserGroups()
+        {
+            return StepHelper.GetAllUserGroups();
         }
     }
 }

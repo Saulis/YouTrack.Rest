@@ -10,5 +10,12 @@ namespace YouTrack.Rest.Requests
         }
 
         public string RestResource { get { return ResourceBuilder.ToString(); } }
+
+        public bool HasBody
+        {
+            get { return Body != null; }
+        }
+
+        public object Body { get; internal set; }
     }
 }

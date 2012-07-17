@@ -152,5 +152,32 @@ namespace YouTrack.Rest.Features.Steps
 
             return GetUserRepository().GetUser(login);
         }
+
+        public IUserGroup CreateUserGroup(string userGroupName)
+        {
+            Console.WriteLine("Creating user group {0}", userGroupName);
+
+            IUserRepository userRepository = GetUserRepository();
+
+            return userRepository.CreateUserGroup(userGroupName);
+        }
+
+        public IEnumerable<IUserGroup> GetAllUserGroups()
+        {
+            Console.WriteLine("Getting all user groups");
+
+            IUserRepository userRepository = GetUserRepository();
+
+            return userRepository.GetUserGroups();
+        }
+
+        public void DeleteUserGroup(string userGroupName)
+        {
+            Console.WriteLine("Deleting user group {0}", userGroupName);
+
+            IUserRepository userRepository = GetUserRepository();
+
+            userRepository.DeleteUserGroup(userGroupName);
+        }
     }
 }
