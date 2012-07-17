@@ -129,6 +129,7 @@
     <Compile Include="Requests\IYouTrackPostWithFileRequest.cs" />
     <Compile Include="Requests\IYouTrackPutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Requests\Projects\AddSubsystemToProjectRequest.cs" />
     <Compile Include="Requests\Projects\CreateNewProjectRequest.cs" />
     <Compile Include="Requests\Projects\DeleteProjectRequest.cs" />
     <Compile Include="Requests\Projects\GetProjectRequest.cs" />

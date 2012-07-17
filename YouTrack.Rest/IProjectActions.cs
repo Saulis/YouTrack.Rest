@@ -7,6 +7,7 @@ namespace YouTrack.Rest
         string Id { get; }
         IEnumerable<IIssue> GetIssues();
         IEnumerable<IIssue> GetIssues(string filter);
-        IEnumerable<ISubsystem> Subsystems { get; } 
+        IEnumerable<ISubsystem> Subsystems { get; }
+        void AddSubsystem(string subsystem);
     }
 }

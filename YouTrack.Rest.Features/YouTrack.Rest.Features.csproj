@@ -53,6 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\Projects\AddSubsystemToProject.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddSubsystemToProject.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Projects\AddSubsystemToProjectSteps.cs" />
     <Compile Include="Administration\Projects\CreateNewProject.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -182,6 +188,10 @@
     <Compile Include="Steps\TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Administration\Projects\AddSubsystemToProject.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddSubsystemToProject.feature.cs</LastGenOutput>
+    </None>
     <None Include="Administration\Projects\CreateNewProject.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateNewProject.feature.cs</LastGenOutput>

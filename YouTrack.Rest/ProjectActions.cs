@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Deserialization;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 using YouTrack.Rest.Requests.Projects;
 
@@ -23,6 +22,15 @@ namespace YouTrack.Rest
         public IEnumerable<ISubsystem> Subsystems
         {
             get { return subsystems ?? (subsystems = GetSubsystems()); }
+        }
+
+        public void AddSubsystem(string subsystem)
+        {
+            AddSubsystemToProjectRequest request = new AddSubsystemToProjectRequest(Id, subsystem);
+
+            Connection.Put(request);
+
+            subsystems = null;
         }
 
         private IEnumerable<ISubsystem> GetSubsystems()
