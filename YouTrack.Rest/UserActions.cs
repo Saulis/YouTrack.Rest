@@ -8,6 +8,7 @@ namespace YouTrack.Rest
     {
         private readonly IConnection connection;
         private IEnumerable<IUserGroup> groups;
+        private IEnumerable<IUserRole> roles;
         public string Login { get; private set; }
 
         public UserActions(string login, IConnection connection)
@@ -28,6 +29,20 @@ namespace YouTrack.Rest
         public IEnumerable<IUserGroup> Groups
         {
             get { return groups ?? (groups = GetGroups()); }
+        }
+
+        public IEnumerable<IUserRole> Roles
+        {
+            get { return roles ?? (roles = GetRoles()); }
+        }
+
+        private IEnumerable<IUserRole> GetRoles()
+        {
+            GetUserRolesRequest request = new GetUserRolesRequest(Login);
+
+            UserRoleCollection userRoleCollection = connection.Get<UserRoleCollection>(request);
+
+            return userRoleCollection.UserRoles;
         }
 
         private IEnumerable<IUserGroup> GetGroups()

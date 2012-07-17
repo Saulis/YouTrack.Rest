@@ -4,9 +4,9 @@ namespace YouTrack.Rest.Requests
     {
         protected RestRequestResourceBuilder ResourceBuilder { get; private set; }
 
-        protected YouTrackRequest(string projectId)
+        protected YouTrackRequest(string resourceBase)
         {
-            ResourceBuilder = new RestRequestResourceBuilder(projectId);
+            ResourceBuilder = new RestRequestResourceBuilder(resourceBase);
         }
 
         public string RestResource { get { return ResourceBuilder.ToString(); } }

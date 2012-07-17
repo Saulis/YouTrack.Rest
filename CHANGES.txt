@@ -1,6 +1,8 @@
 - Unreleased Changes
-* [FEATURE] Get project subsystems
 * [BUGFIX] Attaching a file using bytes added an extra file extension on the filename.
+* [FEATURE] Get project subsystems
+* [FEATURE] Add subsystem to project
+* [FEATURE] Get user roles
 
 - RELEASE v0.5.0 [2012-07-11]
 * [FEATURE] Get user

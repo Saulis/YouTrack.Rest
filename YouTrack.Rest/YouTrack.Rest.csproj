@@ -71,6 +71,8 @@
     <Compile Include="Deserialization\User.cs" />
     <Compile Include="Deserialization\UserGroup.cs" />
     <Compile Include="Deserialization\UserGroupCollection.cs" />
+    <Compile Include="Deserialization\UserRole.cs" />
+    <Compile Include="Deserialization\UserRoleCollection.cs" />
     <Compile Include="Deserialization\Value_.cs" />
     <Compile Include="Exceptions\InterceptionTypeNotLoadableException.cs" />
     <Compile Include="Exceptions\IssueNotCreatedException.cs" />
@@ -99,7 +101,9 @@
     <Compile Include="IssueActions.cs" />
     <Compile Include="ISubsystem.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="IUserActions.cs" />
     <Compile Include="IUserGroup.cs" />
+    <Compile Include="IUserRole.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectActions.cs" />
     <Compile Include="Repositories\IIssueRepository.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
     <Compile Include="Requests\Users\DeleteUserRequest.cs" />
     <Compile Include="Requests\Users\GetUserRequest.cs" />
+    <Compile Include="Requests\Users\GetUserRolesRequest.cs" />
     <Compile Include="Requests\Users\GetUsersGroupsRequest.cs" />
     <Compile Include="Requests\YouTrackRequest.cs" />
     <Compile Include="User.cs" />

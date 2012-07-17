@@ -94,6 +94,7 @@
     <Compile Include="Requests\Users\CreateANewUserRequestTests.cs" />
     <Compile Include="Requests\Users\DeleteUserRequestTests.cs" />
     <Compile Include="Requests\Users\GetUserRequestTests.cs" />
+    <Compile Include="Requests\Users\GetUserRolesRequestTests.cs" />
     <Compile Include="SessionTests.cs" />
     <Compile Include="Repositories\IssueRepositoryTests.cs" />
     <Compile Include="Requests\LoginRequestTests.cs" />

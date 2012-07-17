@@ -107,6 +107,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Administration\Users\GetUserRoles.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetUserRoles.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\Users\GetUserRolesSteps.cs" />
     <Compile Include="Administration\Users\GetUsersGroups.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -223,6 +229,10 @@
     <None Include="Administration\Users\GetUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Administration\Users\GetUserRoles.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetUserRoles.feature.cs</LastGenOutput>
     </None>
     <None Include="Administration\Users\GetUsersGroups.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -21,9 +21,20 @@ namespace YouTrack.Rest.Tests
         {
             UserGroupCollection userGroupCollection = CreateUserGroupCollection();
             connection.Get<UserGroupCollection>(Arg.Any<GetUsersGroupsRequest>()).Returns(userGroupCollection);
+
+            UserRoleCollection userRoleCollection = CreateUserRoleCollection();
+            connection.Get<UserRoleCollection>(Arg.Any<GetUserRolesRequest>()).Returns(userRoleCollection);
         }
 
-        private static UserGroupCollection CreateUserGroupCollection()
+        private UserRoleCollection CreateUserRoleCollection()
+        {
+            UserRoleCollection userRoleCollection = new UserRoleCollection();
+            userRoleCollection.UserRoles = new List<UserRole>();
+
+            return userRoleCollection;
+        }
+
+        private UserGroupCollection CreateUserGroupCollection()
         {
             UserGroupCollection userGroupCollection = new UserGroupCollection();
             userGroupCollection.UserGroups = new List<UserGroup>();
@@ -64,6 +75,23 @@ namespace YouTrack.Rest.Tests
             userGroups = Sut.Groups;
 
             connection.Received(2).Get<UserGroupCollection>(Arg.Any<GetUsersGroupsRequest>());
+        }
+
+        [Test]
+        public void GetUserRolesRequestIsUsed()
+        {
+            IEnumerable<IUserRole> userRoles = Sut.Roles;
+
+            connection.Received().Get<UserRoleCollection>(Arg.Any<GetUserRolesRequest>());
+        }
+
+        [Test]
+        public void UserRolesAreCached()
+        {
+            IEnumerable<IUserRole> userRoles = Sut.Roles;
+            userRoles = Sut.Roles;
+
+            connection.Received(1).Get<UserRoleCollection>(Arg.Any<GetUserRolesRequest>());
         }
     }
 }

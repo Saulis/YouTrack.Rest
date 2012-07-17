@@ -41,6 +41,11 @@ namespace YouTrack.Rest.Features.Administration.Users
             return ScenarioContext.Current.Get<string>("savedLogin");
         }
 
+        protected IUser GetSavedUser()
+        {
+            return GetUser(GetSavedLogin());
+        }
+
         protected void CreateUser(string login, string password, string email, string fullname = null)
         {
             StepHelper.CreateUser(login, password, email, fullname);
