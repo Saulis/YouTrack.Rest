@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>YouTrack.Rest</id>
-    <version>0.5.0</version>
+    <version>1.0.0</version>
     <authors>Sauli Tähkäpää</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another .NET client for the YouTrack 4.0 REST API</description>
