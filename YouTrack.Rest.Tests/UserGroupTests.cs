@@ -27,7 +27,7 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void AssignRoleToUserGroupRequestIsUsed()
         {
-            Sut.AssignRole("foobar");
+            Sut.AssignRoleToAllProjects("foobar");
 
             connection.Received().Put(Arg.Any<AssignRoleToUserGroupRequest>());
         }

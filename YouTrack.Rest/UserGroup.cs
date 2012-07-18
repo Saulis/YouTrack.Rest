@@ -16,7 +16,7 @@ namespace YouTrack.Rest
             this.connection = connection;
         }
 
-        public void AssignRole(string role)
+        public void AssignRoleToAllProjects(string role)
         {
             AssignRoleToUserGroupRequest request = new AssignRoleToUserGroupRequest(Name, role);
 

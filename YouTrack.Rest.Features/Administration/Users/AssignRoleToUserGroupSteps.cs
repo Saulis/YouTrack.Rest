@@ -28,7 +28,7 @@ namespace YouTrack.Rest.Features.Administration.Users
         {
             IUserGroup userGroup = GetSavedUserGroup();
 
-            userGroup.AssignRole("Developer");
+            userGroup.AssignRoleToAllProjects("Developer");
         }
 
         [Then(@"the role is assigned to the group")]
