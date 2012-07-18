@@ -1,4 +1,7 @@
 - Unreleased Changes
+* Nothing yet!
+
+- RELEASE v1.0.0 [2012-07-18]
 * [BUGFIX] Attaching a file using bytes added an extra file extension on the filename.
 * [FEATURE] Get project subsystems
 * [FEATURE] Add subsystem to project

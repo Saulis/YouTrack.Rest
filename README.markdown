@@ -20,7 +20,8 @@ IIssueRepository issueRepository = youTrackClient.GetIssueRepository();
 // Creating issue
 IIssue issue = issueRepository.CreateIssue("project", "summary", "description");
 
-// YouTrack.Rest uses Castle DynamicProxy for lazy loading which allows you to execute various commands related to an issue without actually fetching the issue from YouTrack.
+// YouTrack.Rest uses Castle DynamicProxy for lazy loading which allows you to execute 
+// various commands related to an issue without actually fetching the issue from YouTrack.
 issue.AttachFile(@"C:\temp\foo.jpg");
 issue.AddComment("blah blah");
 
@@ -29,7 +30,7 @@ Console.WriteLine(issue.Summary);
 
 ```
 
-## Supported API Features (v0.5.0)
+## Supported API Features (v1.0.0)
 
 * Issues
 	* Create New Issue
@@ -48,12 +49,20 @@ Console.WriteLine(issue.Summary);
 		* Create a new project
 		* Get project
 		* Delete project
+		* Get project subsystems
+		* Add subsystem to project
 	* Users
 		* Create a new user
 		* Delete user
 		* Get user
 		* Add user to group
 		* Get users groups
+		* Get user roles
+		* Create user group
+		* Assign user role to user group
+		* Delete user group
+		* Get all user groups
+		* Get user group roles
 	
 ## Contributing
 
