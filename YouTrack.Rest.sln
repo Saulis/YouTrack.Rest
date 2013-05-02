@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTrack.Rest", "YouTrack.Rest\YouTrack.Rest.csproj", "{DF17421E-5AF6-4855-9CB7-73D075CCC9F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTrack.Rest.Tests", "YouTrack.Rest.Tests\YouTrack.Rest.Tests.csproj", "{EE11F3B7-FC39-48EA-AAE5-DC4559465FF1}"
