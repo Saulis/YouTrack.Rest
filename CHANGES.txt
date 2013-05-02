@@ -1,6 +1,9 @@
 - Unreleased Changes
 * Nothing yet!
 
+- RELEASE v1.0.1 [2013-05-02]
+* [FEATURE] Removed ILMerge, latest dependencies are now fetched from NuGet.
+
 - RELEASE v1.0.0 [2012-07-18]
 * [BUGFIX] Attaching a file using bytes added an extra file extension on the filename.
 * [FEATURE] Get project subsystems
