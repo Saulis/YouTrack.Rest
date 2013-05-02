@@ -2,26 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>YouTrack.Rest</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Sauli Tähkäpää</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another .NET client for the YouTrack 4.0 REST API</description>
-    <copyright>Copyright 2012</copyright>
+    <copyright>Copyright 2012-2013</copyright>
 	<tags>JetBrains YouTrack REST API</tags>
 	<dependencies>
-	   <group targetFramework="sl4">
-			<dependency id="RestSharp" version="[103.1]" />
-			<dependency id="Castle.Core" version="[3.0.0.4001]" />
-		</group>
-		<group targetFramework="sl4-wp71">
-			<dependency id="RestSharp" version="[103.1]" />
-			<dependency id="Castle.Core" version="[3.0.0.4001]" />
-		</group>
+		<dependency id="RestSharp" version="103.1" />
+		<dependency id="Castle.Core" version="[3.2,4)" />
 	</dependencies>
   </metadata>
   <files>
 	<file src="bin\Release\YouTrack.Rest.dll" target="lib\net40" />
-	<file src="bin\Release-Unmerged\YouTrack.Rest.dll" target="lib\sl4" />
-	<file src="bin\Release-Unmerged\YouTrack.Rest.dll" target="lib\sl4-wp71" />
+	<file src="bin\Release\YouTrack.Rest.dll" target="lib\sl4" />
+	<file src="bin\Release\YouTrack.Rest.dll" target="lib\sl4-wp71" />
   </files>
 </package>
