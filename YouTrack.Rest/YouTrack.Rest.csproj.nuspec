@@ -10,7 +10,7 @@
 	<tags>JetBrains YouTrack REST API</tags>
 	<dependencies>
 		<dependency id="RestSharp" />
-		<dependency id="Castle.Core" version="[3.2,4)" />
+		<dependency id="Castle.Core" version="[3.0,4)" />
 	</dependencies>
   </metadata>
   <files>
