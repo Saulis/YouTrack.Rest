@@ -67,6 +67,14 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void ConnectionIsCalledOnGetIssuesWithFilterIndexAndSize()
+        {
+            Sut.GetIssues("filter", 0, int.MaxValue);
+
+            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+        }
+
+        [Test]
         public void GetProjectSubsystemsRequestUsed()
         {
             IEnumerable<ISubsystem> subsystems = Sut.Subsystems;

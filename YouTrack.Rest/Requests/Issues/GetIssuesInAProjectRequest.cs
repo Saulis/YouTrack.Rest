@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace YouTrack.Rest.Requests.Issues
 {
@@ -12,6 +13,14 @@ namespace YouTrack.Rest.Requests.Issues
         public GetIssuesInAProjectRequest(string project, string filter) : this(project)
         {
             ResourceBuilder.AddParameter("filter", filter);
+        }
+
+        public GetIssuesInAProjectRequest(string project, string filter, int index, int size)
+            : this(project)
+        {
+            ResourceBuilder.AddParameter("filter", filter);
+            ResourceBuilder.AddParameter("after", index.ToString(CultureInfo.InvariantCulture));
+            ResourceBuilder.AddParameter("max", size.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

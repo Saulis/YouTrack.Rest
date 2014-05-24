@@ -56,6 +56,13 @@ namespace YouTrack.Rest
             return GetIssues(request);
         }
 
+        public IEnumerable<IIssue> GetIssues(string filter, int index, int size)
+        {
+            GetIssuesInAProjectRequest request = new GetIssuesInAProjectRequest(Id, filter, index, size);
+
+            return GetIssues(request);
+        }
+
 
         private IEnumerable<IIssue> GetIssues(GetIssuesInAProjectRequest request)
         {
