@@ -9,8 +9,6 @@ namespace YouTrack.Rest.Deserialization
     //Has to have name Issue for RestSharp deserialization to work properly.
     class Issue
     {
-        private readonly IList<string> _usedFields = new List<string>();
-
         public string Id { get; set; }
         public List<Field> Fields { get; set; }
         public List<Comment> Comments { get; set; } 
@@ -71,12 +69,7 @@ namespace YouTrack.Rest.Deserialization
 
         private Field GetSingleFieldFor(string name)
         {
-            Field result = Fields.Single(GetCompareNamesPredicate(name));
-
-            if(result != null && !_usedFields.Contains(result.Name))
-                _usedFields.Add(result.Name);
-
-            return result;
+            return Fields.Single(GetCompareNamesPredicate(name));
         }
 
         private Func<Field, bool> GetCompareNamesPredicate(string name)
@@ -86,8 +79,6 @@ namespace YouTrack.Rest.Deserialization
 
         public void MapTo(Rest.Issue issue, IConnection connection)
         {
-            _usedFields.Clear();
-
             issue.CommentsCount = GetInt32("commentsCount");
             issue.Created = GetDateTime("created");
             issue.Description = GetString("description", "");
@@ -103,19 +94,12 @@ namespace YouTrack.Rest.Deserialization
             issue.UpdaterName = GetString("updaterName");
             issue.VotesCount = GetInt32("votes");
 
-            IList<ICustomField> customFields = null;
+            issue.Fields = new Dictionary<string, IEnumerable<string>>(StringComparer.InvariantCultureIgnoreCase);
             foreach (Field field in Fields)
             {
-                if (!_usedFields.Contains(field.Name))
-                {
-                    if(customFields == null)
-                        customFields = new List<ICustomField>();
-
-                    customFields.Add(new CustomField(field.Name, field.Values.ConvertAll(v => v.ToString())));
-                }
+                if (!string.IsNullOrEmpty(field.Name))
+                    issue.Fields[field.Name] = field.Values.ConvertAll(v => v.ToString());
             }
-
-            issue.CustomFields = customFields;
 
             issue.Comments = Comments.Select(c => c.GetComment(connection));
         }

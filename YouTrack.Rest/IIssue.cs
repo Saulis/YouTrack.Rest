@@ -19,9 +19,10 @@ namespace YouTrack.Rest
         string ReporterName { get; }
         int VotesCount { get; }
         int CommentsCount { get; }
-        IEnumerable<ICustomField> CustomFields { get; }
 
-        string GetCustomFieldValue(string fieldName);
-        IEnumerable<string> GetCustomFieldValues(string fieldName);
+        IDictionary<string, IEnumerable<string>> Fields { get; }
+        bool HasField(string fieldName);
+        string GetFieldValue(string fieldName);
+        IEnumerable<string> GetFieldValues(string fieldName);
     }
 }

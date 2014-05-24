@@ -52,7 +52,6 @@
     <Compile Include="Commands.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Connection.cs" />
-    <Compile Include="CustomField.cs" />
     <Compile Include="Deserialization\Comment.cs" />
     <Compile Include="Deserialization\CommentCollection.cs" />
     <Compile Include="Deserialization\Field.cs" />
@@ -83,7 +82,6 @@
     <Compile Include="IAttachment.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
-    <Compile Include="ICustomField.cs" />
     <Compile Include="IIssueActions.cs" />
     <Compile Include="Interception\ILoadable.cs" />
     <Compile Include="Interception\LoadableProxyInterceptor.cs" />

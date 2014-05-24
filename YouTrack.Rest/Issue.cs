@@ -23,7 +23,7 @@ namespace YouTrack.Rest
         public string Priority { get; internal set; }
         public string State { get; internal set; }
         public string Subsystem { get; internal set; }
-        public IEnumerable<ICustomField> CustomFields { get; internal set; }
+        public IDictionary<string, IEnumerable<string>> Fields { get; internal set; }
 
         public bool IsLoaded { get; private set; }
 
@@ -58,9 +58,19 @@ namespace YouTrack.Rest
             IsLoaded = false;
         }
 
-        public string GetCustomFieldValue(string fieldName)
+        public IDictionary<string, IEnumerable<string>> GetAllFields()
         {
-            IEnumerable<string> values = GetCustomFieldValues(fieldName);
+            return Fields;
+        }
+
+        public bool HasField(string fieldName)
+        {
+            return Fields != null && Fields.ContainsKey(fieldName);
+        }
+
+        public string GetFieldValue(string fieldName)
+        {
+            IEnumerable<string> values = GetFieldValues(fieldName);
             if (values != null)
             {
                 int valuesCount = values.Count();
@@ -78,20 +88,16 @@ namespace YouTrack.Rest
             return null;
         }
 
-        public IEnumerable<string> GetCustomFieldValues(string fieldName)
+        public IEnumerable<string> GetFieldValues(string fieldName)
         {
-            if (CustomFields != null)
+            if (HasField(fieldName))
             {
-                foreach (ICustomField field in CustomFields)
-                {
-                    if (field.Name == fieldName)
-                    {
-                        return field.Values;
-                    }
-                }
+                return Fields[fieldName];
             }
 
             return null;
         }
+
+
     }
 }

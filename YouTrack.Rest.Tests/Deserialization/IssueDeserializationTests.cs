@@ -126,8 +126,9 @@ namespace YouTrack.Rest.Tests.Deserialization
         {
             Sut.MapTo(issue, connection);
 
-            Assert.IsNotNull(issue.CustomFields);
-            Assert.That(issue.GetCustomFieldValue(DeserializedIssueMock.ExpectedFieldName), Is.EqualTo(DeserializedIssueMock.ExpectedFieldValue));
+            Assert.IsNotNull(issue.Fields);
+            Assert.IsTrue(issue.HasField(DeserializedIssueMock.ExpectedFieldName));
+            Assert.That(issue.GetFieldValue(DeserializedIssueMock.ExpectedFieldName), Is.EqualTo(DeserializedIssueMock.ExpectedFieldValue));
         }
 
         [Test]
