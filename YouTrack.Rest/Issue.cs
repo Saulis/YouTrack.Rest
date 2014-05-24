@@ -38,8 +38,7 @@ namespace YouTrack.Rest
             IsLoaded = true;
         }
 
-        public Issue(string issueId, IConnection connection)
-            : base(issueId, connection)
+        public Issue(string issueId, IConnection connection) : base(issueId, connection)
         {
             IsLoaded = false;
         }
@@ -56,11 +55,6 @@ namespace YouTrack.Rest
             base.ApplyCommands(commands);
 
             IsLoaded = false;
-        }
-
-        public IDictionary<string, IEnumerable<string>> GetAllFields()
-        {
-            return Fields;
         }
 
         public bool HasField(string fieldName)
