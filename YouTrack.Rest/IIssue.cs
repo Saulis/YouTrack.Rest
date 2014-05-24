@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace YouTrack.Rest
 {
@@ -18,5 +19,9 @@ namespace YouTrack.Rest
         string ReporterName { get; }
         int VotesCount { get; }
         int CommentsCount { get; }
+        IEnumerable<ICustomField> CustomFields { get; }
+
+        string GetCustomFieldValue(string fieldName);
+        IEnumerable<string> GetCustomFieldValues(string fieldName);
     }
 }

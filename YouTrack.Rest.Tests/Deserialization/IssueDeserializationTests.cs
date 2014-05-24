@@ -122,6 +122,15 @@ namespace YouTrack.Rest.Tests.Deserialization
         }
 
         [Test]
+        public void CustomFieldsIsWrapped()
+        {
+            Sut.MapTo(issue, connection);
+
+            Assert.IsNotNull(issue.CustomFields);
+            Assert.That(issue.GetCustomFieldValue(DeserializedIssueMock.ExpectedFieldName), Is.EqualTo(DeserializedIssueMock.ExpectedFieldValue));
+        }
+
+        [Test]
         public void UpdatedIsWrapped()
         {
             Sut.MapTo(issue, connection);

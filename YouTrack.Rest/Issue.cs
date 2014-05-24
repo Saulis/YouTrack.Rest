@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Interception;
 using YouTrack.Rest.Requests;
@@ -22,6 +23,7 @@ namespace YouTrack.Rest
         public string Priority { get; internal set; }
         public string State { get; internal set; }
         public string Subsystem { get; internal set; }
+        public IEnumerable<ICustomField> CustomFields { get; internal set; }
 
         public bool IsLoaded { get; private set; }
 
@@ -36,7 +38,8 @@ namespace YouTrack.Rest
             IsLoaded = true;
         }
 
-        public Issue(string issueId, IConnection connection) : base(issueId, connection)
+        public Issue(string issueId, IConnection connection)
+            : base(issueId, connection)
         {
             IsLoaded = false;
         }
@@ -53,6 +56,42 @@ namespace YouTrack.Rest
             base.ApplyCommands(commands);
 
             IsLoaded = false;
+        }
+
+        public string GetCustomFieldValue(string fieldName)
+        {
+            IEnumerable<string> values = GetCustomFieldValues(fieldName);
+            if (values != null)
+            {
+                int valuesCount = values.Count();
+
+                if (valuesCount > 1)
+                {
+                    throw new IndexOutOfRangeException(
+                        string.Format("Found {0} values for custom field '{1}', but expected only one.",
+                        VotesCount, fieldName));
+                }
+
+                return values.First();
+            }
+
+            return null;
+        }
+
+        public IEnumerable<string> GetCustomFieldValues(string fieldName)
+        {
+            if (CustomFields != null)
+            {
+                foreach (ICustomField field in CustomFields)
+                {
+                    if (field.Name == fieldName)
+                    {
+                        return field.Values;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
