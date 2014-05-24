@@ -5,6 +5,8 @@ using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
 using YouTrack.Rest.Requests.Issues;
 using YouTrack.Rest.Requests.Projects;
+using System;
+using System.Linq.Expressions;
 
 namespace YouTrack.Rest.Tests
 {
@@ -58,20 +60,25 @@ namespace YouTrack.Rest.Tests
             deserializedIssue.Received().GetIssue(connection);
         }
 
+        void AssertConnectionReceivedProjectRequest(Expression<Predicate<GetIssuesInAProjectRequest>> predicate) 
+        {
+            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Is<GetIssuesInAProjectRequest>(predicate));
+        }
+
         [Test]
         public void ConnectionIsCalledOnGetIssuesWithFilter()
         {
             Sut.GetIssues("filter");
 
-            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+            AssertConnectionReceivedProjectRequest(r => r.RestResource.Contains("filter=filter"));
         }
 
         [Test]
         public void ConnectionIsCalledOnGetIssuesWithFilterIndexAndSize()
         {
-            Sut.GetIssues("filter", 0, int.MaxValue);
+            Sut.GetIssues("filter2", 12, 34);
 
-            connection.Received().Get<List<Rest.Deserialization.Issue>>(Arg.Any<GetIssuesInAProjectRequest>());
+            AssertConnectionReceivedProjectRequest(r => r.RestResource.Contains("filter=filter2&after=12&max=34"));
         }
 
         [Test]
@@ -85,8 +92,6 @@ namespace YouTrack.Rest.Tests
         [Test]
         public void SubsystemAreCached()
         {
-            
-
             IEnumerable<ISubsystem> subsystems = Sut.Subsystems;
             subsystems = Sut.Subsystems;
 
