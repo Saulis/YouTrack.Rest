@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Castle.Components.DictionaryAdapter;
 using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest.Deserialization
@@ -94,14 +93,21 @@ namespace YouTrack.Rest.Deserialization
             issue.UpdaterName = GetString("updaterName");
             issue.VotesCount = GetInt32("votes");
 
-            issue.Fields = new Dictionary<string, IEnumerable<string>>(StringComparer.InvariantCultureIgnoreCase);
+            MapFields(issue.Fields);
+            issue.Comments = Comments.Select(c => c.GetComment(connection));
+        }
+
+        private void MapFields(IDictionary<string, IEnumerable<string>> fields)
+        {
+            fields.Clear();
+            
             foreach (Field field in Fields)
             {
                 if (!string.IsNullOrEmpty(field.Name))
-                    issue.Fields[field.Name] = field.Values.ConvertAll(v => v.ToString());
+                {
+                    fields[field.Name] = field.Values.ConvertAll(v => v.ToString());
+                }
             }
-
-            issue.Comments = Comments.Select(c => c.GetComment(connection));
         }
     }
 }

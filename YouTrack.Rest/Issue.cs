@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Interception;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
@@ -40,6 +40,7 @@ namespace YouTrack.Rest
 
         public Issue(string issueId, IConnection connection) : base(issueId, connection)
         {
+            Fields = new Dictionary<string, IEnumerable<string>>(StringComparer.InvariantCultureIgnoreCase);
             IsLoaded = false;
         }
 
@@ -64,22 +65,19 @@ namespace YouTrack.Rest
 
         public string GetFieldValue(string fieldName)
         {
-            IEnumerable<string> values = GetFieldValues(fieldName);
-            if (values != null)
+            if (!HasField(fieldName))
             {
-                int valuesCount = values.Count();
-
-                if (valuesCount > 1)
-                {
-                    throw new IndexOutOfRangeException(
-                        string.Format("Found {0} values for custom field '{1}', but expected only one.",
-                        VotesCount, fieldName));
-                }
-
-                return values.First();
+                return string.Empty;
             }
 
-            return null;
+            IEnumerable<string> values = GetFieldValues(fieldName);
+
+            if (values.Count() == 1)
+            {
+                return values.Single();
+            }
+
+            throw new UnexpectedMultipleFieldValuesException(string.Format("Expected a single value for field {0}, got {1} values.", fieldName, values.Count()));
         }
 
         public IEnumerable<string> GetFieldValues(string fieldName)
@@ -89,7 +87,7 @@ namespace YouTrack.Rest
                 return Fields[fieldName];
             }
 
-            return null;
+            return new string[0];
         }
 
 

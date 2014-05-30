@@ -23,8 +23,8 @@ namespace YouTrack.Rest.Tests.Repositories
         public const int VotesCount = 2;
         public const int UpdatedMillis = 2123;
         public const int CreatedMillis = 1234;
-        public const string ExpectedFieldName = "cusomField";
-        public const string ExpectedFieldValue = "cusomFieldValue";
+        public const string CustomFieldName = "customField";
+        public const string CustomFieldValue = "customFieldValue";
 
         public DeserializedIssueMock()
         {
@@ -60,7 +60,7 @@ namespace YouTrack.Rest.Tests.Repositories
             fields.Add(CreateField("subsystem", Subsystem));
             fields.Add(CreateField("updated", UpdatedMillis.ToString()));
             fields.Add(CreateField("votes", VotesCount.ToString()));
-            fields.Add(CreateField(ExpectedFieldName, ExpectedFieldValue));
+            fields.Add(CreateField(CustomFieldName, CustomFieldValue));
 
             return fields;
         }
