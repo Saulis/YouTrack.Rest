@@ -4,7 +4,7 @@ Easy-to-use .NET client for Jetbrains' YouTrack REST API (http://www.jetbrains.c
 
 Built for YouTrack v4.0 (http://confluence.jetbrains.net/display/YTD4/YouTrack+REST+API+Reference)
 
-Should also work for 5.x, but haven't been 100% verified.
+Should also work for 5.x, but hasn't been 100% verified.
 
 Built on top of RestSharp: https://github.com/restsharp/RestSharp / http://restsharp.org
 and CastleProject's DynamicProxy: https://github.com/castleproject/Castle.Core-READONLY / http://www.castleproject.org/
