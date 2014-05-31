@@ -1,6 +1,10 @@
 - Unreleased Changes
 * Nothing yet!
 
+- RELEASE v1.0.5 [2014-05-31]
+* [FEATURE] Fetching Project Issues now supports indexing (by ssharunas)
+* [FEATURE] All Issues field values can now be accesssed (by ssharunas)
+
 - RELEASE v1.0.4 [2013-05-31]
 * [BUGFIX] Reverted back to using Castle.Core 3.2.0
 
