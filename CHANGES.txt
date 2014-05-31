@@ -1,7 +1,10 @@
 - Unreleased Changes
 * Nothing yet!
 
-- RELEASE v1.0.1 [2013-05-02]
+- RELEASE v1.0.4 [2013-05-31]
+* [BUGFIX] Reverted back to using Castle.Core 3.2.0
+
+- RELEASE v1.0.3 [2013-05-02]
 * [FEATURE] Removed ILMerge, latest dependencies are now fetched from NuGet.
 
 - RELEASE v1.0.0 [2012-07-18]
