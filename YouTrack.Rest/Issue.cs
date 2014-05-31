@@ -77,7 +77,7 @@ namespace YouTrack.Rest
                 return values.Single();
             }
 
-            throw new UnexpectedMultipleFieldValuesException(string.Format("Expected a single value for field {0}, got {1} values.", fieldName, values.Count()));
+            throw new UnexpectedMultipleFieldValuesException(string.Format("Expected a single value for field '{0}', got {1} values.", fieldName, values.Count()));
         }
 
         public IEnumerable<string> GetFieldValues(string fieldName)

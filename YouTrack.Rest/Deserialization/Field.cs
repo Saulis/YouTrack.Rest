@@ -17,7 +17,7 @@ namespace YouTrack.Rest.Deserialization
                 return Values.Single().Value;
             }
 
-            throw new IssueDeserializationException(String.Format("Field {0} has {1} values.", Name, Values.Count));
+            throw new IssueDeserializationException(String.Format("Field '{0}' has {1} values.", Name, Values.Count));
         }
 
         private bool HasSingleValue()
