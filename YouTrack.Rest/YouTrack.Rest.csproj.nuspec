@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>YouTrack.Rest</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>Sauli Tähkäpää</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Another .NET client for the YouTrack 4.0 REST API</description>
-    <copyright>Copyright 2012-2013</copyright>
+    <copyright>Copyright 2012-2014</copyright>
 	<tags>JetBrains YouTrack REST API</tags>
 	<dependencies>
-		<dependency id="RestSharp" />
+		<dependency id="RestSharp" version="104.1.0" />
 		<dependency id="Castle.Core" version="[3.2.0,4)" />
 	</dependencies>
   </metadata>
