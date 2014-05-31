@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
 using YouTrack.Rest.Deserialization;
+using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Interception;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 using YouTrack.Rest.Tests.Repositories;
 
@@ -168,6 +168,57 @@ namespace YouTrack.Rest.Tests
             Sut.ApplyCommands("Foo", "Bar");
 
             Assert.IsFalse(Sut.IsLoaded);
+        }
+
+        [Test]
+        public void HasField()
+        {
+            Sut.Fields.Add("foo", new[] {"bar"});
+
+            Assert.That(Sut.HasField("FOO"));
+        }
+
+        [Test]
+        public void FieldHasSingleValue()
+        {
+            Sut.Fields.Add("foo", new[] { "bar" });
+
+            Assert.That(Sut.GetFieldValue("foo"), Is.EqualTo("bar"));
+        }
+
+        [Test]
+        public void FieldHasMultipleValues()
+        {
+            var expectedValues = new[] {"bar", "bar2"};
+            Sut.Fields.Add("foo", expectedValues);
+
+            Assert.That(Sut.GetFieldValues("foo"), Is.EquivalentTo(expectedValues));
+        }
+
+        [Test]
+        public void ExceptionIsThrownOnUnexpectedMultipleValues()
+        {
+            var expectedValues = new[] { "bar", "bar2" };
+            Sut.Fields.Add("foo", expectedValues);
+
+            Assert.Throws<UnexpectedMultipleFieldValuesException>(() => Sut.GetFieldValue("foo"));
+        }
+
+        [Test]
+        public void DoesNotHaveField()
+        {
+            Sut.Fields.Remove("FOO");
+
+            Assert.That(!Sut.HasField("foo"));
+        }
+
+        [Test]
+        public void EmptyReturnedOnMissingField()
+        {
+            Sut.Fields.Remove("FOO");
+
+            Assert.That(Sut.GetFieldValue("foo"), Is.EqualTo(String.Empty));
+            Assert.That(Sut.GetFieldValues("foo"), Is.Empty);
         }
     }
 }

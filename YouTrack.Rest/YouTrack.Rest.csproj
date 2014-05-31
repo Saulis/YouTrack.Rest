@@ -74,6 +74,7 @@
     <Compile Include="Exceptions\ParameterAlreadyAddedException.cs" />
     <Compile Include="Exceptions\RequestFailedException.cs" />
     <Compile Include="Exceptions\RequestNotFoundException.cs" />
+    <Compile Include="Exceptions\UnexpectedMultipleFieldValuesException.cs" />
     <Compile Include="Factories\IIssueFactory.cs" />
     <Compile Include="Factories\IProjectFactory.cs" />
     <Compile Include="Factories\IssueFactory.cs" />

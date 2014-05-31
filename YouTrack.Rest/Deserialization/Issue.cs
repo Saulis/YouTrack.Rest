@@ -28,7 +28,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetInt32();
             }
 
-            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple integer values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue '{0}' has zero or multiple integer values for field '{1}'.", Id, name));
         }
 
         private DateTime GetDateTime(string name)
@@ -38,7 +38,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetDateTime();
             }
 
-            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple datetime values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue '{0}' has zero or multiple datetime values for field '{1}'.", Id, name));
         }
 
         private string GetString(string name, string defaultValue = null)
@@ -53,7 +53,7 @@ namespace YouTrack.Rest.Deserialization
                 return GetSingleFieldFor(name).GetValue();
             }
 
-            throw new IssueDeserializationException(String.Format("Issue [{0}] has zero or multiple string values for field [{1}].", Id, name));
+            throw new IssueDeserializationException(String.Format("Issue '{0}' has zero or multiple string values for field '{1}'.", Id, name));
         }
 
         private bool HasFieldFor(string name)
@@ -93,7 +93,21 @@ namespace YouTrack.Rest.Deserialization
             issue.UpdaterName = GetString("updaterName");
             issue.VotesCount = GetInt32("votes");
 
+            MapFields(issue.Fields);
             issue.Comments = Comments.Select(c => c.GetComment(connection));
+        }
+
+        private void MapFields(IDictionary<string, IEnumerable<string>> fields)
+        {
+            fields.Clear();
+            
+            foreach (Field field in Fields)
+            {
+                if (!string.IsNullOrEmpty(field.Name))
+                {
+                    fields[field.Name] = field.Values.ConvertAll(v => v.ToString());
+                }
+            }
         }
     }
 }

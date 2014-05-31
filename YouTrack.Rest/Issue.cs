@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Interception;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest
@@ -22,6 +23,7 @@ namespace YouTrack.Rest
         public string Priority { get; internal set; }
         public string State { get; internal set; }
         public string Subsystem { get; internal set; }
+        public IDictionary<string, IEnumerable<string>> Fields { get; internal set; }
 
         public bool IsLoaded { get; private set; }
 
@@ -38,6 +40,7 @@ namespace YouTrack.Rest
 
         public Issue(string issueId, IConnection connection) : base(issueId, connection)
         {
+            Fields = new Dictionary<string, IEnumerable<string>>(StringComparer.InvariantCultureIgnoreCase);
             IsLoaded = false;
         }
 
@@ -54,5 +57,39 @@ namespace YouTrack.Rest
 
             IsLoaded = false;
         }
+
+        public bool HasField(string fieldName)
+        {
+            return Fields != null && Fields.ContainsKey(fieldName);
+        }
+
+        public string GetFieldValue(string fieldName)
+        {
+            if (!HasField(fieldName))
+            {
+                return string.Empty;
+            }
+
+            IEnumerable<string> values = GetFieldValues(fieldName);
+
+            if (values.Count() == 1)
+            {
+                return values.Single();
+            }
+
+            throw new UnexpectedMultipleFieldValuesException(string.Format("Expected a single value for field '{0}', got {1} values.", fieldName, values.Count()));
+        }
+
+        public IEnumerable<string> GetFieldValues(string fieldName)
+        {
+            if (HasField(fieldName))
+            {
+                return Fields[fieldName];
+            }
+
+            return new string[0];
+        }
+
+
     }
 }
