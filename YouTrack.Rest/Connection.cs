@@ -56,6 +56,7 @@ namespace YouTrack.Rest
             {
                 case HttpStatusCode.BadRequest:
                 case HttpStatusCode.Forbidden:
+                case HttpStatusCode.NotAcceptable:
                 case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.UnsupportedMediaType:
                     throw new RequestFailedException(response);
@@ -167,7 +168,18 @@ namespace YouTrack.Rest
             IRestRequest restRequest = CreateRestRequest(request, method);
             AddFileToRestRequest(request, restRequest);
 
+            //Using Accept=application/xml for files doesn't work in 5.x http://youtrack.jetbrains.com/issue/JT-25271
+            ReplaceAcceptWithJson(restRequest);
+
             return restRequest;
+        }
+
+        private void ReplaceAcceptWithJson(IRestRequest restRequest)
+        {
+            foreach (var parameter in restRequest.Parameters.Where(p => p.Name == "Accept"))
+            {
+                parameter.Value = "application/json";
+            }
         }
 
         private void AddFileToRestRequest(IYouTrackFileRequest request, IRestRequest restRequest)

@@ -138,6 +138,15 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void RequestFailedExceptionThrownOnNotAcceptable()
+        {
+            restResponse.StatusCode.Returns(HttpStatusCode.NotAcceptable);
+
+            Assert.Throws<RequestFailedException>(() => Sut.Get(Mock<IYouTrackGetRequest>()));
+        }
+
+
+        [Test]
         public void RequestFailedExceptionThrownOnBadRequest()
         {
             restResponse.StatusCode.Returns(HttpStatusCode.BadRequest);
@@ -234,6 +243,21 @@ namespace YouTrack.Rest.Tests
             Sut.PostWithFile(postWithFileRequest);
 
             AssertThatRestClientExecuteWasCalledWithMethod(Method.POST);
+        }
+
+        [Test]
+        public void PostingFileRequestUsesJson()
+        {
+            Sut.PostWithFile(postWithFileRequest);
+
+            IRestRequest restRequest = GetRestRequest();
+
+            Assert.That(restRequest.Parameters.Single(p => p.Name == "Accept").Value, Is.EqualTo("application/json"));
+        }
+
+        private IRestRequest GetRestRequest()
+        {
+            return (IRestRequest)restClient.ReceivedCalls().Single().GetArguments()[0];
         }
 
         [Test]
