@@ -87,7 +87,7 @@
         </member>
         <member name="F:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator._authorizationValue">
             <summary>
-            Stores the Authoriztion header value as "OAuth accessToken". used for performance.
+            Stores the Authorization header value as "[tokenType] accessToken". used for performance.
             </summary>
         </member>
         <member name="M:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String)">
@@ -96,6 +96,17 @@
             </summary>
             <param name="accessToken">
             The access token.
+            </param>
+        </member>
+        <member name="M:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator"/> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+            <param name="tokenType">
+            The token type.
             </param>
         </member>
         <member name="F:RestSharp.Authenticators.OAuth.OAuthTools._encoding">
@@ -369,6 +380,14 @@
             <param name="p">Parameter to add</param>
             <returns></returns>
         </member>
+        <member name="M:RestSharp.RestClientExtensions.RemoveDefaultParameter(RestSharp.IRestClient,System.String)">
+            <summary>
+            Removes a parameter from the default parameters that are used on every request made with this client instance
+            </summary>
+            <param name="restClient">The IRestClient instance</param>
+            <param name="name">The name of the parameter that needs to be removed</param>
+            <returns></returns>
+        </member>
         <member name="M:RestSharp.RestClientExtensions.AddDefaultParameter(RestSharp.IRestClient,System.String,System.Object)">
             <summary>
             Adds a HTTP parameter (QueryString for GET, DELETE, OPTIONS and HEAD; Encoded form for POST and PUT)
@@ -529,6 +548,16 @@
             HttpWebRequest wrapper (async methods)
             </summary>
         </member>
+        <member name="P:RestSharp.IHttp.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
+        <member name="P:RestSharp.IHttp.RequestBodyBytes">
+            <summary>
+            An alternative to RequestBody, for when the caller already has the byte array.
+            </summary>
+        </member>
         <member name="M:RestSharp.Http.Post">
             <summary>
             Execute a POST request
@@ -623,6 +652,11 @@
             True if files have been set to be uploaded
             </summary>
         </member>
+        <member name="P:RestSharp.Http.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.Http.UserAgent">
             <summary>
             UserAgent to be sent with request
@@ -643,6 +677,11 @@
             The System.Net.CookieContainer to be used for the request
             </summary>
         </member>
+        <member name="P:RestSharp.Http.ResponseWriter">
+            <summary>
+            The method to use to write the response instead of reading into RawBytes
+            </summary>
+        </member>
         <member name="P:RestSharp.Http.Files">
             <summary>
             Collection of files to be sent with request
@@ -661,6 +700,12 @@
         <member name="P:RestSharp.Http.MaxRedirects">
             <summary>
             Maximum number of automatic redirects to follow if FollowRedirects is true
+            </summary>
+        </member>
+        <member name="P:RestSharp.Http.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server.
             </summary>
         </member>
         <member name="P:RestSharp.Http.Headers">
@@ -686,6 +731,11 @@
         <member name="P:RestSharp.Http.RequestContentType">
             <summary>
             Content type of the request body.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Http.RequestBodyBytes">
+            <summary>
+            An alternative to RequestBody, for when the caller already has the byte array.
             </summary>
         </member>
         <member name="P:RestSharp.Http.Url">
@@ -1028,7 +1078,16 @@
             <param name="generic"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:RestSharp.Extensions.ReflectionExtensions.FindEnumValue(System.Type,System.String,System.Globalization.CultureInfo)" -->
+        <member name="M:RestSharp.Extensions.ReflectionExtensions.FindEnumValue(System.Type,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Find a value from a System.Enum by trying several possible variants
+            of the string value of the enum.
+            </summary>
+            <param name="type">Type of enum</param>
+            <param name="value">Value for which to search</param>
+            <param name="culture">The culture used to calculate the name variants</param>
+            <returns></returns>
+        </member>
         <member name="T:RestSharp.Extensions.XmlExtensions">
             <summary>
             XML Extension Methods
@@ -1356,6 +1415,11 @@
             <param name="value">Value of the segment to add</param>
             <returns></returns>
         </member>
+        <member name="P:RestSharp.IRestRequest.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.IRestRequest.JsonSerializer">
             <summary>
             Serializer to use when writing JSON request bodies. Used if RequestFormat is Json.
@@ -1366,6 +1430,11 @@
             <summary>
             Serializer to use when writing XML request bodies. Used if RequestFormat is Xml.
             By default the included XmlSerializer is used.
+            </summary>
+        </member>
+        <member name="P:RestSharp.IRestRequest.ResponseWriter">
+            <summary>
+            Set this to write response to Stream rather than reading into memory.
             </summary>
         </member>
         <member name="P:RestSharp.IRestRequest.Parameters">
@@ -1439,6 +1508,12 @@
             This Number is incremented each time the RestClient sends the request.
             Useful when using Asynchronous Execution with Callbacks
             </remarks>
+        </member>
+        <member name="P:RestSharp.IRestRequest.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server. The default is false.
+            </summary>
         </member>
         <member name="T:RestSharp.IRestResponse">
             <summary>
@@ -1521,8 +1596,9 @@
         </member>
         <member name="P:RestSharp.IRestResponse.ErrorException">
             <summary>
-            The exception thrown during the request, if any
+            Exceptions thrown during the request, if any.  
             </summary>
+            <remarks>Will contain only network transport or framework exceptions thrown during the request.  HTTP protocol errors are handled by RestSharp and will not appear here.</remarks>
         </member>
         <member name="T:RestSharp.IRestResponse`1">
             <summary>
@@ -1801,6 +1877,12 @@
             X509CertificateCollection to be sent with request
             </summary>
         </member>
+        <member name="P:RestSharp.RestClient.Proxy">
+            <summary>
+            Proxy to use for requests made by this client instance.
+            Passed on to underlying WebRequest if set.
+            </summary>
+        </member>
         <member name="P:RestSharp.RestClient.FollowRedirects">
             <summary>
             Default is true. Determine whether or not requests that result in 
@@ -1840,12 +1922,6 @@
             <example>
             client.BaseUrl = "http://example.com";
             </example>
-        </member>
-        <member name="P:RestSharp.RestClient.Proxy">
-            <summary>
-            Proxy to use for requests made by this client instance.
-            Passed on to underying WebRequest if set.
-            </summary>
         </member>
         <member name="T:RestSharp.RestRequest">
             <summary>
@@ -2026,6 +2102,11 @@
             Internal Method so that RestClient can increase the number of attempts
             </summary>
         </member>
+        <member name="P:RestSharp.RestRequest.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.RestRequest.JsonSerializer">
             <summary>
             Serializer to use when writing JSON request bodies. Used if RequestFormat is Json.
@@ -2036,6 +2117,17 @@
             <summary>
             Serializer to use when writing XML request bodies. Used if RequestFormat is Xml.
             By default the included XmlSerializer is used.
+            </summary>
+        </member>
+        <member name="P:RestSharp.RestRequest.ResponseWriter">
+            <summary>
+            Set this to write response to Stream rather than reading into memory.
+            </summary>
+        </member>
+        <member name="P:RestSharp.RestRequest.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server. The default is false.
             </summary>
         </member>
         <member name="P:RestSharp.RestRequest.Parameters">
@@ -2406,6 +2498,17 @@
             The internal member dictionary.
             </summary>
         </member>
+        <member name="M:RestSharp.JsonObject.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:RestSharp.JsonObject"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.JsonObject.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new instance of <see cref="T:RestSharp.JsonObject"/>.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys, or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.</param>
+        </member>
         <member name="M:RestSharp.JsonObject.Add(System.String,System.Object)">
             <summary>
             Adds the specified key.
@@ -2419,7 +2522,7 @@
             </summary>
             <param name="key">The key.</param>
             <returns>
-            	<c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+                <c>true</c> if the specified key contains key; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:RestSharp.JsonObject.Remove(System.String)">
@@ -2554,7 +2657,7 @@
             <param name="json">
             A JSON string.
             </param>
-            <param name="object">
+            <param name="obj">
             The object.
             </param>
             <returns>

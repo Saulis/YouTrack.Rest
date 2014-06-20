@@ -87,7 +87,7 @@
         </member>
         <member name="F:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator._authorizationValue">
             <summary>
-            Stores the Authoriztion header value as "OAuth accessToken". used for performance.
+            Stores the Authorization header value as "[tokenType] accessToken". used for performance.
             </summary>
         </member>
         <member name="M:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String)">
@@ -96,6 +96,17 @@
             </summary>
             <param name="accessToken">
             The access token.
+            </param>
+        </member>
+        <member name="M:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.OAuth2AuthorizationRequestHeaderAuthenticator"/> class.
+            </summary>
+            <param name="accessToken">
+            The access token.
+            </param>
+            <param name="tokenType">
+            The token type.
             </param>
         </member>
         <member name="F:RestSharp.Authenticators.OAuth.OAuthTools._encoding">
@@ -447,7 +458,16 @@
             <param name="generic"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:RestSharp.Extensions.ReflectionExtensions.FindEnumValue(System.Type,System.String,System.Globalization.CultureInfo)" -->
+        <member name="M:RestSharp.Extensions.ReflectionExtensions.FindEnumValue(System.Type,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Find a value from a System.Enum by trying several possible variants
+            of the string value of the enum.
+            </summary>
+            <param name="type">Type of enum</param>
+            <param name="value">Value for which to search</param>
+            <param name="culture">The culture used to calculate the name variants</param>
+            <returns></returns>
+        </member>
         <member name="M:RestSharp.Extensions.StringExtensions.UrlEncode(System.String)">
             <summary>
             Uses Uri.EscapeDataString() based on recommendations on MSDN
@@ -628,6 +648,16 @@
             HttpWebRequest wrapper (sync methods)
             </summary>
         </member>
+        <member name="P:RestSharp.IHttp.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
+        <member name="P:RestSharp.IHttp.RequestBodyBytes">
+            <summary>
+            An alternative to RequestBody, for when the caller already has the byte array.
+            </summary>
+        </member>
         <member name="M:RestSharp.Http.AsPostAsync(System.Action{RestSharp.HttpResponse},System.String)">
             <summary>
             Execute an async POST-style request with the specified HTTP Method.  
@@ -722,6 +752,11 @@
             True if files have been set to be uploaded
             </summary>
         </member>
+        <member name="P:RestSharp.Http.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.Http.UserAgent">
             <summary>
             UserAgent to be sent with request
@@ -742,6 +777,11 @@
             The System.Net.CookieContainer to be used for the request
             </summary>
         </member>
+        <member name="P:RestSharp.Http.ResponseWriter">
+            <summary>
+            The method to use to write the response instead of reading into RawBytes
+            </summary>
+        </member>
         <member name="P:RestSharp.Http.Files">
             <summary>
             Collection of files to be sent with request
@@ -760,6 +800,12 @@
         <member name="P:RestSharp.Http.MaxRedirects">
             <summary>
             Maximum number of automatic redirects to follow if FollowRedirects is true
+            </summary>
+        </member>
+        <member name="P:RestSharp.Http.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server.
             </summary>
         </member>
         <member name="P:RestSharp.Http.Headers">
@@ -785,6 +831,11 @@
         <member name="P:RestSharp.Http.RequestContentType">
             <summary>
             Content type of the request body.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Http.RequestBodyBytes">
+            <summary>
+            An alternative to RequestBody, for when the caller already has the byte array.
             </summary>
         </member>
         <member name="P:RestSharp.Http.Url">
@@ -1140,6 +1191,90 @@
             <param name="callback">Callback function to be executed upon completion</param>
             <param name="httpMethod">The HTTP method to execute</param>
         </member>
+        <member name="M:RestSharp.IRestClient.ExecuteTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes the request and callback asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteGetTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes a GET-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteGetTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecutePostTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes a POST-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecutePostTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a POST-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes the request and callback asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteGetTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes a GET-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecuteGetTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecutePostTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes a POST-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.IRestClient.ExecutePostTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a POST-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
         <member name="P:RestSharp.IRestClient.CookieContainer">
             <summary>
             
@@ -1294,6 +1429,11 @@
             <param name="value">Value of the segment to add</param>
             <returns></returns>
         </member>
+        <member name="P:RestSharp.IRestRequest.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.IRestRequest.JsonSerializer">
             <summary>
             Serializer to use when writing JSON request bodies. Used if RequestFormat is Json.
@@ -1304,6 +1444,11 @@
             <summary>
             Serializer to use when writing XML request bodies. Used if RequestFormat is Xml.
             By default the included XmlSerializer is used.
+            </summary>
+        </member>
+        <member name="P:RestSharp.IRestRequest.ResponseWriter">
+            <summary>
+            Set this to write response to Stream rather than reading into memory.
             </summary>
         </member>
         <member name="P:RestSharp.IRestRequest.Parameters">
@@ -1377,6 +1522,12 @@
             This Number is incremented each time the RestClient sends the request.
             Useful when using Asynchronous Execution with Callbacks
             </remarks>
+        </member>
+        <member name="P:RestSharp.IRestRequest.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server. The default is false.
+            </summary>
         </member>
         <member name="T:RestSharp.IRestResponse">
             <summary>
@@ -1459,8 +1610,9 @@
         </member>
         <member name="P:RestSharp.IRestResponse.ErrorException">
             <summary>
-            The exception thrown during the request, if any
+            Exceptions thrown during the request, if any.  
             </summary>
+            <remarks>Will contain only network transport or framework exceptions thrown during the request.  HTTP protocol errors are handled by RestSharp and will not appear here.</remarks>
         </member>
         <member name="T:RestSharp.IRestResponse`1">
             <summary>
@@ -1553,6 +1705,90 @@
             <param name="callback">Callback function to be executed upon completion</param>
             <param name="httpMethod">The HTTP method to execute</param>
         </member>
+        <member name="M:RestSharp.RestClient.ExecuteGetTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes a GET-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteGetTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecutePostTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes a POST-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecutePostTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a POST-style request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteTaskAsync``1(RestSharp.IRestRequest)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteTaskAsync``1(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <typeparam name="T">Target deserialization type</typeparam>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteGetTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes a GET-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteGetTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a GET-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecutePostTaskAsync(RestSharp.IRestRequest)">
+            <summary>
+            Executes a POST-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecutePostTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes a POST-style asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
+        <member name="M:RestSharp.RestClient.ExecuteTaskAsync(RestSharp.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Executes the request asynchronously, authenticating if needed
+            </summary>
+            <param name="request">Request to be executed</param>
+            <param name="token">The cancellation token</param>
+        </member>
         <member name="M:RestSharp.RestClient.#ctor">
             <summary>
             Default constructor that registers default content handlers
@@ -1634,6 +1870,12 @@
             X509CertificateCollection to be sent with request
             </summary>
         </member>
+        <member name="P:RestSharp.RestClient.Proxy">
+            <summary>
+            Proxy to use for requests made by this client instance.
+            Passed on to underlying WebRequest if set.
+            </summary>
+        </member>
         <member name="P:RestSharp.RestClient.FollowRedirects">
             <summary>
             Default is true. Determine whether or not requests that result in 
@@ -1674,12 +1916,6 @@
             client.BaseUrl = "http://example.com";
             </example>
         </member>
-        <member name="P:RestSharp.RestClient.Proxy">
-            <summary>
-            Proxy to use for requests made by this client instance.
-            Passed on to underying WebRequest if set.
-            </summary>
-        </member>
         <member name="M:RestSharp.RestClientExtensions.ExecuteAsync(RestSharp.IRestClient,RestSharp.IRestRequest,System.Action{RestSharp.IRestResponse})">
             <summary>
             Executes the request and callback asynchronously, authenticating if needed
@@ -1703,6 +1939,14 @@
             </summary>
             <param name="restClient">The IRestClient instance</param>
             <param name="p">Parameter to add</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.RestClientExtensions.RemoveDefaultParameter(RestSharp.IRestClient,System.String)">
+            <summary>
+            Removes a parameter from the default parameters that are used on every request made with this client instance
+            </summary>
+            <param name="restClient">The IRestClient instance</param>
+            <param name="name">The name of the parameter that needs to be removed</param>
             <returns></returns>
         </member>
         <member name="M:RestSharp.RestClientExtensions.AddDefaultParameter(RestSharp.IRestClient,System.String,System.Object)">
@@ -1926,6 +2170,11 @@
             Internal Method so that RestClient can increase the number of attempts
             </summary>
         </member>
+        <member name="P:RestSharp.RestRequest.AlwaysMultipartFormData">
+            <summary>
+            Always send a multipart/form-data request - even when no Files are present.
+            </summary>
+        </member>
         <member name="P:RestSharp.RestRequest.JsonSerializer">
             <summary>
             Serializer to use when writing JSON request bodies. Used if RequestFormat is Json.
@@ -1936,6 +2185,17 @@
             <summary>
             Serializer to use when writing XML request bodies. Used if RequestFormat is Xml.
             By default the included XmlSerializer is used.
+            </summary>
+        </member>
+        <member name="P:RestSharp.RestRequest.ResponseWriter">
+            <summary>
+            Set this to write response to Stream rather than reading into memory.
+            </summary>
+        </member>
+        <member name="P:RestSharp.RestRequest.UseDefaultCredentials">
+            <summary>
+            Determine whether or not the "default credentials" (e.g. the user account under which the current process is running)
+            will be sent along to the server. The default is false.
             </summary>
         </member>
         <member name="P:RestSharp.RestRequest.Parameters">
@@ -2374,6 +2634,18 @@
             Content type for serialized content
             </summary>
         </member>
+        <member name="T:RestSharp.Validation.Require">
+            <summary>
+            Helper methods for validating required values
+            </summary>
+        </member>
+        <member name="M:RestSharp.Validation.Require.Argument(System.String,System.Object)">
+            <summary>
+            Require a parameter to not be null
+            </summary>
+            <param name="argumentName">Name of the parameter</param>
+            <param name="argumentValue">Value of the parameter</param>
+        </member>
         <member name="T:RestSharp.JsonArray">
             <summary>
             Represents the json array.
@@ -2406,6 +2678,17 @@
             The internal member dictionary.
             </summary>
         </member>
+        <member name="M:RestSharp.JsonObject.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:RestSharp.JsonObject"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.JsonObject.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new instance of <see cref="T:RestSharp.JsonObject"/>.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys, or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.</param>
+        </member>
         <member name="M:RestSharp.JsonObject.Add(System.String,System.Object)">
             <summary>
             Adds the specified key.
@@ -2419,7 +2702,7 @@
             </summary>
             <param name="key">The key.</param>
             <returns>
-            	<c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+                <c>true</c> if the specified key contains key; otherwise, <c>false</c>.
             </returns>
         </member>
         <member name="M:RestSharp.JsonObject.Remove(System.String)">
@@ -2493,75 +2776,6 @@
             A json <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
             </returns>
         </member>
-        <member name="M:RestSharp.JsonObject.TryConvert(System.Dynamic.ConvertBinder,System.Object@)">
-            <summary>
-            Provides implementation for type conversion operations. Classes derived from the <see cref="T:System.Dynamic.DynamicObject"/> class can override this method to specify dynamic behavior for operations that convert an object from one type to another.
-            </summary>
-            <param name="binder">Provides information about the conversion operation. The binder.Type property provides the type to which the object must be converted. For example, for the statement (String)sampleObject in C# (CType(sampleObject, Type) in Visual Basic), where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, binder.Type returns the <see cref="T:System.String"/> type. The binder.Explicit property provides information about the kind of conversion that occurs. It returns true for explicit conversion and false for implicit conversion.</param>
-            <param name="result">The result of the type conversion operation.</param>
-            <returns>
-            Alwasy returns true.
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.TryDeleteMember(System.Dynamic.DeleteMemberBinder)">
-            <summary>
-            Provides the implementation for operations that delete an object member. This method is not intended for use in C# or Visual Basic.
-            </summary>
-            <param name="binder">Provides information about the deletion.</param>
-            <returns>
-            Alwasy returns true.
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
-            <summary>
-            Provides the implementation for operations that get a value by index. Classes derived from the <see cref="T:System.Dynamic.DynamicObject"/> class can override this method to specify dynamic behavior for indexing operations.
-            </summary>
-            <param name="binder">Provides information about the operation.</param>
-            <param name="indexes">The indexes that are used in the operation. For example, for the sampleObject[3] operation in C# (sampleObject(3) in Visual Basic), where sampleObject is derived from the DynamicObject class, <paramref name="indexes"/> is equal to 3.</param>
-            <param name="result">The result of the index operation.</param>
-            <returns>
-            Alwasy returns true.
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
-            <summary>
-            Provides the implementation for operations that get member values. Classes derived from the <see cref="T:System.Dynamic.DynamicObject"/> class can override this method to specify dynamic behavior for operations such as getting a value for a property.
-            </summary>
-            <param name="binder">Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member on which the dynamic operation is performed. For example, for the Console.WriteLine(sampleObject.SampleProperty) statement, where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.</param>
-            <param name="result">The result of the get operation. For example, if the method is called for a property, you can assign the property value to <paramref name="result"/>.</param>
-            <returns>
-            Alwasy returns true.
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)">
-            <summary>
-            Provides the implementation for operations that set a value by index. Classes derived from the <see cref="T:System.Dynamic.DynamicObject"/> class can override this method to specify dynamic behavior for operations that access objects by a specified index.
-            </summary>
-            <param name="binder">Provides information about the operation.</param>
-            <param name="indexes">The indexes that are used in the operation. For example, for the sampleObject[3] = 10 operation in C# (sampleObject(3) = 10 in Visual Basic), where sampleObject is derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, <paramref name="indexes"/> is equal to 3.</param>
-            <param name="value">The value to set to the object that has the specified index. For example, for the sampleObject[3] = 10 operation in C# (sampleObject(3) = 10 in Visual Basic), where sampleObject is derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, <paramref name="value"/> is equal to 10.</param>
-            <returns>
-            true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
-            <summary>
-            Provides the implementation for operations that set member values. Classes derived from the <see cref="T:System.Dynamic.DynamicObject"/> class can override this method to specify dynamic behavior for operations such as setting a value for a property.
-            </summary>
-            <param name="binder">Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member to which the value is being assigned. For example, for the statement sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.</param>
-            <param name="value">The value to set to the member. For example, for sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the <see cref="T:System.Dynamic.DynamicObject"/> class, the <paramref name="value"/> is "Test".</param>
-            <returns>
-            true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
-            </returns>
-        </member>
-        <member name="M:RestSharp.JsonObject.GetDynamicMemberNames">
-            <summary>
-            Returns the enumeration of all dynamic member names.
-            </summary>
-            <returns>
-            A sequence that contains dynamic member names.
-            </returns>
-        </member>
         <member name="P:RestSharp.JsonObject.Item(System.Int32)">
             <summary>
             Gets the <see cref="T:System.Object"/> at the specified index.
@@ -2623,7 +2837,7 @@
             <param name="json">
             A JSON string.
             </param>
-            <param name="object">
+            <param name="obj">
             The object.
             </param>
             <returns>
@@ -2644,18 +2858,6 @@
             (can be integer, double, null, etc).
             </summary>
         </member>
-        <member name="T:RestSharp.Validation.Require">
-            <summary>
-            Helper methods for validating required values
-            </summary>
-        </member>
-        <member name="M:RestSharp.Validation.Require.Argument(System.String,System.Object)">
-            <summary>
-            Require a parameter to not be null
-            </summary>
-            <param name="argumentName">Name of the parameter</param>
-            <param name="argumentValue">Value of the parameter</param>
-        </member>
         <member name="T:RestSharp.Validation.Validate">
             <summary>
             Helper methods for validating values
@@ -2675,6 +2877,14 @@
             </summary>
             <param name="value">String to be validated</param>
             <param name="maxSize">Maximum length of the string</param>
+        </member>
+        <member name="M:RestSharp.Extensions.ResponseStatusExtensions.ToWebException(RestSharp.ResponseStatus)">
+            <summary>
+            Convert a <see cref="T:RestSharp.ResponseStatus"/> to a <see cref="T:System.Net.WebException"/> instance.
+            </summary>
+            <param name="responseStatus">The response status.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">responseStatus</exception>
         </member>
     </members>
 </doc>
