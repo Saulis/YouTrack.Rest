@@ -1,5 +1,5 @@
 - Unreleased Changes
-* Nothing yet!
+* [BUGFIX] Fixed sending attachments to an issue for YouTrack 5.x.
 
 - RELEASE v1.0.5 [2014-05-31]
 * [FEATURE] Fetching Project Issues now supports indexing (by ssharunas)
