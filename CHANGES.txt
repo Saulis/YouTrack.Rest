@@ -1,4 +1,7 @@
 - Unreleased Changes
+* Nothing yet!
+
+- RELEASE v1.1.1 [2014-06-21]
 * [FEATURE] Updated Castle.Core to 3.3.0
 * [FEATURE] Updated RestSharp to 104.4.0
 * [BUGFIX] Fixed sending attachments to an issue for YouTrack 5.x.
