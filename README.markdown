@@ -2,7 +2,7 @@
 
 Easy-to-use .NET client for Jetbrains' YouTrack 4.x/5.x REST API (http://www.jetbrains.com/youtrack)
 
-Latest officially tested version: __5.21__
+Latest officially tested version: __5.2.1__
 
 Built on top of RestSharp: https://github.com/restsharp/RestSharp / http://restsharp.org
 and CastleProject's DynamicProxy: https://github.com/castleproject/Castle.Core-READONLY / http://www.castleproject.org/
