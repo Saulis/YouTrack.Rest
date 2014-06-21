@@ -1,10 +1,8 @@
 # YouTrack.Rest
 
-Easy-to-use .NET client for Jetbrains' YouTrack REST API (http://www.jetbrains.com/youtrack)
+Easy-to-use .NET client for Jetbrains' YouTrack 4.x/5.x REST API (http://www.jetbrains.com/youtrack)
 
-Built for YouTrack v4.0 (http://confluence.jetbrains.net/display/YTD4/YouTrack+REST+API+Reference)
-
-Should also work for 5.x, but hasn't been 100% verified.
+Latest officially tested version: __5.21__
 
 Built on top of RestSharp: https://github.com/restsharp/RestSharp / http://restsharp.org
 and CastleProject's DynamicProxy: https://github.com/castleproject/Castle.Core-READONLY / http://www.castleproject.org/
@@ -32,7 +30,7 @@ Console.WriteLine(issue.Summary);
 
 ```
 
-## Supported API Features (v1.0.5)
+## Supported API Features (v1.1.1)
 
 * Issues
 	* Create New Issue
@@ -77,4 +75,4 @@ You can also post an issue or send me a message and I'll try to sort it out.
 		* Install YouTrack (http://www.jetbrains.com/youtrack/download/get_youtrack.html)
 		* Use port 8484 (well, you can use whatever port you want but then you have to change the tests a bit)
 		* Run the YouTrack.Rest.Sandbox.Installer to setup Sandbox project to YouTrack
-		* Install SpecFlow 1.8.x (http://www.specflow.org/) to modify the Acceptance tests
+		* Install SpecFlow 1.9.x (http://www.specflow.org/) to modify the Acceptance tests
