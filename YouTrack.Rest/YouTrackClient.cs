@@ -14,7 +14,7 @@ namespace YouTrack.Rest
             RestClient restClient = new RestClient(baseUrl);
             session = new Session(restClient, login, password);
 
-            connection = new Connection(restClient, session);
+            connection = new Connection(restClient, session, new RestFileRequestFactory());
         }
 
         public IConnection GetConnection()

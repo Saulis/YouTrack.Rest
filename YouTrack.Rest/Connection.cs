@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest
@@ -12,16 +13,18 @@ namespace YouTrack.Rest
     {
         private readonly IRestClient restClient;
         private readonly ISession session;
+        private readonly IRestFileRequestFactory requestFactory;
 
-        public Connection(IRestClient restClient, ISession session)
+        public Connection(IRestClient restClient, ISession session, IRestFileRequestFactory requestFactory)
         {
             this.restClient = restClient;
             this.session = session;
+            this.requestFactory = requestFactory;
         }
 
         private IRestResponse ExecuteRequest(IYouTrackRequest request, Method method)
         {
-            IRestRequest restRequest = CreateRestRequest(request, method);
+            IRestRequest restRequest = requestFactory.CreateRestRequest(request, session, method);
             IRestResponse restResponse = restClient.Execute(restRequest);
 
             ThrowIfRequestFailed(restResponse);
@@ -31,7 +34,7 @@ namespace YouTrack.Rest
 
         private IRestResponse ExecuteRequestWithFile(IYouTrackFileRequest request, Method method)
         {
-            IRestRequest restRequest = CreateRestRequestWithFile(request, method);
+            IRestRequest restRequest = requestFactory.CreateRestRequestWithFile(request, session, method);
             IRestResponse restResponse = restClient.Execute(restRequest);
 
             ThrowIfRequestFailed(restResponse);
@@ -42,7 +45,7 @@ namespace YouTrack.Rest
 
         private IRestResponse<TResponse> ExecuteRequest<TResponse>(IYouTrackRequest request, Method method) where TResponse : new()
         {
-            IRestRequest restRequest = CreateRestRequest(request, method);
+            IRestRequest restRequest = requestFactory.CreateRestRequest(request, session, method);
             IRestResponse<TResponse> restResponse = restClient.Execute<TResponse>(restRequest);
 
             ThrowIfRequestFailed(restResponse);
@@ -143,69 +146,6 @@ namespace YouTrack.Rest
             return ExecuteRequest<TResponse>(request, method);
         }
 
-        private IRestRequest CreateRestRequest(IYouTrackRequest request, Method method)
-        {
-            RestRequest restRequest = new RestRequest(request.RestResource, method);
-
-            if(request.HasBody)
-            {
-                restRequest.AddBody(request.Body);
-            }
-
-            SetAcceptToXml(restRequest);
-
-            if (session.IsAuthenticated)
-            {
-                SetAuthenticationCookies(restRequest);
-            }
-
-            return restRequest;
-        }
-
-
-        private IRestRequest CreateRestRequestWithFile(IYouTrackFileRequest request, Method method)
-        {
-            IRestRequest restRequest = CreateRestRequest(request, method);
-            AddFileToRestRequest(request, restRequest);
-
-            //Using Accept=application/xml for files doesn't work in 5.x http://youtrack.jetbrains.com/issue/JT-25271
-            ReplaceAcceptWithJson(restRequest);
-
-            return restRequest;
-        }
-
-        private void ReplaceAcceptWithJson(IRestRequest restRequest)
-        {
-            foreach (var parameter in restRequest.Parameters.Where(p => p.Name == "Accept"))
-            {
-                parameter.Value = "application/json";
-            }
-        }
-
-        private void AddFileToRestRequest(IYouTrackFileRequest request, IRestRequest restRequest)
-        {
-            if (request.HasBytes)
-            {
-                restRequest.AddFile(request.Name, request.Bytes, request.FileName);
-            }
-            else
-            {
-                restRequest.AddFile(request.Name, request.FilePath);
-            }
-        }
-
-        private void SetAcceptToXml(RestRequest restRequest)
-        {
-            restRequest.AddHeader("Accept", "application/xml");
-        }
-
-        private void SetAuthenticationCookies(RestRequest restRequest)
-        {
-            foreach (KeyValuePair<string, string> cookie in session.AuthenticationCookies)
-            {
-                restRequest.AddCookie(cookie.Key, cookie.Value);
-            }
-        }
 
         private void LoginIfNotAuthenticated()
         {

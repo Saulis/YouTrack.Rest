@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using RestSharp;
 using YouTrack.Rest.Exceptions;
+using YouTrack.Rest.Factories;
 using YouTrack.Rest.Requests;
 
 namespace YouTrack.Rest.Tests
@@ -15,29 +15,23 @@ namespace YouTrack.Rest.Tests
 
     }
 
-    public class RequestBodyItem
-    {
-        public string Value { get; set; }
-    }
-
     class ConnectionTests : TestFor<Connection>
     {
-        private const string RequestBody = "requestBody";
         private IRestClient restClient;
         private IRestResponse restResponse;
         private IRestResponse<ConnectionTestItem> restResponseWithTestItem;
         private List<Parameter> parametersWithLocationHeader;
         private ISession session;
-        private Dictionary<string, string> authenticationCookies;
-        private IYouTrackPostWithFileRequest postWithFileRequest;
-        private IYouTrackPostRequest requestWithBody;
+        
+        private IRestFileRequestFactory requestFactory;
 
         protected override Connection CreateSut()
         {
             restClient = Mock<IRestClient>();
             session = Mock<ISession>();
+            requestFactory = Mock<IRestFileRequestFactory>();
 
-            return new Connection(restClient, session);
+            return new Connection(restClient, session, requestFactory);
         }
 
         protected override void SetupDependencies()
@@ -46,31 +40,8 @@ namespace YouTrack.Rest.Tests
             restResponseWithTestItem = Mock<IRestResponse<ConnectionTestItem>>();
             parametersWithLocationHeader = CreateParametersWithLocationHeader();
 
-            authenticationCookies = CreateAuthenticationCookies();
-
             restClient.Execute(Arg.Any<IRestRequest>()).Returns(restResponse);
             restClient.Execute<ConnectionTestItem>(Arg.Any<IRestRequest>()).Returns(restResponseWithTestItem);
-
-            postWithFileRequest = Mock<IYouTrackPostWithFileRequest>();
-
-            requestWithBody = CreateRequestWithBody();
-        }
-
-        private IYouTrackPostRequest CreateRequestWithBody()
-        {
-            IYouTrackPostRequest request = Mock<IYouTrackPostRequest>();
-            request.HasBody.Returns(true);
-            request.Body.Returns(new RequestBodyItem { Value = RequestBody });
-
-            return request;
-        }
-
-        private Dictionary<string, string> CreateAuthenticationCookies()
-        {
-            Dictionary<string, string> cookies = new Dictionary<string, string>();
-            cookies.Add("foo", "bar");
-
-            return cookies;
         }
 
         private List<Parameter> CreateParametersWithLocationHeader()
@@ -92,42 +63,15 @@ namespace YouTrack.Rest.Tests
             return parameter;
         }
 
-        [Test]
-        public void AuthenticationCookiesAreSetWhenAuthenticated()
-        {
-            session.IsAuthenticated.Returns(true);
-            session.AuthenticationCookies.Returns(authenticationCookies);
-
-            Sut.Get(Mock<IYouTrackGetRequest>());
-
-            AssertThatRestRequestContainsAuthenticationCookie();
-        }
-
-        private void AssertThatRestRequestContainsAuthenticationCookie()
-        {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Parameters.Any(p => p.Type == ParameterType.Cookie && p.Name == "foo")));
-        }
 
         [Test]
         public void RestClientIsCalledWithGetMethod()
         {
             Sut.Get(Mock<IYouTrackGetRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod(Method.GET);
+            AssertThatRestRequestWasCreatedWithMethod(Method.GET);
         }
 
-        [Test]
-        public void RequestHasBody()
-        {
-            Sut.Post(requestWithBody);
-
-            AssertThatRestClientExecuteWasCalledWithRequestBody(RequestBody);
-        }
-
-        private void AssertThatRestClientExecuteWasCalledWithRequestBody(string requestBody)
-        {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Parameters.Any(p => p.Type == ParameterType.RequestBody && p.Value.ToString().Contains(requestBody))));
-        }
 
         [Test]
         public void RequestNotFoundExceptionThrownOnNotFound()
@@ -178,38 +122,33 @@ namespace YouTrack.Rest.Tests
             Assert.Throws<RequestFailedException>(() => Sut.Get(Mock<IYouTrackGetRequest>()));
         }
 
-        private void AssertThatRestClientExecuteWasCalledWithMethod(Method method)
+        private void AssertThatRestRequestWasCreatedWithMethod(Method method)
         {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Method == method));
-        }
-
-        private void AssertThatRestClientExecuteWasCalledWithMethod<TResponse>(Method method) where TResponse : new()
-        {
-            restClient.Received().Execute<TResponse>(Arg.Is<IRestRequest>(x => x.Method == method));
+            requestFactory.Received().CreateRestRequest(Arg.Any<IYouTrackRequest>(), session, method);
         }
 
         [Test]
-        public void RestClientCalledWitGetMethodAndResponseType()
+        public void RestRequestIsCreatedWitGetMethodAndResponseType()
         {
             Sut.Get<ConnectionTestItem>(Mock<IYouTrackGetRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod<ConnectionTestItem>(Method.GET);
+            AssertThatRestRequestWasCreatedWithMethod(Method.GET);
         }
 
         [Test]
-        public void RestClientCalledWithDeleteMethod()
+        public void RestRequestIsCreatedWithDeleteMethod()
         {
             Sut.Delete(Mock<IYouTrackDeleteRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod(Method.DELETE);
+            AssertThatRestRequestWasCreatedWithMethod(Method.DELETE);
         }
 
         [Test]
-        public void RestClientCalledWithPostMethod()
+        public void RestRequestIsCreatedWithPostMethod()
         {
             Sut.Post(Mock<IYouTrackPostRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod(Method.POST);
+            AssertThatRestRequestWasCreatedWithMethod(Method.POST);
         }
 
         [Test]
@@ -220,13 +159,13 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
-        public void RestClientCalledWithPutMethod()
+        public void RestRequestIsCreatedWithPutMethod()
         {
             restResponse.Headers.Returns(parametersWithLocationHeader);
 
             Sut.Put(Mock<IYouTrackPutRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod(Method.PUT);
+            AssertThatRestRequestWasCreatedWithMethod(Method.PUT);
         }
 
         [Test]
@@ -238,77 +177,11 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
-        public void PostingFileIsCalledWithPostMethod()
+        public void PostingFileRequestIsCreatedWithPostMethod()
         {
-            Sut.PostWithFile(postWithFileRequest);
+            Sut.PostWithFile(Mock<IYouTrackPostWithFileRequest>());
 
-            AssertThatRestClientExecuteWasCalledWithMethod(Method.POST);
+            requestFactory.Received().CreateRestRequestWithFile(Arg.Any<IYouTrackFileRequest>(), session, Method.POST);
         }
-
-        [Test]
-        public void PostingFileRequestUsesJson()
-        {
-            Sut.PostWithFile(postWithFileRequest);
-
-            IRestRequest restRequest = GetRestRequest();
-
-            Assert.That(restRequest.Parameters.Single(p => p.Name == "Accept").Value, Is.EqualTo("application/json"));
-        }
-
-        private IRestRequest GetRestRequest()
-        {
-            return (IRestRequest)restClient.ReceivedCalls().Single().GetArguments()[0];
-        }
-
-        [Test]
-        public void FileIsPostedWithName()
-        {
-            postWithFileRequest.Name.Returns("files");
-
-            Sut.PostWithFile(postWithFileRequest);
-
-            AssertThatRestClientExecuteWasCalledWithFileAndName("files");
-        }
-
-        [Test]
-        public void FileIsPostedWithFilePath()
-        {
-            postWithFileRequest.FilePath.Returns("foo.jpg");
-
-            Sut.PostWithFile(postWithFileRequest);
-
-            AssertThatRestClientExecuteWasCalledWithFile("foo.jpg");
-        }
-
-        [Test]
-        public void FileIsPostedWithBytes()
-        {
-            byte[] bytes = new byte[512];
-            string filename = "foo.txt";
-
-            postWithFileRequest.HasBytes.Returns(true);
-            postWithFileRequest.Bytes.Returns(bytes);
-            postWithFileRequest.FileName.Returns(filename);
-
-            Sut.PostWithFile(postWithFileRequest);
-
-            AssertThatRestClientExecuteWasCalledWithBytes(filename, bytes);
-        }
-
-        private void AssertThatRestClientExecuteWasCalledWithBytes(string filename, byte[] bytes)
-        {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.FileName == filename && f.ContentLength == bytes.Length)));
-        }
-
-        private void AssertThatRestClientExecuteWasCalledWithFile(string filePath)
-        {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.FileName == filePath)));
-        }
-
-        private void AssertThatRestClientExecuteWasCalledWithFileAndName(string name)
-        {
-            restClient.Received().Execute(Arg.Is<IRestRequest>(x => x.Files.Any(f => f.Name == name)));
-        }
-
     }
 }
