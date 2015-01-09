@@ -88,6 +88,16 @@ namespace YouTrack.Rest
             //Force fetching when comments are needed next time.
             comments = null;
         }
+        
+        public void AddComment(string comment, string group)
+        {
+            AddCommentToIssueRequest request = new AddCommentToIssueRequest(Id, comment, group);
+
+            Connection.Post(request);
+
+            //Force fetching when comments are needed next time.
+            comments = null;
+        }
 
         public void RemoveComment(string commentId)
         {
