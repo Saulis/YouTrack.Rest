@@ -30,7 +30,7 @@ Console.WriteLine(issue.Summary);
 
 ```
 
-## Supported API Features (v1.1.1)
+## Supported API Features (v1.2.0)
 
 * Issues
 	* Create New Issue
