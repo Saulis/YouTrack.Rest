@@ -8,16 +8,12 @@ namespace YouTrack.Rest
         void AttachFile(string filePath, string group = null);
         void AttachFile(string fileName, byte[] bytes, string group = null);
         IEnumerable<IAttachment> GetAttachments();
-        void AddComment(string comment);
-        void AddComment(string comment, string group);
+        void AddComment(string comment, string group = null);
         void RemoveComment(string commentId);
         IEnumerable<IComment> Comments { get; }
-        void SetSubsystem(string subsystem);
-        void SetSubsystem(string subsystem, string group);
-        void SetType(string type);
-        void SetType(string type, string group);
-        void ApplyCommand(string command);
-        void ApplyCommand(string command, string group);
+        void SetSubsystem(string subsystem, string group = null);
+        void SetType(string type, string group = null);
+        void ApplyCommand(string command, string group = null);
         void ApplyCommands(params string[] commands);
     }
 }

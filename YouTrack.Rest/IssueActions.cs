@@ -33,14 +33,7 @@ namespace YouTrack.Rest
             return commentCollection.GetComments(Connection);
         }
 
-        public virtual void ApplyCommand(string command)
-        {
-            ApplyCommandToAnIssueRequest request = new ApplyCommandToAnIssueRequest(Id, command);
-
-            Connection.Post(request);
-        }
-
-        public void ApplyCommand(string command, string group)
+        public virtual void ApplyCommand(string command, string group = null)
         {
             ApplyCommandToAnIssueRequest request = new ApplyCommandToAnIssueRequest(Id, command, group: group);
 
@@ -54,22 +47,12 @@ namespace YouTrack.Rest
             Connection.Post(request);
         }
 
-        public void SetSubsystem(string subsystem)
-        {
-            ApplyCommand(Commands.SetSubsystem(subsystem));
-        }
-
-        public void SetSubsystem(string subsystem, string group)
+        public void SetSubsystem(string subsystem, string group = null)
         {
             ApplyCommand(Commands.SetSubsystem(subsystem), group);
         }
 
-        public void SetType(string type)
-        {
-            ApplyCommand(Commands.SetType(type));
-        }
-
-        public void SetType(string type, string group)
+        public void SetType(string type, string group = null)
         {
             ApplyCommand(Commands.SetType(type), group);
         }
@@ -96,19 +79,9 @@ namespace YouTrack.Rest
             return fileUrlCollection.FileUrls;
         }
 
-        public void AddComment(string comment)
+        public void AddComment(string comment, string group = null)
         {
-            AddComment(new AddCommentToIssueRequest(Id, comment));
-        }
-        
-        public void AddComment(string comment, string group)
-        {
-            AddComment(new AddCommentToIssueRequest(Id, comment, group));
-        }
-
-        private void AddComment(AddCommentToIssueRequest request)
-        {
-            Connection.Post(request);
+            Connection.Post(new AddCommentToIssueRequest(Id, comment, @group));
 
             //Force fetching when comments are needed next time.
             comments = null;

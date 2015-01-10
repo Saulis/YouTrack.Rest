@@ -44,9 +44,9 @@ namespace YouTrack.Rest
             IsLoaded = false;
         }
 
-        public override void ApplyCommand(string command)
+        public override void ApplyCommand(string command, string group = null)
         {
-            base.ApplyCommand(command);
+            base.ApplyCommand(command, group);
 
             IsLoaded = false;
         }
