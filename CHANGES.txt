@@ -1,6 +1,15 @@
 - Unreleased Changes
 * Nothing yet!
 
+- RELEASE v1.2.0 [2015-01-10]
+* [FEATURE] Updated Castle.Core to 3.3.3
+* [FEATURE] Updated RestSharp to 105.0.1
+* [FEATURE] Added visibility group argument to new comments (by edokan)
+* [FEATURE] Added visibility group argument to new issues
+* [FEATURE] Added visibility group argument to new file attachments
+* [FEATURE] Added visibility group argument to commands
+* [SIDE-NOTE] Not 100% compatible with YT 6.0 - problems mostly admin/user/group related due to changed API.
+
 - RELEASE v1.1.1 [2014-06-21]
 * [FEATURE] Updated Castle.Core to 3.3.0
 * [FEATURE] Updated RestSharp to 104.4.0
