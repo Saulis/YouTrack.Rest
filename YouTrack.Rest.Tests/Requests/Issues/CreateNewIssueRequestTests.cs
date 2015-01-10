@@ -14,5 +14,18 @@ namespace YouTrack.Rest.Tests.Requests.Issues
         {
             get { return "/rest/issue?project=FOO&summary=BAR&description=Blah"; }
         }
+
+        class WithGroup : YouTrackRequestTests<CreateNewIssueRequest, IYouTrackPutRequest>
+        {
+            protected override CreateNewIssueRequest CreateSut()
+            {
+                return new CreateNewIssueRequest("FOO", "BAR", "Blah", "group");
+            }
+
+            protected override string ExpectedRestResource
+            {
+                get { return "/rest/issue?project=FOO&summary=BAR&description=Blah&permittedGroup=group"; }
+            }
+        }
     }
 }

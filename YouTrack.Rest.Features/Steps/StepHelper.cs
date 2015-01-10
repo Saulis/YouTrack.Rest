@@ -17,7 +17,7 @@ namespace YouTrack.Rest.Features.Steps
 
         public IIssue CreateIssue(string project, string summary, string description)
         {
-            IIssue issue = GetIssueRepository().CreateIssue(project, summary, description);
+            IIssue issue = GetIssueRepository().CreateIssue(project, summary, description, "Automated Testers");
 
             Console.WriteLine("Issue created with Id: {0}", issue.Id);
 

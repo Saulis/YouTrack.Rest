@@ -17,9 +17,9 @@ namespace YouTrack.Rest.Repositories
             this.issueFactory = issueFactory;
         }
 
-        public IIssue CreateIssue(string project, string summary, string description)
+        public IIssue CreateIssue(string project, string summary, string description, string group = null)
         {
-            CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description);
+            CreateNewIssueRequest createNewIssueRequest = new CreateNewIssueRequest(project, summary, description, group);
 
             string location = connection.Put(createNewIssueRequest);
             string issueId = location.Split('/').Last();

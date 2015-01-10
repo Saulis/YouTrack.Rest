@@ -38,7 +38,7 @@ namespace YouTrack.Rest.Sandbox
 
             Console.ForegroundColor = oldForeGroundColor;
 
-            YouTrackClient youTrackClient = new YouTrackClient("http://localhost:8484", username, password);
+            YouTrackClient youTrackClient = new YouTrackClient("http://localhost:80", username, password);
             return youTrackClient;
         }
 
