@@ -55,6 +55,15 @@ namespace YouTrack.Rest.Tests
         }
 
         [Test]
+        public void CommentIsAddedWithVisibilityGroup()
+        {
+            Sut.AddComment("foobar", "bar");
+
+            connection.Received().Post(
+                Arg.Is<AddCommentToIssueRequest>(x => x.RestResource.Contains("group=bar")));
+        }
+
+        [Test]
         public void CommentIsDeleted()
         {
             Sut.RemoveComment("foobar");

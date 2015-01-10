@@ -2,10 +2,10 @@
 
 @unauthenticated
 Scenario: Valid authentication
-	When I authenticate with login "youtrack.rest" and password "youtrack.rest" to "http://localhost:8484"
+	When I authenticate with login "youtrack.rest" and password "youtrack.rest" to "http://localhost:80"
 	Then I am authenticated
 
 @unauthenticated
 Scenario: Invalid authentication
-	When I authenticate with login "foo" and password "bar" to "http://localhost:8484"
+	When I authenticate with login "foo" and password "bar" to "http://localhost:80"
 	Then I am not authenticated

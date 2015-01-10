@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -11,6 +9,7 @@ namespace YouTrack.Rest.Features.General.Issues
     [Scope(Feature = "Apply Command to an Issue")]
     public class ApplyCommandToAnIssueSteps : IssueSteps
     {
+        private const string VisibilityGroup = "Automated Testers";
         private const string CommentText = "This is a comment";
         private const string CommentSummary = "Testing comments";
         private const string CommentDescription = "blah blah";
@@ -27,6 +26,12 @@ namespace YouTrack.Rest.Features.General.Issues
         public void WhenIAddACommentToTheIssue()
         {
             GetSavedIssue().AddComment(CommentText);
+        }
+
+        [When(@"I add a comment to the issue with a group")]
+        public void WhenIAddACommentToTheIssueWithAGroup()
+        {
+            GetSavedIssue().AddComment(CommentText, VisibilityGroup);
         }
 
         [Then(@"a comment is added to the issue")]

@@ -5,14 +5,11 @@ namespace YouTrack.Rest.Requests.Issues
         public AddCommentToIssueRequest(string issueId, string comment)
             : base(issueId, comment: comment)
         {
-            
         }
 
         public AddCommentToIssueRequest(string issueId, string comment, string group)
-            : base(issueId, comment: comment)
+            : base(issueId, comment: comment, group: group)
         {
-            if (!string.IsNullOrWhiteSpace(group))
-                ResourceBuilder.AddParameter("group", group);
         }
     }
 }
