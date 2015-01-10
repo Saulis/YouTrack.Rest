@@ -73,6 +73,6 @@ You can also post an issue or send me a message and I'll try to sort it out.
 * Alright, what do I need to know?
 	* In order to run Acceptance tests, you need to install YouTrack locally:
 		* Install YouTrack (http://www.jetbrains.com/youtrack/download/get_youtrack.html)
-		* Use port 8484 (well, you can use whatever port you want but then you have to change the tests a bit)
+		* Use port 80 (well, you can use whatever port you want but then you have to change the tests a bit)
 		* Run the YouTrack.Rest.Sandbox.Installer to setup Sandbox project to YouTrack
 		* Install SpecFlow 1.9.x (http://www.specflow.org/) to modify the Acceptance tests
