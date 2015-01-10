@@ -7,21 +7,23 @@ namespace YouTrack.Rest.Requests.Issues
     {
         private byte[] bytes;
 
-        public AttachFileToAnIssueRequest(string issueId, string filePath) : base(String.Format("/rest/issue/{0}/attachment", issueId))
+        public AttachFileToAnIssueRequest(string issueId, string filePath, string group = null) : base(String.Format("/rest/issue/{0}/attachment", issueId))
         {
             FilePath = filePath;
             Name = "files";
 
             ResourceBuilder.AddParameter("name", Path.GetFileNameWithoutExtension(filePath));
+            ResourceBuilder.AddParameter("group", group);
         }
 
-        public AttachFileToAnIssueRequest(string issueId, string fileName, byte[] bytes) : base(String.Format("/rest/issue/{0}/attachment", issueId))
+        public AttachFileToAnIssueRequest(string issueId, string fileName, byte[] bytes, string group = null) : base(String.Format("/rest/issue/{0}/attachment", issueId))
         {
             Name = "files";
             this.bytes = bytes;
             FileName = fileName;
 
             ResourceBuilder.AddParameter("name", Path.GetFileNameWithoutExtension(fileName));
+            ResourceBuilder.AddParameter("group", group);
         }
 
         public string FilePath { get; private set; }

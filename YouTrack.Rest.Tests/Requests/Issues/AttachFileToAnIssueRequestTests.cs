@@ -37,11 +37,24 @@ namespace YouTrack.Rest.Tests.Requests.Issues
         {
             Assert.IsFalse(Sut.HasBytes);
         }
+
+        class WithGroup : AttachFileToAnIssueRequestWithFilenameTests
+        {
+            protected override AttachFileToAnIssueRequest CreateSut()
+            {
+                return new AttachFileToAnIssueRequest("FOO-BAR", "foo.jpg", "group");
+            }
+
+            protected override string ExpectedRestResource
+            {
+                get { return "/rest/issue/FOO-BAR/attachment?name=foo&group=group"; }
+            }
+        }
     }
 
     class AttachFileToAnIssueRequestWithBytesTests : AttachFileToAnIssueRequestTests
     {
-        private byte[] bytes;
+        protected byte[] bytes;
 
         protected override AttachFileToAnIssueRequest CreateSut()
         {
@@ -59,6 +72,20 @@ namespace YouTrack.Rest.Tests.Requests.Issues
         public void ReturnsBytes()
         {
             Assert.That(Sut.Bytes, Is.EqualTo(bytes));
+        }
+
+        class WithGroup : AttachFileToAnIssueRequestWithBytesTests
+        {
+            protected override AttachFileToAnIssueRequest CreateSut()
+            {
+                bytes = new byte[16];
+                return new AttachFileToAnIssueRequest("FOO-BAR", "foo.jpg", bytes, "group");
+            }
+
+            protected override string ExpectedRestResource
+            {
+                get { return "/rest/issue/FOO-BAR/attachment?name=foo&group=group"; }
+            }
         }
     }
 }

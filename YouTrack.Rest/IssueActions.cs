@@ -74,16 +74,16 @@ namespace YouTrack.Rest
             ApplyCommand(Commands.SetType(type), group);
         }
 
-        public void AttachFile(string fileName, byte[] bytes)
+        public void AttachFile(string fileName, byte[] bytes, string group = null)
         {
-            AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, fileName, bytes);
+            AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, fileName, bytes, group);
 
             Connection.PostWithFile(request);
         }
 
-        public void AttachFile(string filePath)
+        public void AttachFile(string filePath, string group = null)
         {
-            AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath);
+            AttachFileToAnIssueRequest request = new AttachFileToAnIssueRequest(Id, filePath, group);
 
             Connection.PostWithFile(request);
         }

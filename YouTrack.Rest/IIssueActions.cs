@@ -5,7 +5,8 @@ namespace YouTrack.Rest
     public interface IIssueActions
     {
         string Id { get; }
-        void AttachFile(string filePath);
+        void AttachFile(string filePath, string group = null);
+        void AttachFile(string fileName, byte[] bytes, string group = null);
         IEnumerable<IAttachment> GetAttachments();
         void AddComment(string comment);
         void AddComment(string comment, string group);
@@ -15,7 +16,6 @@ namespace YouTrack.Rest
         void SetSubsystem(string subsystem, string group);
         void SetType(string type);
         void SetType(string type, string group);
-        void AttachFile(string fileName, byte[] bytes);
         void ApplyCommand(string command);
         void ApplyCommand(string command, string group);
         void ApplyCommands(params string[] commands);
