@@ -81,7 +81,7 @@ namespace YouTrack.Rest
 
         public void AddComment(string comment, string group = null)
         {
-            Connection.Post(new AddCommentToIssueRequest(Id, comment, @group));
+            Connection.Post(new AddCommentToIssueRequest(Id, comment, group));
 
             //Force fetching when comments are needed next time.
             comments = null;
