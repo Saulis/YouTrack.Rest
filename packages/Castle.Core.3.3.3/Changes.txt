@@ -1,3 +1,16 @@
+3.3.3
+==================
+- fixed #70 - Serilog integration modifies LoggerConfiguration.MinimumLevel
+- fixed #69 - Added SourceContext to the Serilog Logger - contributed by @KevivL
+
+3.3.2
+==================
+- fixed #66 - SerilogLogger implementation bug where exceptions were passed through incorrectly
+
+3.3.1
+==================
+- implemented #61 - Added support for Serilog - contributed by Russell J Baker (@ruba1987)
+
 3.3.0
 ==================
 - implemented #51 - removed abandoned projects: Binder, Pagination, Validator
