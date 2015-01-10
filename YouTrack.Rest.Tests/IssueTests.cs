@@ -135,6 +135,14 @@ namespace YouTrack.Rest.Tests
             AssertThatCommandIsApplied("Subsystem Foobar");
         }
 
+        [Test]
+        public void SubsystemWithGroupIsApplied()
+        {
+            Sut.SetSubsystem("Foobar", "groubar");
+
+            connection.Received().Post(Arg.Is<ApplyCommandToAnIssueRequest>(x => x.RestResource.Contains("group=groubar")));
+        }
+
         private void AssertThatCommandIsApplied(string command)
         {
             connection.Received().Post(Arg.Is<ApplyCommandToAnIssueRequest>(x => x.RestResource == String.Format("/rest/issue/{0}/execute?command={1}", IssueId, Uri.EscapeDataString(command))));
@@ -160,6 +168,15 @@ namespace YouTrack.Rest.Tests
 
             AssertThatCommandIsApplied("Type foobar");
         }
+
+        [Test]
+        public void TypeWithGroupIsApplied()
+        {
+            Sut.SetType("Foobar", "groubar");
+
+            connection.Received().Post(Arg.Is<ApplyCommandToAnIssueRequest>(x => x.RestResource.Contains("group=groubar")));
+        }
+
 
         [Test]
         public void MultipleCommandsAreApplied()

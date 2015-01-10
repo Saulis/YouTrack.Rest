@@ -40,6 +40,13 @@ namespace YouTrack.Rest
             Connection.Post(request);
         }
 
+        public void ApplyCommand(string command, string group)
+        {
+            ApplyCommandToAnIssueRequest request = new ApplyCommandToAnIssueRequest(Id, command, group: group);
+
+            Connection.Post(request);
+        }
+
         public virtual void ApplyCommands(params string[] commands)
         {
             ApplyCommandsToAnIssueRequest request = new ApplyCommandsToAnIssueRequest(Id, commands);
@@ -52,9 +59,19 @@ namespace YouTrack.Rest
             ApplyCommand(Commands.SetSubsystem(subsystem));
         }
 
+        public void SetSubsystem(string subsystem, string group)
+        {
+            ApplyCommand(Commands.SetSubsystem(subsystem), group);
+        }
+
         public void SetType(string type)
         {
             ApplyCommand(Commands.SetType(type));
+        }
+
+        public void SetType(string type, string group)
+        {
+            ApplyCommand(Commands.SetType(type), group);
         }
 
         public void AttachFile(string fileName, byte[] bytes)

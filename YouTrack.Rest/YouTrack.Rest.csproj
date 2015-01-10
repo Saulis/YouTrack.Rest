@@ -121,8 +121,6 @@
     <Compile Include="Requests\Issues\GetIssueRequest.cs" />
     <Compile Include="Requests\Issues\GetIssuesInAProjectRequest.cs" />
     <Compile Include="Requests\Issues\RemoveACommentForAnIssueRequest.cs" />
-    <Compile Include="Requests\Issues\SetSubsystemOfAnIssueRequest.cs" />
-    <Compile Include="Requests\Issues\SetTypeOfAnIssueRequest.cs" />
     <Compile Include="Requests\IYouTrackDeleteRequest.cs" />
     <Compile Include="Requests\IYouTrackGetRequest.cs" />
     <Compile Include="Requests\IYouTrackPostRequest.cs" />
