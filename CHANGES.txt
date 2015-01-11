@@ -9,6 +9,7 @@
 * [FEATURE] Added visibility group argument to new file attachments
 * [FEATURE] Added visibility group argument to commands
 * [SIDE-NOTE] Not 100% compatible with YT 6.0 - problems mostly admin/user/group related due to changed API.
+* [SIDE-NOTE] Due to a packaging mishap, v1.2.0 library in Nuget has an invalid assembly version: 1.1.1.0.
 
 - RELEASE v1.1.1 [2014-06-21]
 * [FEATURE] Updated Castle.Core to 3.3.0
