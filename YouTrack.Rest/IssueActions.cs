@@ -47,6 +47,22 @@ namespace YouTrack.Rest
             Connection.Post(request);
         }
 
+        private IEnumerable<IChange> changes; 
+
+        public IEnumerable<IChange> ChangeHistory
+        {
+            get { return changes ?? (changes = GetChanges()); }
+        }
+
+        private IEnumerable<IChange> GetChanges()
+        {
+            GetChangeHistoryOfAnIssueRequest request = new GetChangeHistoryOfAnIssueRequest(Id);
+
+            ChangeCollection changeCollection = Connection.Get<ChangeCollection>(request);
+
+            return changeCollection.GetChanges(Connection);
+        }
+
         public void SetSubsystem(string subsystem, string group = null)
         {
             ApplyCommand(Commands.SetSubsystem(subsystem), group);

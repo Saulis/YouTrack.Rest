@@ -15,5 +15,6 @@ namespace YouTrack.Rest
         void SetType(string type, string group = null);
         void ApplyCommand(string command, string group = null);
         void ApplyCommands(params string[] commands);
+        IEnumerable<IChange> ChangeHistory { get; }
     }
 }

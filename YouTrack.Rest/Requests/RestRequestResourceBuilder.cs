@@ -49,6 +49,17 @@ namespace YouTrack.Rest.Requests
             }
         }
 
+        public void AddMultiValueParameter(string parameterName, IEnumerable<string> parameterValues)
+        {
+            foreach (var parameterValue in parameterValues)
+            {
+                if (!String.IsNullOrEmpty(parameterValue))
+                {
+                    parameters.Add(parameterName, parameterValue);
+                }
+            }
+        }
+
         private void ThrowIfParameterAlreadyAdded(string parameterName)
         {
             if (parameters.ContainsKey(parameterName))

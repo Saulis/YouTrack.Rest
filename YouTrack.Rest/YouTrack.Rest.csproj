@@ -50,14 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Change.cs" />
+    <Compile Include="ChangedField.cs" />
+    <Compile Include="Deserialization\Change.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="Deserialization\ChangeCollection.cs" />
     <Compile Include="Deserialization\Comment.cs" />
     <Compile Include="Deserialization\CommentCollection.cs" />
     <Compile Include="Deserialization\Field.cs" />
     <Compile Include="Deserialization\FileUrl.cs" />
     <Compile Include="Deserialization\FileUrlCollection.cs" />
+    <Compile Include="Deserialization\HasFieldsBase.cs" />
     <Compile Include="Deserialization\Issue.cs" />
     <Compile Include="Deserialization\Project.cs" />
     <Compile Include="Deserialization\Subsystem.cs" />
@@ -84,6 +89,8 @@
     <Compile Include="Factories\RestFileRequestFactory.cs" />
     <Compile Include="Factories\RestRequestFactory.cs" />
     <Compile Include="IAttachment.cs" />
+    <Compile Include="IChange.cs" />
+    <Compile Include="IChangedField.cs" />
     <Compile Include="IComment.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="IIssueActions.cs" />
@@ -117,6 +124,7 @@
     <Compile Include="Requests\Issues\CreateNewIssueRequest.cs" />
     <Compile Include="Requests\Issues\DeleteIssueRequest.cs" />
     <Compile Include="Requests\Issues\GetAttachmentsOfAnIssueRequest.cs" />
+    <Compile Include="Requests\Issues\GetChangeHistoryOfAnIssueRequest.cs" />
     <Compile Include="Requests\Issues\GetCommentsOfAnIssueRequest.cs" />
     <Compile Include="Requests\Issues\GetIssueRequest.cs" />
     <Compile Include="Requests\Issues\GetIssuesInAProjectRequest.cs" />
@@ -134,6 +142,7 @@
     <Compile Include="Requests\Projects\GetProjectRequest.cs" />
     <Compile Include="Requests\Projects\GetProjectSubsystemsRequest.cs" />
     <Compile Include="Requests\RestRequestResourceBuilder.cs" />
+    <Compile Include="Requests\Issues\SearchRequest.cs" />
     <Compile Include="Requests\Users\AddUserToGroupRequest.cs" />
     <Compile Include="Requests\Users\AssignRoleToUserGroupRequest.cs" />
     <Compile Include="Requests\Users\CreateANewUserRequest.cs" />
