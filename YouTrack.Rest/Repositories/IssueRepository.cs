@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using YouTrack.Rest.Exceptions;
 using YouTrack.Rest.Factories;
-using YouTrack.Rest.Requests;
 using YouTrack.Rest.Requests.Issues;
 
 namespace YouTrack.Rest.Repositories
@@ -30,6 +30,41 @@ namespace YouTrack.Rest.Repositories
         public IIssue GetIssue(string issueId)
         {
             return issueFactory.CreateIssue(issueId, connection);
+        }
+
+        public IEnumerable<IIssue> Search(string query)
+        {
+            SearchRequest searchRequest = new SearchRequest(query);
+
+            return Search(searchRequest);
+        }
+
+        public IEnumerable<IIssue> Search(string query, params string[] withFields)
+        {
+            SearchRequest searchRequest = new SearchRequest(query, withFields);
+
+            return Search(searchRequest);
+        }
+
+        public IEnumerable<IIssue> Search(string query, int maximumNumberOfRecordsToReturn, int startFrom)
+        {
+            SearchRequest searchRequest = new SearchRequest(query, null, maximumNumberOfRecordsToReturn, startFrom);
+
+            return Search(searchRequest);
+        }
+
+        public IEnumerable<IIssue> Search(string query, string[] withFields, int maximumNumberOfRecordsToReturn, int startFrom)
+        {
+            SearchRequest searchRequest = new SearchRequest(query, withFields, maximumNumberOfRecordsToReturn, startFrom);
+
+            return Search(searchRequest);
+        }
+
+        private IEnumerable<IIssue> Search(SearchRequest request)
+        {
+            List<Deserialization.Issue> issues = connection.Get<List<Deserialization.Issue>>(request);
+
+            return issues.Select(i => i.GetIssue(connection));
         }
 
         public void DeleteIssue(string issueId)

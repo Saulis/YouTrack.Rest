@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RestSharp.Deserializers;
 using YouTrack.Rest.Exceptions;
 
 namespace YouTrack.Rest.Deserialization
@@ -8,7 +9,12 @@ namespace YouTrack.Rest.Deserialization
     class Field
     {
         public string Name { get; set; }
+        public string Type { get; set; }
         public List<Value_> Values { get; set; }
+
+        // issue field value changes
+        public List<NewValue> NewValues { get; set; }
+        public List<OldValue> OldValues { get; set; }
 
         public string GetValue()
         {

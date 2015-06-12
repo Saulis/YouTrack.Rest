@@ -1,5 +1,8 @@
 namespace YouTrack.Rest.Deserialization
 {
+    internal class NewValue : Value_ { }
+    internal class OldValue : Value_ { }
+
     internal class Value_
     {
         public string Value { get; set; }
