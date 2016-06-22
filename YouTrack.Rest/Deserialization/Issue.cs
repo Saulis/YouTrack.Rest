@@ -86,7 +86,7 @@ namespace YouTrack.Rest.Deserialization
             issue.ProjectShortName = GetString("projectShortName");
             issue.ReporterName = GetString("reporterName");
             issue.State = GetString("state");
-            issue.Subsystem = GetString("subsystem");
+            issue.Subsystem = GetString("subsystem", "");
             issue.Summary = GetString("summary");
             issue.Type = GetString("Type");
             issue.Updated = GetDateTime("updated");
